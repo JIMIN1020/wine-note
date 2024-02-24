@@ -1,7 +1,7 @@
-import "./App.css";
+import React from "react";
 
-function App() {
+const App: React.FC = () => {
   return <div>wine note</div>;
-}
+};
 
 export default App;
