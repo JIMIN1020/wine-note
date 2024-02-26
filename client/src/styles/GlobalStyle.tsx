@@ -4,5 +4,6 @@ export const GlobalStyle = createGlobalStyle`
     body {
         margin: 0;
         font-family: "Pretendard";
+        background-color: #ffffff;
     }
 `;

@@ -8,6 +8,6 @@ const Login: React.FC = () => {
 export default Login;
 
 const Container = styled.div`
-  background-color: #45007b;
+  background-color: ${({ theme }) => theme.colors.wine_purple};
   color: white;
 `;
