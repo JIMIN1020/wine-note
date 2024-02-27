@@ -19,5 +19,6 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         font-family: "Pretendard";
         background-color: #45007b;
+        position: relative;
     }
 `;

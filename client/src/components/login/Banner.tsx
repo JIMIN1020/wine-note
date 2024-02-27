@@ -49,8 +49,9 @@ const Logo = styled.div`
   gap: 10px;
 
   & h1 {
-    font-size: 28px;
+    font-size: ${({ theme }) => theme.fontSize.logo};
     font-weight: 700;
+    margin-bottom: -3px;
   }
 
   & svg {

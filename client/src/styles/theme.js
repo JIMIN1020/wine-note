@@ -14,6 +14,7 @@ const fontSize = {
   lg: '18px',
   title: '20px',
   xl: '24px',
+  logo: '28px',
 };
 
 export const theme = {
