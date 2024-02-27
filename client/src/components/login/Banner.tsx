@@ -16,9 +16,9 @@ const Banner: React.FC = () => {
         <br />내 와인 취향을 분석해보세요!
       </Phrase>
       <Description>
-        나만 볼 수 있는 공간에 와인 테이스팅 노트를 기록하고 관리하며,
+        나만 볼 수 있는 공간에 와인 테이스팅 노트를
         <br />
-        와인 취향을 알아볼 수 있어요
+        기록하고 관리하며, 와인 취향을 알아볼 수 있어요
       </Description>
       <LottieContainer>
         <LottieWrapper>
