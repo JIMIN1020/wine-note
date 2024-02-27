@@ -17,6 +17,7 @@ const TitleBox: React.FC = () => {
 export default TitleBox;
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -34,7 +35,7 @@ const Quote = styled.div`
   gap: 16px;
 
   & h5 {
-    font-size: ${({ theme }) => theme.fontSize.xl};
+    font-size: ${({ theme }) => theme.fontSize.title};
   }
 
   & span {
