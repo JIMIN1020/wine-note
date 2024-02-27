@@ -44,4 +44,6 @@ const ContainerWithHeader = styled.div`
   width: 100vw;
   height: 100vh;
   padding-top: 70px;
+  display: flex;
+  justify-content: center;
 `;
