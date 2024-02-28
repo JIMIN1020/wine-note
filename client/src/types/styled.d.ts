@@ -1,0 +1,21 @@
+import 'styled-components';
+
+declare module 'styled-components' {
+  export interface Colors {
+    wine_purple: string;
+    bg_white: string;
+    font_white: string;
+    font_black: string;
+    font_gray: string;
+  }
+  export interface Font {
+    xs: string;
+    sm: string;
+    base: string;
+    md: string;
+    lg: string;
+    title: string;
+    xl: string;
+    logo: string;
+  }
+}

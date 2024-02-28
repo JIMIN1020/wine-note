@@ -1,4 +1,6 @@
-const colors = {
+import { Colors, Font } from 'styled-components';
+
+const colors: Colors = {
   wine_purple: '#45007b',
   bg_white: '#ffffff',
   font_white: '#ffffff',
@@ -6,7 +8,7 @@ const colors = {
   font_gray: '#6E6E6E',
 };
 
-const fontSize = {
+const fontSize: Font = {
   xs: '10px',
   sm: '12px',
   base: '14px',
