@@ -36,12 +36,12 @@ const HeaderBar = styled.header`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 80px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  max-width: 1300px;
   justify-content: space-between;
 `;
 

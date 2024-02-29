@@ -24,7 +24,7 @@ const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 30px 75px 50px 75px;
+  padding: 30px 80px 50px 80px;
 `;
 
 const PageTitle = styled.div`

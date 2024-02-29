@@ -33,5 +33,5 @@ const LottieWrapper = styled.div`
   height: 500px;
   position: absolute;
   top: 40px;
-  right: -10px;
+  right: 60px;
 `;
