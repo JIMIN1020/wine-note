@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
@@ -21,4 +21,16 @@ export const GlobalStyle = createGlobalStyle`
         background-color: #45007b;
         position: relative;
     }
+`;
+
+export const defaultWidth = css`
+  width: 100%;
+  max-width: 1350px;
+  padding: 0px 50px;
+`;
+
+export const flexCenter = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

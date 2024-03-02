@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { AiOutlinePlus } from 'react-icons/ai';
 import { defaultWidth } from '../../styles/GlobalStyle';
 
 const TitleBox: React.FC = () => {
@@ -8,13 +7,9 @@ const TitleBox: React.FC = () => {
     <TitleWrapper>
       <Wrapper>
         <PageTitle>
-          <h2>와인 기록</h2>
-          <span>내가 마신 와인을 기록하고 관리해보세요!</span>
+          <h2>와인 취향 분석</h2>
+          <span>기록한 와인을 기반으로 지민님의 취향을 분석해봤어요</span>
         </PageTitle>
-        <AddButton>
-          <AiOutlinePlus />
-          새로운 와인 기록 추가
-        </AddButton>
       </Wrapper>
     </TitleWrapper>
   );
@@ -48,29 +43,5 @@ const PageTitle = styled.div`
 
   & span {
     font-size: ${({ theme }) => theme.fontSize.md};
-  }
-`;
-
-const AddButton = styled.button`
-  padding: 12px 20px;
-  border-radius: 10px;
-  font-size: ${({ theme }) => theme.fontSize.sm};
-  font-weight: 600;
-  background-color: ${({ theme }) => theme.colors.bg_white};
-  color: ${({ theme }) => theme.colors.text_black};
-
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-
-  & svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  &:hover {
-    scale: calc(1.05);
-    transition: scale 0.3s ease-in-out;
   }
 `;

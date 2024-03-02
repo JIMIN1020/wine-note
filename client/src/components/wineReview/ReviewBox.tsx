@@ -4,38 +4,41 @@ import { IoIosSearch } from 'react-icons/io';
 import { IoSearchSharp } from 'react-icons/io5';
 import { MdOutlineFormatListBulleted } from 'react-icons/md';
 import { BiCategory } from 'react-icons/bi';
+import { defaultWidth } from '../../styles/GlobalStyle';
 
 const ReviewBox: React.FC = () => {
   const [inputFocused, setInputFocused] = useState(false);
   return (
     <Container>
-      <Category>
-        <Search>
+      <Wrapper>
+        <Category>
+          <Search>
+            <Title>
+              <IoSearchSharp />
+              Search
+            </Title>
+            <InputWrapper>
+              <SearchInput
+                type='text'
+                placeholder='와인명 검색'
+                onFocus={() => setInputFocused(true)}
+                onBlur={() => setInputFocused(false)}
+              />
+              <SearchButton $inputFocused={inputFocused}>
+                <IoIosSearch />
+              </SearchButton>
+            </InputWrapper>
+          </Search>
           <Title>
-            <IoSearchSharp />
-            Search
+            <MdOutlineFormatListBulleted />
+            Category <small>(12)</small>
           </Title>
-          <InputWrapper>
-            <SearchInput
-              type='text'
-              placeholder='와인명 검색'
-              onFocus={() => setInputFocused(true)}
-              onBlur={() => setInputFocused(false)}
-            />
-            <SearchButton $inputFocused={inputFocused}>
-              <IoIosSearch />
-            </SearchButton>
-          </InputWrapper>
-        </Search>
-        <Title>
-          <MdOutlineFormatListBulleted />
-          Category <small>(12)</small>
-        </Title>
-        <span>
-          <BiCategory />
-          All
-        </span>
-      </Category>
+          <span>
+            <BiCategory />
+            All
+          </span>
+        </Category>
+      </Wrapper>
     </Container>
   );
 };
@@ -46,16 +49,21 @@ const Container = styled.div`
   width: 100%;
   flex: 1;
   background-color: ${({ theme }) => theme.colors.bg_white};
-  border-radius: 25px 25px 0 0;
-  padding: 50px;
 
   display: flex;
+  justify-content: center;
+`;
+
+const Wrapper = styled.div`
+  ${defaultWidth}
+  padding: 50px;
+  display: flex;
+  color: ${({ theme }) => theme.colors.font_black};
 `;
 
 const Category = styled.div`
   width: 230px;
   height: 100%;
-  color: ${({ theme }) => theme.colors.font_black};
 
   display: flex;
   flex-direction: column;

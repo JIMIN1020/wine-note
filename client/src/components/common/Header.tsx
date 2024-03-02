@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaWineGlass } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { defaultWidth, flexCenter } from '../../styles/GlobalStyle';
 
 const Header: React.FC = () => {
   return (
@@ -33,15 +34,12 @@ const HeaderBar = styled.header`
   left: 0;
   color: ${({ theme }) => theme.colors.font_white};
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 80px;
+  ${flexCenter}
 `;
 
 const Wrapper = styled.div`
+  ${defaultWidth}
   display: flex;
-  width: 100%;
   justify-content: space-between;
 `;
 
