@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import TitleBox from '../components/wineReview/TitleBox';
-import ReviewBox from '../components/wineReview/ReviewBox';
+import Content from '../components/wineReview/Content';
 
 const WineReview: React.FC = () => {
   return (
     <Container>
       <TitleBox />
-      <ReviewBox />
+      <Content />
     </Container>
   );
 };

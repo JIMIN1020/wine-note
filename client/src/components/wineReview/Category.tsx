@@ -4,41 +4,36 @@ import { IoIosSearch } from 'react-icons/io';
 import { IoSearchSharp } from 'react-icons/io5';
 import { MdOutlineFormatListBulleted } from 'react-icons/md';
 import { BiCategory } from 'react-icons/bi';
-import { defaultWidth } from '../../styles/GlobalStyle';
 
 const ReviewBox: React.FC = () => {
-  const [inputFocused, setInputFocused] = useState(false);
+  const [inputFocused, setInputFocused] = useState<boolean>(false);
   return (
     <Container>
-      <Wrapper>
-        <Category>
-          <Search>
-            <Title>
-              <IoSearchSharp />
-              Search
-            </Title>
-            <InputWrapper>
-              <SearchInput
-                type='text'
-                placeholder='와인명 검색'
-                onFocus={() => setInputFocused(true)}
-                onBlur={() => setInputFocused(false)}
-              />
-              <SearchButton $inputFocused={inputFocused}>
-                <IoIosSearch />
-              </SearchButton>
-            </InputWrapper>
-          </Search>
-          <Title>
-            <MdOutlineFormatListBulleted />
-            Category <small>(12)</small>
-          </Title>
-          <span>
-            <BiCategory />
-            All
-          </span>
-        </Category>
-      </Wrapper>
+      <Search>
+        <Title>
+          <IoSearchSharp />
+          Search
+        </Title>
+        <InputWrapper>
+          <SearchInput
+            type='text'
+            placeholder='와인명 검색'
+            onFocus={() => setInputFocused(true)}
+            onBlur={() => setInputFocused(false)}
+          />
+          <SearchButton $inputFocused={inputFocused}>
+            <IoIosSearch />
+          </SearchButton>
+        </InputWrapper>
+      </Search>
+      <Title>
+        <MdOutlineFormatListBulleted />
+        Category <small>(12)</small>
+      </Title>
+      <span>
+        <BiCategory />
+        All
+      </span>
     </Container>
   );
 };
@@ -46,22 +41,6 @@ const ReviewBox: React.FC = () => {
 export default ReviewBox;
 
 const Container = styled.div`
-  width: 100%;
-  flex: 1;
-  background-color: ${({ theme }) => theme.colors.bg_white};
-
-  display: flex;
-  justify-content: center;
-`;
-
-const Wrapper = styled.div`
-  ${defaultWidth}
-  padding: 50px;
-  display: flex;
-  color: ${({ theme }) => theme.colors.font_black};
-`;
-
-const Category = styled.div`
   width: 230px;
   height: 100%;
 
@@ -105,7 +84,7 @@ const SearchInput = styled.input`
   width: 100%;
   padding: 10px 38px 10px 10px;
   border-radius: 8px 0px 0px 8px;
-  border: 1px solid #b1b1b1d2;
+  border: 1px solid ${({ theme }) => theme.colors.border_gray};
   font-size: ${({ theme }) => theme.fontSize.base};
 
   &:focus {
@@ -125,7 +104,7 @@ const SearchButton = styled.button<{ $inputFocused: boolean }>`
   border-radius: 0px 8px 8px 0px;
   border: 1px solid
     ${({ $inputFocused, theme }) =>
-      $inputFocused ? theme.colors.wine_purple : '#b1b1b1d2'};
+      $inputFocused ? theme.colors.wine_purple : theme.colors.border_gray};
   border-left: none;
   cursor: pointer;
 
@@ -136,6 +115,7 @@ const SearchButton = styled.button<{ $inputFocused: boolean }>`
   & svg {
     width: 24px;
     height: 24px;
-    color: ${({ $inputFocused }) => ($inputFocused ? 'white' : '#b1b1b1')};
+    color: ${({ $inputFocused, theme }) =>
+      $inputFocused ? 'white' : theme.colors.border_gray};
   }
 `;

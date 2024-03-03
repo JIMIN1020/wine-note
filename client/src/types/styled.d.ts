@@ -4,6 +4,7 @@ declare module 'styled-components' {
   export interface Colors {
     wine_purple: string;
     bg_white: string;
+    border_gray: string;
     font_white: string;
     font_black: string;
     font_gray: string;
