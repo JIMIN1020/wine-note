@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import { defaultWidth } from '../../styles/GlobalStyle';
 import Category from './Category';
 import WineContainer from './WineContainer';
+import SearchBar from './SearchBar';
 
 const Content: React.FC = () => {
   return (
     <Container>
       <Wrapper>
-        <Category />
+        <SideBar>
+          <SearchBar />
+          <Category />
+        </SideBar>
         <WineContainer />
       </Wrapper>
     </Container>
@@ -32,4 +36,10 @@ const Wrapper = styled.div`
   display: flex;
   gap: 40px;
   color: ${({ theme }) => theme.colors.font_black};
+`;
+
+const SideBar = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 `;
