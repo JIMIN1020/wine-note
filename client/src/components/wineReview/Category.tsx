@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { MdOutlineFormatListBulleted } from 'react-icons/md';
 import { BiCategory } from 'react-icons/bi';
 
-const ReviewBox: React.FC = () => {
+const Category: React.FC = () => {
   return (
     <Container>
       <Title>
@@ -11,16 +11,16 @@ const ReviewBox: React.FC = () => {
         Category <small>(12)</small>
       </Title>
       <Wrapper>
-        <Category>
+        <CategoryBox>
           <BiCategory />
           <span>All</span>
-        </Category>
+        </CategoryBox>
       </Wrapper>
     </Container>
   );
 };
 
-export default ReviewBox;
+export default Category;
 
 const Container = styled.div`
   width: 230px;
@@ -55,7 +55,7 @@ const Wrapper = styled.div`
   flex-direction: column;
 `;
 
-const Category = styled.div`
+const CategoryBox = styled.div`
   width: 100%;
   display: flex;
   gap: 10px;

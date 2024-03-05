@@ -63,6 +63,7 @@ const AddButton = styled.button`
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 
   & svg {
     width: 18px;
@@ -71,6 +72,5 @@ const AddButton = styled.button`
 
   &:hover {
     scale: calc(1.05);
-    transition: scale 0.3s ease-in-out;
   }
 `;

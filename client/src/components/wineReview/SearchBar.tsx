@@ -41,16 +41,17 @@ const InputWrapper = styled.div`
 `;
 
 const Title = styled.h3`
+  height: 35px;
   font-size: ${({ theme }) => theme.fontSize.md};
   font-weight: 600;
 
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 5px;
 
   & svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
   }
 
   & small {

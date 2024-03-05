@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import WineBox from '../common/WineBox';
+import Wine from '../common/Wine';
 import { defaultWidth } from '../../styles/GlobalStyle';
 
 const BottomSheet: React.FC = () => {
@@ -12,9 +12,9 @@ const BottomSheet: React.FC = () => {
           <span>지민님이 높은 평점을 준 와인과 비슷한 와인을 찾아봤어요</span>
         </TitleWrapper>
         <WineWrapper>
-          <WineBox />
-          <WineBox />
-          <WineBox />
+          <Wine />
+          <Wine />
+          <Wine />
         </WineWrapper>
       </Wrapper>
     </Container>

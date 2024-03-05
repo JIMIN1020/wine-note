@@ -99,6 +99,8 @@ const OptionBox = styled.div`
 
   position: absolute;
   bottom: -170px;
+  z-index: 10;
+  background-color: ${({ theme }) => theme.colors.bg_white};
 
   font-size: ${({ theme }) => theme.fontSize.sm};
   border: 1px solid ${({ theme }) => theme.colors.border_gray};
