@@ -3,6 +3,7 @@ import { Colors, Font } from 'styled-components';
 const colors: Colors = {
   wine_purple: '#45007b',
   bg_white: '#ffffff',
+  bg_lightgray: '#eeeeee',
   border_gray: '#b1b1b1d2',
   font_white: '#ffffff',
   font_black: '#1E1E1E',

@@ -117,11 +117,19 @@ const Rating = styled.div`
   gap: 4px;
   justify-content: center;
   align-items: center;
+
   position: absolute;
   top: 10px;
   left: 10px;
+
   font-size: ${({ theme }) => theme.fontSize.sm};
+  font-weight: 600;
   color: ${({ theme }) => theme.colors.font_white};
   background-color: ${({ theme }) => theme.colors.wine_purple};
   border-radius: 14px;
+
+  & svg {
+    width: 12px;
+    height: 12px;
+  }
 `;

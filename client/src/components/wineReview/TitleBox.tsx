@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { defaultWidth } from '../../styles/GlobalStyle';
 
-const TitleBox: React.FC = () => {
+type TitleBoxProps = {
+  setOpenModal: (isOpen: boolean) => void;
+};
+
+const TitleBox = ({ setOpenModal }: TitleBoxProps) => {
   return (
     <TitleWrapper>
       <Wrapper>
@@ -11,7 +15,7 @@ const TitleBox: React.FC = () => {
           <h2>와인 기록</h2>
           <span>내가 마신 와인을 기록하고 관리해보세요!</span>
         </PageTitle>
-        <AddButton>
+        <AddButton onClick={() => setOpenModal(true)}>
           <AiOutlinePlus />
           새로운 와인 기록 추가
         </AddButton>
