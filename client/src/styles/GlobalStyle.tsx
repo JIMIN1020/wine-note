@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle, css, keyframes } from 'styled-components';
 import reset from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
@@ -33,4 +33,15 @@ export const flexCenter = css`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const fadein = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 5%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
 `;

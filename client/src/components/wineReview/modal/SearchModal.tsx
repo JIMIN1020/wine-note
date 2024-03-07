@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import ResultBox from './ResultBox';
 import { GrClose } from 'react-icons/gr';
+import { fadein } from '../../../styles/GlobalStyle';
 
 type SearchModalProps = {
   setOpenModal: (isOpen: boolean) => void;
@@ -57,6 +58,10 @@ const Container = styled.div`
   left: 0;
   background-color: #49494979;
   z-index: 20;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Modal = styled.div`
@@ -66,9 +71,6 @@ const Modal = styled.div`
   color: ${({ theme }) => theme.colors.font_black};
 
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border-radius: 12px;
 
   display: flex;
@@ -76,6 +78,7 @@ const Modal = styled.div`
   overflow: hidden;
 
   z-index: 21;
+  animation: ${fadein} 0.5s;
   transition: all 0.5s ease-in-out;
 `;
 
