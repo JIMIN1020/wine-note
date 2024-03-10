@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import ResultBox from './ResultBox';
 import { GrClose } from 'react-icons/gr';
+import { fadein } from '../../../styles/GlobalStyle';
 
 type SearchModalProps = {
-  setOpenModal: (isOpen: boolean) => void;
+  setOpenSearchModal: (isOpen: boolean) => void;
+  setOpenReviewModal: (isOpen: boolean) => void;
 };
 
-const SearchModal = ({ setOpenModal }: SearchModalProps) => {
+const SearchModal = ({
+  setOpenSearchModal,
+  setOpenReviewModal,
+}: SearchModalProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [resultOpen, setResultOpen] = useState<boolean>(false);
 
   /* ----- vivino 검색 함수 ----- */
   const handleSearch = () => {
+    setResultOpen(false);
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -20,11 +26,16 @@ const SearchModal = ({ setOpenModal }: SearchModalProps) => {
     }, 5000);
   };
 
+  const handleWriteReview = () => {
+    setOpenSearchModal(false);
+    setOpenReviewModal(true);
+  };
+
   return (
     <Container>
       <Modal>
         <SearchBox>
-          <CloseBtn onClick={() => setOpenModal(false)}>
+          <CloseBtn onClick={() => setOpenSearchModal(false)}>
             <GrClose />
           </CloseBtn>
           <Title>
@@ -41,7 +52,7 @@ const SearchModal = ({ setOpenModal }: SearchModalProps) => {
             </SearchButton>
           </InputWrapper>
         </SearchBox>
-        {resultOpen && <ResultBox />}
+        {resultOpen && <ResultBox handleWriteReview={handleWriteReview} />}
       </Modal>
     </Container>
   );
@@ -57,6 +68,10 @@ const Container = styled.div`
   left: 0;
   background-color: #6f6f6f79;
   z-index: 20;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Modal = styled.div`
@@ -66,9 +81,6 @@ const Modal = styled.div`
   color: ${({ theme }) => theme.colors.font_black};
 
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   border-radius: 12px;
 
   display: flex;
@@ -76,6 +88,7 @@ const Modal = styled.div`
   overflow: hidden;
 
   z-index: 21;
+  animation: ${fadein} 0.5s;
   transition: all 0.5s ease-in-out;
 `;
 
