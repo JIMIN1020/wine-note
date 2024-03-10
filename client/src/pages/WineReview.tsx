@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import TitleBox from '../components/wineReview/TitleBox';
 import Content from '../components/wineReview/Content';
-import SearchModal from '../components/wineReview/modal/SearchModal';
+// import SearchModal from '../components/wineReview/modal/SearchModal';
+import ReviewModal from '../components/wineReview/modal/ReviewModal';
 
 const WineReview: React.FC = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
@@ -18,7 +19,8 @@ const WineReview: React.FC = () => {
     <Container>
       <TitleBox setOpenModal={setOpenModal} />
       <Content />
-      {openModal && <SearchModal setOpenModal={setOpenModal} />}
+      {/* {openModal && <SearchModal setOpenModal={setOpenModal} />} */}
+      {openModal && <ReviewModal />}
     </Container>
   );
 };
