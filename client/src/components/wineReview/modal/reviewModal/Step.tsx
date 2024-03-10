@@ -26,6 +26,7 @@ const Container = styled.div<{ $complete: boolean }>`
   display: flex;
   gap: 12px;
   opacity: ${({ $complete }) => ($complete ? '1' : '0.7')};
+  transition: all 0.3s ease-in-out;
 `;
 
 const StepNum = styled.div<{ $complete: boolean }>`
@@ -36,6 +37,7 @@ const StepNum = styled.div<{ $complete: boolean }>`
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.base};
   font-weight: 700;
+  transition: all 0.3s ease-in-out;
 
   border-radius: 50%;
   background-color: ${({ theme, $complete }) =>
@@ -43,7 +45,7 @@ const StepNum = styled.div<{ $complete: boolean }>`
   border: ${({ theme, $complete }) =>
     $complete ? 'none' : `2px solid ${theme.colors.bg_white}`};
   color: ${({ $complete, theme }) =>
-    $complete ? '#46007bb3' : theme.colors.font_white};
+    $complete ? theme.colors.wine_mid_purple : theme.colors.font_white};
 `;
 
 const StepTitle = styled.div`

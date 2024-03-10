@@ -12,14 +12,14 @@ const MultiStep = ({ step }: MultiStepProps) => {
       <Title>Tasting Steps</Title>
       <StepContainer>
         <Step number={1} title='와인 정보' complete={step >= 1} />
-        <Line />
-        <Step number={2} title='와인의 색' complete={false} />
-        <Line />
-        <Step number={3} title='와인의 향' complete={false} />
-        <Line />
-        <Step number={4} title='와인의 맛' complete={false} />
-        <Line />
-        <Step number={5} title='총평' complete={false} />
+        <Line $complete={step > 1} />
+        <Step number={2} title='와인의 색' complete={step >= 2} />
+        <Line $complete={step > 2} />
+        <Step number={3} title='와인의 향' complete={step >= 3} />
+        <Line $complete={step > 3} />
+        <Step number={4} title='와인의 맛' complete={step >= 4} />
+        <Line $complete={step > 4} />
+        <Step number={5} title='총평' complete={step >= 5} />
       </StepContainer>
     </Container>
   );
@@ -30,8 +30,7 @@ export default MultiStep;
 const Container = styled.div`
   width: 250px;
   height: 100%;
-  /* background-color: ${({ theme }) => theme.colors.wine_purple}; */
-  background-color: #46007bb3;
+  background-color: ${({ theme }) => theme.colors.wine_mid_purple};
   color: ${({ theme }) => theme.colors.font_white};
 
   border-radius: 12px;
@@ -56,9 +55,11 @@ const StepContainer = styled.div`
   flex-direction: column;
 `;
 
-const Line = styled.div`
+const Line = styled.div<{ $complete: boolean }>`
   width: 2px;
   height: 35px;
   background-color: ${({ theme }) => theme.colors.bg_white};
   margin-left: 17px;
+  opacity: ${({ $complete }) => ($complete ? '1' : '0.7')};
+  transition: all 0.3s ease-in-out;
 `;

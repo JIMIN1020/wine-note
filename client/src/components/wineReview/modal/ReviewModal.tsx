@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import MultiStep from './reviewModal/MultiStep';
 import Step1 from './reviewModal/Step1';
@@ -6,13 +6,18 @@ import Step2 from './reviewModal/Step2';
 import Step3 from './reviewModal/Step3';
 import Step4 from './reviewModal/Step4';
 import Step5 from './reviewModal/Step5';
+import { IoArrowForwardSharp } from 'react-icons/io5';
 
 const ReviewModal = () => {
   const [step, setStep] = useState<number>(1);
 
-  useEffect(() => {
-    setStep(1);
-  }, []);
+  const handleButtonClick = () => {
+    if (step === 5) {
+      // 제출
+    } else {
+      setStep((prev) => prev + 1);
+    }
+  };
 
   return (
     <Container>
@@ -24,6 +29,18 @@ const ReviewModal = () => {
           {step === 3 && <Step3 />}
           {step === 4 && <Step4 />}
           {step === 5 && <Step5 />}
+          <BtnContainer>
+            <Button onClick={handleButtonClick}>
+              {step < 5 ? (
+                <>
+                  <span>다음</span>
+                  <IoArrowForwardSharp />
+                </>
+              ) : (
+                '기록 완료'
+              )}
+            </Button>
+          </BtnContainer>
         </Content>
       </Modal>
     </Container>
@@ -44,7 +61,7 @@ const Container = styled.div`
 
 const Modal = styled.div`
   width: 900px;
-  height: 700px;
+  height: 650px;
   background-color: ${({ theme }) => theme.colors.bg_white};
   color: ${({ theme }) => theme.colors.font_black};
 
@@ -64,4 +81,31 @@ const Modal = styled.div`
 
 const Content = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+const BtnContainer = styled.div`
+  width: 100%;
+  padding: 20px 0px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Button = styled.button`
+  background-color: ${({ theme }) => theme.colors.wine_mid_purple};
+  color: ${({ theme }) => theme.colors.font_white};
+  padding: 10px 20px;
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  cursor: pointer;
+
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    scale: calc(1.05);
+  }
 `;
