@@ -1,26 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 import Step from './Step';
+import { GrClose } from 'react-icons/gr';
 
 type MultiStepProps = {
   step: number;
+  setOpenModal: (isOpen: boolean) => void;
 };
 
-const MultiStep = ({ step }: MultiStepProps) => {
+const MultiStep = ({ step, setOpenModal }: MultiStepProps) => {
   return (
     <Container>
-      <Title>Tasting Steps</Title>
-      <StepContainer>
-        <Step number={1} title='와인 정보' complete={step >= 1} />
-        <Line $complete={step > 1} />
-        <Step number={2} title='와인의 색' complete={step >= 2} />
-        <Line $complete={step > 2} />
-        <Step number={3} title='와인의 향' complete={step >= 3} />
-        <Line $complete={step > 3} />
-        <Step number={4} title='와인의 맛' complete={step >= 4} />
-        <Line $complete={step > 4} />
-        <Step number={5} title='총평' complete={step >= 5} />
-      </StepContainer>
+      <Wrapper>
+        <Title>Tasting Steps</Title>
+        <StepContainer>
+          <Step number={1} title='와인 정보' complete={step >= 1} />
+          <Line $complete={step > 1} />
+          <Step number={2} title='와인의 색' complete={step >= 2} />
+          <Line $complete={step > 2} />
+          <Step number={3} title='와인의 향' complete={step >= 3} />
+          <Line $complete={step > 3} />
+          <Step number={4} title='와인의 맛' complete={step >= 4} />
+          <Line $complete={step > 4} />
+          <Step number={5} title='총평' complete={step >= 5} />
+        </StepContainer>
+      </Wrapper>
+      <CancelBtn onClick={() => setOpenModal(false)}>
+        <GrClose />
+        기록 취소하기
+      </CancelBtn>
     </Container>
   );
 };
@@ -36,6 +44,12 @@ const Container = styled.div`
   border-radius: 12px;
   padding: 30px;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -62,4 +76,22 @@ const Line = styled.div<{ $complete: boolean }>`
   margin-left: 17px;
   opacity: ${({ $complete }) => ($complete ? '1' : '0.7')};
   transition: all 0.3s ease-in-out;
+`;
+
+const CancelBtn = styled.button`
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+
+  background-color: #ffffff3f;
+  color: ${({ theme }) => theme.colors.font_white};
+  cursor: pointer;
+
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: #ffffff54;
+  }
 `;

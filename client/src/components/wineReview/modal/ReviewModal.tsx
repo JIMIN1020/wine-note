@@ -8,7 +8,11 @@ import Step4 from './reviewModal/Step4';
 import Step5 from './reviewModal/Step5';
 import { IoArrowForwardSharp } from 'react-icons/io5';
 
-const ReviewModal = () => {
+type ReviewModalProps = {
+  setOpenModal: (isOpen: boolean) => void;
+};
+
+const ReviewModal = ({ setOpenModal }: ReviewModalProps) => {
   const [step, setStep] = useState<number>(1);
 
   const handleButtonClick = () => {
@@ -22,7 +26,7 @@ const ReviewModal = () => {
   return (
     <Container>
       <Modal>
-        <MultiStep step={step} />
+        <MultiStep step={step} setOpenModal={setOpenModal} />
         <Content>
           {step === 1 && <Step1 />}
           {step === 2 && <Step2 />}
@@ -55,7 +59,7 @@ const Container = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #6f6f6f79;
+  background-color: #0000004a;
   z-index: 20;
 `;
 

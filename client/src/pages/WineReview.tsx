@@ -20,7 +20,7 @@ const WineReview: React.FC = () => {
       <TitleBox setOpenModal={setOpenModal} />
       <Content />
       {/* {openModal && <SearchModal setOpenModal={setOpenModal} />} */}
-      {openModal && <ReviewModal />}
+      {openModal && <ReviewModal setOpenModal={setOpenModal} />}
     </Container>
   );
 };
