@@ -26,7 +26,7 @@ const WineReview: React.FC = () => {
           setOpenReviewModal={setOpenReviewModal}
         />
       )}
-      {openReviewModal && <ReviewModal />}
+      {openReviewModal && <ReviewModal setOpenModal={setOpenReviewModal} />}
     </Container>
   );
 };
