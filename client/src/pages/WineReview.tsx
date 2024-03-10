@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import TitleBox from '../components/wineReview/TitleBox';
 import Content from '../components/wineReview/Content';
 import SearchModal from '../components/wineReview/modal/SearchModal';
+import ReviewModal from '../components/wineReview/modal/ReviewModal';
 
 const WineReview: React.FC = () => {
-  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [openSearchModal, setOpenSearchModal] = useState<boolean>(false);
+  const [openReviewModal, setOpenReviewModal] = useState<boolean>(false);
 
   /* ----- 모달 오픈 시 뒷배경 스크롤 방지 ----- */
-  if (openModal) {
+  if (openSearchModal || openReviewModal) {
     document.body.style.overflow = 'hidden';
   } else {
     document.body.style.overflow = 'auto';
@@ -16,9 +18,15 @@ const WineReview: React.FC = () => {
 
   return (
     <Container>
-      <TitleBox setOpenModal={setOpenModal} />
+      <TitleBox setOpenSearchModal={setOpenSearchModal} />
       <Content />
-      {openModal && <SearchModal setOpenModal={setOpenModal} />}
+      {openSearchModal && (
+        <SearchModal
+          setOpenSearchModal={setOpenSearchModal}
+          setOpenReviewModal={setOpenReviewModal}
+        />
+      )}
+      {openReviewModal && <ReviewModal />}
     </Container>
   );
 };

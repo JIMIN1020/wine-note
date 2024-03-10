@@ -4,10 +4,10 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { defaultWidth } from '../../styles/GlobalStyle';
 
 type TitleBoxProps = {
-  setOpenModal: (isOpen: boolean) => void;
+  setOpenSearchModal: (isOpen: boolean) => void;
 };
 
-const TitleBox = ({ setOpenModal }: TitleBoxProps) => {
+const TitleBox = ({ setOpenSearchModal }: TitleBoxProps) => {
   return (
     <TitleWrapper>
       <Wrapper>
@@ -15,7 +15,7 @@ const TitleBox = ({ setOpenModal }: TitleBoxProps) => {
           <h2>와인 기록</h2>
           <span>내가 마신 와인을 기록하고 관리해보세요!</span>
         </PageTitle>
-        <AddButton onClick={() => setOpenModal(true)}>
+        <AddButton onClick={() => setOpenSearchModal(true)}>
           <AiOutlinePlus />
           새로운 와인 기록 추가
         </AddButton>

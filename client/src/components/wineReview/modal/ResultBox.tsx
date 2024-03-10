@@ -5,7 +5,11 @@ import Flag from '../../common/Flag';
 import { SiVivino } from 'react-icons/si';
 import { Link } from 'react-router-dom';
 
-const ResultBox = () => {
+type ResultBoxProps = {
+  handleWriteReview: () => void;
+};
+
+const ResultBox = ({ handleWriteReview }: ResultBoxProps) => {
   return (
     <Container>
       <Title>
@@ -33,7 +37,7 @@ const ResultBox = () => {
         </ExLink>
       </WineResult>
       <BtnWrapper>
-        <Button>기록 시작</Button>
+        <Button onClick={handleWriteReview}>기록 시작</Button>
         <Button>직접 기록하기</Button>
       </BtnWrapper>
     </Container>

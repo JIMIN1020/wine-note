@@ -5,15 +5,20 @@ import { GrClose } from 'react-icons/gr';
 import { fadein } from '../../../styles/GlobalStyle';
 
 type SearchModalProps = {
-  setOpenModal: (isOpen: boolean) => void;
+  setOpenSearchModal: (isOpen: boolean) => void;
+  setOpenReviewModal: (isOpen: boolean) => void;
 };
 
-const SearchModal = ({ setOpenModal }: SearchModalProps) => {
+const SearchModal = ({
+  setOpenSearchModal,
+  setOpenReviewModal,
+}: SearchModalProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [resultOpen, setResultOpen] = useState<boolean>(false);
 
   /* ----- vivino 검색 함수 ----- */
   const handleSearch = () => {
+    setResultOpen(false);
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -21,11 +26,16 @@ const SearchModal = ({ setOpenModal }: SearchModalProps) => {
     }, 5000);
   };
 
+  const handleWriteReview = () => {
+    setOpenSearchModal(false);
+    setOpenReviewModal(true);
+  };
+
   return (
     <Container>
       <Modal>
         <SearchBox>
-          <CloseBtn onClick={() => setOpenModal(false)}>
+          <CloseBtn onClick={() => setOpenSearchModal(false)}>
             <GrClose />
           </CloseBtn>
           <Title>
@@ -42,7 +52,7 @@ const SearchModal = ({ setOpenModal }: SearchModalProps) => {
             </SearchButton>
           </InputWrapper>
         </SearchBox>
-        {resultOpen && <ResultBox />}
+        {resultOpen && <ResultBox handleWriteReview={handleWriteReview} />}
       </Modal>
     </Container>
   );
