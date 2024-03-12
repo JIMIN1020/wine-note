@@ -26,6 +26,7 @@ const SearchModal = ({
     }, 5000);
   };
 
+  /* ----- 기록 작성하기 버튼 ----- */
   const handleWriteReview = () => {
     setOpenSearchModal(false);
     setOpenReviewModal(true);
@@ -66,7 +67,7 @@ const Container = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #6f6f6f79;
+  background-color: #49494979;
   z-index: 20;
 
   display: flex;

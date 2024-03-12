@@ -7,6 +7,7 @@ import Step3 from './reviewModal/Step3';
 import Step4 from './reviewModal/Step4';
 import Step5 from './reviewModal/Step5';
 import { IoArrowForwardSharp } from 'react-icons/io5';
+import { GrClose } from 'react-icons/gr';
 
 type ReviewModalProps = {
   setOpenModal: (isOpen: boolean) => void;
@@ -26,7 +27,7 @@ const ReviewModal = ({ setOpenModal }: ReviewModalProps) => {
   return (
     <Container>
       <Modal>
-        <MultiStep step={step} setOpenModal={setOpenModal} />
+        <MultiStep step={step} />
         <Content>
           {step === 1 && <Step1 />}
           {step === 2 && <Step2 />}
@@ -46,6 +47,9 @@ const ReviewModal = ({ setOpenModal }: ReviewModalProps) => {
             </Button>
           </BtnContainer>
         </Content>
+        <CancelBtn onClick={() => setOpenModal(false)}>
+          <GrClose />
+        </CancelBtn>
       </Modal>
     </Container>
   );
@@ -69,7 +73,7 @@ const Modal = styled.div`
   background-color: ${({ theme }) => theme.colors.bg_white};
   color: ${({ theme }) => theme.colors.font_black};
 
-  position: fixed;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -97,7 +101,7 @@ const BtnContainer = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: ${({ theme }) => theme.colors.wine_mid_purple};
+  background-color: ${({ theme }) => theme.colors.wine_purple};
   color: ${({ theme }) => theme.colors.font_white};
   padding: 10px 20px;
   border-radius: 12px;
@@ -111,5 +115,26 @@ const Button = styled.button`
   transition: all 0.3s ease-in-out;
   &:hover {
     scale: calc(1.05);
+  }
+`;
+
+const CancelBtn = styled.button`
+  position: absolute;
+  right: 410px;
+  top: -60px;
+  padding: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 50%;
+
+  background-color: #ffffff3f;
+  color: ${({ theme }) => theme.colors.font_white};
+  cursor: pointer;
+
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: #ffffff54;
   }
 `;

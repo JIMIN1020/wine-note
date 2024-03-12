@@ -1,14 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import Step from './Step';
-import { GrClose } from 'react-icons/gr';
 
 type MultiStepProps = {
   step: number;
-  setOpenModal: (isOpen: boolean) => void;
 };
 
-const MultiStep = ({ step, setOpenModal }: MultiStepProps) => {
+const MultiStep = ({ step }: MultiStepProps) => {
   return (
     <Container>
       <Wrapper>
@@ -25,10 +23,6 @@ const MultiStep = ({ step, setOpenModal }: MultiStepProps) => {
           <Step number={5} title='총평' complete={step >= 5} />
         </StepContainer>
       </Wrapper>
-      <CancelBtn onClick={() => setOpenModal(false)}>
-        <GrClose />
-        기록 취소하기
-      </CancelBtn>
     </Container>
   );
 };
@@ -38,7 +32,7 @@ export default MultiStep;
 const Container = styled.div`
   width: 250px;
   height: 100%;
-  background-color: ${({ theme }) => theme.colors.wine_mid_purple};
+  background-color: ${({ theme }) => theme.colors.wine_purple};
   color: ${({ theme }) => theme.colors.font_white};
 
   border-radius: 12px;
@@ -76,22 +70,4 @@ const Line = styled.div<{ $complete: boolean }>`
   margin-left: 17px;
   opacity: ${({ $complete }) => ($complete ? '1' : '0.7')};
   transition: all 0.3s ease-in-out;
-`;
-
-const CancelBtn = styled.button`
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  border-radius: 12px;
-
-  background-color: #ffffff3f;
-  color: ${({ theme }) => theme.colors.font_white};
-  cursor: pointer;
-
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    background-color: #ffffff54;
-  }
 `;
