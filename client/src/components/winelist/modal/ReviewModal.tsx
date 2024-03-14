@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import MultiStep from './reviewModal/MultiStep';
-import Step1 from './reviewModal/Step1';
-import Step2 from './reviewModal/Step2';
-import Step3 from './reviewModal/Step3';
-import Step4 from './reviewModal/Step4';
-import Step5 from './reviewModal/Step5';
+import MultiStep from '../../review/steps/MultiStep';
+import Step1 from '../../review/steps/Step1';
+import Step2 from '../../review/steps/Step2';
+import Step3 from '../../review/steps/Step3';
+import Step4 from '../../review/steps/Step4';
+import Step5 from '../../review/steps/Step5';
 import { IoArrowForwardSharp } from 'react-icons/io5';
 import { GrClose } from 'react-icons/gr';
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Login from './pages/Login';
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
 import { GlobalStyle } from './styles/GlobalStyle';
 import styled from 'styled-components';
 import Header from './components/common/Header';
-import WineReview from './pages/WineReview';
-import WineAnalysis from './pages/WineAnalysis';
+import WineListPage from './pages/WineListPage';
+import AnalysisPage from './pages/AnalysisPage';
 
 const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -21,15 +21,15 @@ const App: React.FC = () => {
         <ContainerWithHeader>
           <Header />
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/review' element={<WineReview />} />
-            <Route path='/analysis' element={<WineAnalysis />} />
+            <Route path='/' element={<HomePage />} />
+            <Route path='/winelist' element={<WineListPage />} />
+            <Route path='/analysis' element={<AnalysisPage />} />
           </Routes>
         </ContainerWithHeader>
       ) : (
         <Container>
           <Routes>
-            <Route path='/login' element={<Login />} />
+            <Route path='/login' element={<LoginPage />} />
           </Routes>
         </Container>
       )}

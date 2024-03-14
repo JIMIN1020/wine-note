@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import TitleBox from '../components/wineReview/TitleBox';
-import Content from '../components/wineReview/Content';
-import SearchModal from '../components/wineReview/modal/SearchModal';
-import ReviewModal from '../components/wineReview/modal/ReviewModal';
+import TitleBox from '../components/winelist/TitleBox';
+import Content from '../components/winelist/Content';
+import SearchModal from '../components/winelist/modal/SearchModal';
+import ReviewModal from '../components/winelist/modal/ReviewModal';
 
-const WineReview: React.FC = () => {
+const WineListPage = () => {
   const [openSearchModal, setOpenSearchModal] = useState<boolean>(false);
   const [openReviewModal, setOpenReviewModal] = useState<boolean>(false);
 
@@ -31,7 +31,7 @@ const WineReview: React.FC = () => {
   );
 };
 
-export default WineReview;
+export default WineListPage;
 
 const Container = styled.div`
   width: 100%;

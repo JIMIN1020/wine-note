@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Banner from '../components/login/Banner';
 import LoginBox from '../components/login/LoginBox';
 
-const Login: React.FC = () => {
+const LoginPage = () => {
   return (
     <Container>
       <Banner />
@@ -12,7 +12,7 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default LoginPage;
 
 const Container = styled.div`
   width: 100%;

@@ -14,7 +14,7 @@ const Header: React.FC = () => {
             <h1>Wine Note</h1>
           </Logo>
           <MenuWrapper>
-            <Menu to='/review'>기록하기</Menu>
+            <Menu to='/winelist'>기록하기</Menu>
             <Menu to='/analysis'>분석하기</Menu>
           </MenuWrapper>
         </NavWrapper>
