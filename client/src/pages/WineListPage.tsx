@@ -3,14 +3,12 @@ import styled from 'styled-components';
 import TitleBox from '../components/winelist/TitleBox';
 import Content from '../components/winelist/Content';
 import SearchModal from '../components/winelist/modal/SearchModal';
-import ReviewModal from '../components/winelist/modal/ReviewModal';
 
 const WineListPage = () => {
   const [openSearchModal, setOpenSearchModal] = useState<boolean>(false);
-  const [openReviewModal, setOpenReviewModal] = useState<boolean>(false);
 
   /* ----- 모달 오픈 시 뒷배경 스크롤 방지 ----- */
-  if (openSearchModal || openReviewModal) {
+  if (openSearchModal) {
     document.body.style.overflow = 'hidden';
   } else {
     document.body.style.overflow = 'auto';
@@ -21,12 +19,8 @@ const WineListPage = () => {
       <TitleBox setOpenSearchModal={setOpenSearchModal} />
       <Content />
       {openSearchModal && (
-        <SearchModal
-          setOpenSearchModal={setOpenSearchModal}
-          setOpenReviewModal={setOpenReviewModal}
-        />
+        <SearchModal setOpenSearchModal={setOpenSearchModal} />
       )}
-      {openReviewModal && <ReviewModal setOpenModal={setOpenReviewModal} />}
     </Container>
   );
 };

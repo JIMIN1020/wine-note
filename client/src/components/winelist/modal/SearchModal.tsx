@@ -3,18 +3,16 @@ import styled from 'styled-components';
 import ResultBox from './ResultBox';
 import { GrClose } from 'react-icons/gr';
 import { fadein } from '../../../styles/GlobalStyle';
+import { useNavigate } from 'react-router-dom';
 
 type SearchModalProps = {
   setOpenSearchModal: (isOpen: boolean) => void;
-  setOpenReviewModal: (isOpen: boolean) => void;
 };
 
-const SearchModal = ({
-  setOpenSearchModal,
-  setOpenReviewModal,
-}: SearchModalProps) => {
+const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [resultOpen, setResultOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   /* ----- vivino 검색 함수 ----- */
   const handleSearch = () => {
@@ -29,7 +27,7 @@ const SearchModal = ({
   /* ----- 기록 작성하기 버튼 ----- */
   const handleWriteReview = () => {
     setOpenSearchModal(false);
-    setOpenReviewModal(true);
+    navigate('/review');
   };
 
   return (
