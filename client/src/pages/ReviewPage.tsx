@@ -1,12 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import SideBar from '../components/review/SideBar';
+import ButtonBar from '../components/review/ButtonBar';
+import ReviewBox from '../components/review/ReviewBox';
 
 const ReviewPage = () => {
   return (
     <Container>
-      <SideBanner></SideBanner>
-      <ReviewBox></ReviewBox>
-      <NextBar></NextBar>
+      <SideBar />
+      <ReviewBox />
+      <ButtonBar />
     </Container>
   );
 };
@@ -17,20 +20,4 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-`;
-
-const SideBanner = styled.div`
-  height: 100%;
-  width: 600px;
-`;
-
-const ReviewBox = styled.div`
-  height: 100%;
-  flex: 1;
-  background-color: ${({ theme }) => theme.colors.bg_white};
-`;
-
-const NextBar = styled.div`
-  height: 100%;
-  width: 200px;
 `;
