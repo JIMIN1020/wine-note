@@ -20,10 +20,8 @@ const Container = styled.div`
   max-width: 160px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 20px;
+  align-items: flex-end;
   padding: 70px 50px;
-  position: relative;
 `;
 
 const CancelBtn = styled.button`
@@ -34,9 +32,6 @@ const CancelBtn = styled.button`
   cursor: pointer;
   border-radius: 50%;
   background-color: #ffffff22;
-  position: absolute;
-  top: 70px;
-  right: 40px;
 
   display: flex;
   gap: 10px;

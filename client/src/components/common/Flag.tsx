@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { flexCenter } from '../../styles/GlobalStyle';
 
 type FlagProps = {
   countryName: string;
+  size: string;
 };
 
-const Flag = ({ countryName }: FlagProps) => {
+const Flag = ({ countryName, size }: FlagProps) => {
   const [flagUrl, setFlagUrl] = useState<string>('');
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const Flag = ({ countryName }: FlagProps) => {
   }, [countryName]);
 
   return (
-    <FlagCircle>
+    <FlagCircle $size={size}>
       <img src={flagUrl} alt={`Flag of ${countryName}`} />
     </FlagCircle>
   );
@@ -35,15 +37,13 @@ const Flag = ({ countryName }: FlagProps) => {
 
 export default Flag;
 
-const FlagCircle = styled.div`
-  width: 15px;
-  height: 15px;
+const FlagCircle = styled.div<{ $size: string }>`
+  width: ${({ $size }) => $size};
+  height: ${({ $size }) => $size};
   overflow: hidden;
   border-radius: 50%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  ${flexCenter}
   border: 0.5px solid ${({ theme }) => theme.colors.border_gray};
 
   & img {

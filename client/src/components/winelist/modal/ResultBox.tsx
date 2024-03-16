@@ -26,7 +26,7 @@ const ResultBox = ({ handleWriteReview }: ResultBoxProps) => {
         <TextBox>
           <h5>Rombauer Vineyards Chardonnay Proprietor Selection 2022</h5>
           <Country>
-            <Flag countryName='usa' />
+            <Flag countryName='usa' size='15px' />
             <span>California, United States</span>
           </Country>
           <span>Chardonnay 100%</span>

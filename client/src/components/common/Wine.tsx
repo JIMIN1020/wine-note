@@ -16,7 +16,7 @@ const Wine = () => {
           Rombauer Vineyards Chardonnay Proprietor Selection 2022
         </WineName>
         <Country>
-          <Flag countryName='usa' />
+          <Flag countryName='usa' size='15px' />
           <span>California, United States</span>
         </Country>
         <Price>

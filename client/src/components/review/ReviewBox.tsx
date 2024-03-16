@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import Step1 from './steps/Step1';
-import Step2 from './steps/Step2';
-import Step3 from './steps/Step3';
-import Step4 from './steps/Step4';
-import Step5 from './steps/Step5';
+import Step1 from '../steps/Step1';
+import Step2 from '../steps/Step2';
+import Step3 from '../steps/Step3';
+import Step4 from '../steps/Step4';
+import Step5 from '../steps/Step5';
 import { IoMdArrowForward, IoMdArrowBack } from 'react-icons/io';
 
 type ReviewBoxProps = {
@@ -64,7 +64,6 @@ const Wrapper = styled.div<{ $step: number }>`
   width: fit-content;
   height: 100%;
   display: flex;
-  background-color: #efefef;
   transform: translate(${({ $step }) => `-${($step - 1) * 720}px`});
   transition: all 0.3s ease-in-out;
 `;

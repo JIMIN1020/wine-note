@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { HiOutlinePencilAlt } from 'react-icons/hi';
-import MultiStep from './steps/MultiStep';
+import MultiStep from '../steps/MultiStep';
 
 type SideBarProps = {
   step: number;

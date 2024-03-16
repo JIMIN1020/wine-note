@@ -1,4 +1,4 @@
-import { createGlobalStyle, css, keyframes } from 'styled-components';
+import styled, { createGlobalStyle, css, keyframes } from 'styled-components';
 import reset from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
@@ -20,6 +20,7 @@ export const GlobalStyle = createGlobalStyle`
         font-family: "Pretendard";
         background-color: #45007b;
         position: relative;
+        color: #1E1E1E;
     }
 `;
 
@@ -44,4 +45,33 @@ export const fadein = keyframes`
     opacity: 1;
     transform: translateZ(0);
   }
+`;
+
+export const StyledInput = styled.input`
+  border: 1.5px solid ${({ theme }) => theme.colors.border_gray};
+  padding: 10px 12px;
+  border-radius: 8px;
+
+  &:focus {
+    outline: none;
+    border: 1.5px solid ${({ theme }) => theme.colors.wine_purple};
+  }
+`;
+
+export const StyledInputLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: ${({ theme }) => theme.fontSize.base};
+
+  & span {
+    font-weight: 600;
+  }
+`;
+
+export const Line = styled.div`
+  height: 1px;
+  background-color: ${({ theme }) => theme.colors.border_gray};
+  margin-top: 10px;
+  margin-bottom: 16px;
 `;
