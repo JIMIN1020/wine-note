@@ -10,7 +10,7 @@ const MultiStep = ({ step }: MultiStepProps) => {
   return (
     <Container>
       <Wrapper>
-        <Title>Tasting Steps</Title>
+        {/* <Title>Steps</Title> */}
         <StepContainer>
           <Step number={1} title='와인 정보' complete={step >= 1} />
           <Line $complete={step > 1} />
@@ -49,13 +49,13 @@ const Wrapper = styled.div`
   gap: 20px;
 `;
 
-const Title = styled.h2`
-  font-size: ${({ theme }) => theme.fontSize.title};
-  font-weight: 600;
-  text-align: center;
-  border-bottom: 1.5px solid white;
-  padding-bottom: 15px;
-`;
+// const Title = styled.h2`
+//   font-size: ${({ theme }) => theme.fontSize.title};
+//   font-weight: 600;
+//   text-align: center;
+//   border-bottom: 1.5px solid white;
+//   padding-bottom: 15px;
+// `;
 
 const StepContainer = styled.div`
   width: 100%;
@@ -65,7 +65,7 @@ const StepContainer = styled.div`
 
 const Line = styled.div<{ $complete: boolean }>`
   width: 2px;
-  height: 35px;
+  height: 50px;
   background-color: ${({ theme }) => theme.colors.bg_white};
   margin-left: 17px;
   opacity: ${({ $complete }) => ($complete ? '1' : '0.7')};
