@@ -9,8 +9,8 @@ const ReviewPage = () => {
   return (
     <Container>
       <SideBar step={step} />
-      <ReviewBox step={step} />
-      <ButtonBar setStep={setStep} />
+      <ReviewBox step={step} setStep={setStep} />
+      <ButtonBar />
     </Container>
   );
 };
