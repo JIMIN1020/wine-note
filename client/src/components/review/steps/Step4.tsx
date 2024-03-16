@@ -8,5 +8,6 @@ const Step4 = () => {
 export default Step4;
 
 const Container = styled.div`
-  flex: 1;
+  width: 720px;
+  height: 100%;
 `;

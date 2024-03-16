@@ -3,7 +3,11 @@ import styled from 'styled-components';
 import { HiOutlinePencilAlt } from 'react-icons/hi';
 import MultiStep from './steps/MultiStep';
 
-const SideBar = () => {
+type SideBarProps = {
+  step: number;
+};
+
+const SideBar = ({ step }: SideBarProps) => {
   return (
     <Container>
       <TitleBox>
@@ -14,7 +18,7 @@ const SideBar = () => {
         <span>절차에 맞게 와인을 테이스팅하고, 기록해보세요</span>
       </TitleBox>
       <StepContainer>
-        <MultiStep step={1} />
+        <MultiStep step={step} />
       </StepContainer>
     </Container>
   );

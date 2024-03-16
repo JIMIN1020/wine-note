@@ -2,12 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { GrClose } from 'react-icons/gr';
 
-const ButtonBar = () => {
+type ButtonBarProps = {
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+};
+
+const ButtonBar = ({ setStep }: ButtonBarProps) => {
   return (
     <Container>
       <CancelBtn>
         기록 취소 <GrClose />
       </CancelBtn>
+      <button onClick={() => setStep((prev) => prev + 1)}>next</button>
     </Container>
   );
 };
@@ -16,7 +21,8 @@ export default ButtonBar;
 
 const Container = styled.div`
   height: 100%;
-  width: 250px;
+  width: 100%;
+  max-width: 220px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
