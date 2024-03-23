@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { WineColor } from '../../../types/wineColor';
+import { WineColorType } from '../../../types/steps/step2';
 
 type ColorBoxProps = {
-  colorData: WineColor;
+  colorData: WineColorType;
   isSelected: boolean;
   onClick: () => void;
 };
@@ -33,7 +33,7 @@ const Container = styled.button<{ $isSelected: boolean }>`
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   border: ${({ $isSelected, theme }) =>
-    $isSelected ? `1px solid ${theme.colors.wine_purple}` : 'none'};
+    $isSelected ? `1px solid ${theme.colors.wine_purple}` : '1px solid white'};
 
   &:hover {
     scale: calc(1.05);

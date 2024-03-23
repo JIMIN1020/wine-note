@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import ColorBox from './ColorBox';
-import { WineColor } from '../../../types/wineColor';
+import { WineColorType } from '../../../types/steps/step2';
 
 type ColorInfoProps = {
-  colorData: WineColor[];
-  selectedColor: WineColor;
-  setSelectedColor: (data: WineColor) => void;
+  colorData: WineColorType[];
+  selectedColor: WineColorType;
+  setSelectedColor: (data: WineColorType) => void;
 };
 
 const ColorInfo = ({

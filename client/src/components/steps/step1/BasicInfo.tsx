@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Line } from '../../../styles/GlobalStyle';
 import CustomSelect from '../../common/CustomSelect';
@@ -9,9 +9,10 @@ import {
   StyledInputLabel,
 } from '../../../styles/CustomInputs';
 import { LiaWonSignSolid } from 'react-icons/lia';
+import { useFormContext } from 'react-hook-form';
 
 const BasicInfo = () => {
-  const [price, setPrice] = useState<string>('');
+  const { register, setValue, watch } = useFormContext();
 
   /* ----- 천 단위 콤마(,) 추가 함수 ----- */
   const addComma = (p: string) => {
@@ -21,7 +22,7 @@ const BasicInfo = () => {
   /* ----- price onChange 함수 ----- */
   const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target as HTMLInputElement;
-    setPrice(value.replace(/[^\d]/g, ''));
+    setValue('price', +value.replace(/[^\d]/g, ''));
   };
 
   return (
@@ -36,6 +37,7 @@ const BasicInfo = () => {
             <StyledInput
               type='text'
               placeholder='빈티지를 제외한 영문명을 작성해주세요'
+              {...register('wineName', { required: true })}
             />
           </StyledInputLabel>
           <StyledInputLabel>
@@ -49,7 +51,7 @@ const BasicInfo = () => {
                 type='text'
                 placeholder='숫자만 작성해주세요'
                 onChange={(e) => onChangePrice(e)}
-                value={addComma(price) || ''}
+                value={addComma(watch('price')) || ''}
               />
               <Icon>
                 <LiaWonSignSolid />

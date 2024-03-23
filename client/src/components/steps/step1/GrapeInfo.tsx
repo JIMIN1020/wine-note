@@ -4,10 +4,10 @@ import { Line } from '../../../styles/GlobalStyle';
 import GrapeInput from './GrapeInput';
 import { AiOutlinePlus } from 'react-icons/ai';
 import uuid from 'react-uuid';
-import { GrapeData } from '../../../types/grapeInfo';
+import { GrapeType } from '../../../types/steps/step1';
 
 const GrapeInfo = () => {
-  const [grapeData, setGrapeData] = useState<GrapeData[]>([
+  const [grapeData, setGrapeData] = useState<GrapeType[]>([
     {
       id: uuid(),
       name: '',
@@ -33,7 +33,7 @@ const GrapeInfo = () => {
   };
 
   /* ----- 품종 업데이트 함수 ----- */
-  const updateGrape = (newData: GrapeData) => {
+  const updateGrape = (newData: GrapeType) => {
     setGrapeData((prev) =>
       prev.map((grape) =>
         grape.id === newData.id ? { ...grape, ...newData } : grape

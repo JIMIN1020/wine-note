@@ -1,18 +1,18 @@
 export type ColorType = 'white' | 'red' | 'rose';
 
-export interface WineColor {
+export interface WineColorType {
   id: number;
   colorName: string;
   code: string;
 }
 
-export type WineColorType = {
+export type WineColorDataType = {
   white: WineColor[];
   red: WineColor[];
   rose: WineColor[];
 };
 
-export interface WineColorIntensity {
+export interface WineColorIntensityType {
   id: number;
   name: string;
   opacity: number;

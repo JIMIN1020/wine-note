@@ -1,6 +1,9 @@
-import { WineColorIntensity, WineColorType } from '../types/wineColor';
+import {
+  WineColorDataType,
+  WineColorIntensityType,
+} from '../types/steps/step2';
 
-export const wineColor: WineColorType = {
+export const wineColor: WineColorDataType = {
   white: [
     { id: 1, colorName: 'Green', code: '#dbf47c' },
     { id: 2, colorName: 'Lemon', code: '#f1f285' },
@@ -20,7 +23,7 @@ export const wineColor: WineColorType = {
   ],
 };
 
-export const colorIntensity: WineColorIntensity[] = [
+export const colorIntensity: WineColorIntensityType[] = [
   { id: 1, name: 'Pale', opacity: 0.4 },
   { id: 2, name: 'Medium', opacity: 0.6 },
   { id: 3, name: 'Deep', opacity: 1 },

@@ -3,12 +3,12 @@ import styled, { css } from 'styled-components';
 import { LuGrape } from 'react-icons/lu';
 import { StyledInput } from '../../../styles/CustomInputs';
 import { GrClose } from 'react-icons/gr';
-import { GrapeData } from '../../../types/grapeInfo';
 import { LiaPercentSolid } from 'react-icons/lia';
+import { GrapeType } from '../../../types/steps/step1';
 
 type GrapeInputProps = {
-  grapeData: GrapeData;
-  updateGrape: (data: GrapeData) => void;
+  grapeData: GrapeType;
+  updateGrape: (data: GrapeType) => void;
   deleteGrape: (id: string) => void;
 };
 

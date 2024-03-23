@@ -6,12 +6,14 @@ import styled from 'styled-components';
 import ColorInfo from './step2/ColorInfo';
 import IntensityInfo from './step2/IntensityInfo';
 import { colorIntensity, wineColor } from '../../data/wineColorData';
-import { WineColor, WineColorIntensity } from '../../types/wineColor';
+import { WineColorIntensityType, WineColorType } from '../../types/steps/step2';
 
 const Step2 = () => {
   const colorData = wineColor['white'];
-  const [selectedColor, setSelectedColor] = useState<WineColor>(colorData[0]);
-  const [intensity, setIntensity] = useState<WineColorIntensity>(
+  const [selectedColor, setSelectedColor] = useState<WineColorType>(
+    colorData[0]
+  );
+  const [intensity, setIntensity] = useState<WineColorIntensityType>(
     colorIntensity[0]
   );
   return (

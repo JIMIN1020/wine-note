@@ -2,10 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { wineTypeOptions } from '../../data/selectOptionData';
 import { MdArrowForwardIos } from 'react-icons/md';
+import { useFormContext } from 'react-hook-form';
 
 const CustomSelect = () => {
+  const { watch, setValue } = useFormContext();
   const [open, setOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>(wineTypeOptions[0].label);
   const outsideRef = useRef<HTMLDivElement | null>(null);
 
   // 바깥 클릭 시 처리
@@ -22,14 +23,14 @@ const CustomSelect = () => {
   }, [outsideRef]);
 
   const onClickOption = (label: string) => {
-    setSelected(label);
+    setValue('wineType', label);
     setOpen(false);
   };
 
   return (
     <Container ref={outsideRef}>
       <SelectBox onClick={() => setOpen((prev) => !prev)}>
-        <Selected>{selected}</Selected>
+        <Selected>{watch('wineType')}</Selected>
         <MdArrowForwardIos />
       </SelectBox>
       {open && (

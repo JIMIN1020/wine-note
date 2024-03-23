@@ -1,10 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { WineColor, WineColorIntensity } from '../../../types/wineColor';
+import {
+  WineColorIntensityType,
+  WineColorType,
+} from '../../../types/steps/step2';
 
 type IntensityBoxProps = {
-  colorData: WineColor;
-  intensityData: WineColorIntensity;
+  colorData: WineColorType;
+  intensityData: WineColorIntensityType;
   isSelected: boolean;
   onClick: () => void;
 };
@@ -34,7 +37,7 @@ const Container = styled.button<{ $isSelected: boolean }>`
   justify-content: center;
   gap: 10px;
   border: ${({ $isSelected, theme }) =>
-    $isSelected ? `1px solid ${theme.colors.wine_purple}` : 'none'};
+    $isSelected ? `1px solid ${theme.colors.wine_purple}` : '1px solid white'};
 
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 40px 0px;

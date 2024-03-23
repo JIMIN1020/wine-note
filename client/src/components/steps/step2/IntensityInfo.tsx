@@ -1,13 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
-import { WineColor, WineColorIntensity } from '../../../types/wineColor';
 import IntensityBox from './IntensityBox';
 import { colorIntensity } from '../../../data/wineColorData';
+import {
+  WineColorIntensityType,
+  WineColorType,
+} from '../../../types/steps/step2';
 
 type IntensityInfoProps = {
-  colorData: WineColor;
-  intensity: WineColorIntensity;
-  setIntensity: (data: WineColorIntensity) => void;
+  colorData: WineColorType;
+  intensity: WineColorIntensityType;
+  setIntensity: (data: WineColorIntensityType) => void;
 };
 
 const IntensityInfo = ({
