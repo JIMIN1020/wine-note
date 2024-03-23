@@ -75,3 +75,14 @@ export const Line = styled.div`
   margin-top: 10px;
   margin-bottom: 16px;
 `;
+
+export const StepContainer = styled.div`
+  width: 720px;
+  height: 100%;
+  padding: 0 70px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+`;
