@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Line } from '../../../styles/GlobalStyle';
+import CustomSelect from '../../common/CustomSelect';
 import {
-  Line,
+  LabelInput,
+  LabelInputWrapper,
   StyledInput,
   StyledInputLabel,
-} from '../../../styles/GlobalStyle';
+} from '../../../styles/CustomInputs';
+import { LiaWonSignSolid } from 'react-icons/lia';
 
 const BasicInfo = () => {
+  const [price, setPrice] = useState<string>('');
+
+  /* ----- 천 단위 콤마(,) 추가 함수 ----- */
+  const addComma = (p: string) => {
+    return p?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
+  /* ----- price onChange 함수 ----- */
+  const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target as HTMLInputElement;
+    setPrice(value.replace(/[^\d]/g, ''));
+  };
+
   return (
     <Container>
       <Title>기본 정보</Title>
@@ -22,12 +39,22 @@ const BasicInfo = () => {
             />
           </StyledInputLabel>
           <StyledInputLabel>
-            <span>와이너리명</span>
-            <StyledInput type='text' placeholder='영문명을 작성해주세요' />
+            <span>와인 종류</span>
+            <CustomSelect />
           </StyledInputLabel>
           <StyledInputLabel>
             <span>가격</span>
-            <StyledInput type='text' placeholder='숫자만 작성해주세요' />
+            <LabelInputWrapper>
+              <LabelInput
+                type='text'
+                placeholder='숫자만 작성해주세요'
+                onChange={(e) => onChangePrice(e)}
+                value={addComma(price) || ''}
+              />
+              <Icon>
+                <LiaWonSignSolid />
+              </Icon>
+            </LabelInputWrapper>
           </StyledInputLabel>
         </InputBox>
       </Wrapper>
@@ -66,4 +93,16 @@ const InputBox = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 10px 0;
+`;
+
+const Icon = styled.div`
+  position: absolute;
+  top: 7px;
+  left: 12px;
+
+  & svg {
+    width: 22px;
+    height: 22px;
+    color: ${({ theme }) => theme.colors.border_gray};
+  }
 `;

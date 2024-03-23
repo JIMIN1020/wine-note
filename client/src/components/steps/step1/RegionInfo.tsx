@@ -1,8 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledInput, StyledInputLabel } from '../../../styles/GlobalStyle';
+
 // import Flag from '../../common/Flag';
 import { IoEarth } from 'react-icons/io5';
+import {
+  LabelInput,
+  LabelInputWrapper,
+  StyledInput,
+  StyledInputLabel,
+} from '../../../styles/CustomInputs';
 
 const RegionInfo = () => {
   return (
@@ -10,13 +16,13 @@ const RegionInfo = () => {
       <Wrapper>
         <StyledInputLabel>
           <span>국가</span>
-          <InputWrapper>
+          <LabelInputWrapper>
             <LabelInput type='text' />
             <FlagIcon>
               <IoEarth />
               {/* <Flag countryName='USA' size='22px' /> */}
             </FlagIcon>
-          </InputWrapper>
+          </LabelInputWrapper>
         </StyledInputLabel>
         <StyledInputLabel>
           <span>지역</span>
@@ -42,11 +48,6 @@ const Wrapper = styled.div`
   gap: 20px;
 `;
 
-const LabelInput = styled(StyledInput)`
-  width: 100%;
-  padding-left: 42px;
-`;
-
 const FlagIcon = styled.div`
   position: absolute;
   top: 7px;
@@ -57,8 +58,4 @@ const FlagIcon = styled.div`
     height: 24px;
     color: ${({ theme }) => theme.colors.border_gray};
   }
-`;
-
-const InputWrapper = styled.div`
-  position: relative;
 `;

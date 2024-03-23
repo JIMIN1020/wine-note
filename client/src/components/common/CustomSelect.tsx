@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { MdFilterListAlt } from 'react-icons/md';
+import { wineTypeOptions } from '../../data/selectOptionData';
+import { MdArrowForwardIos } from 'react-icons/md';
 
 const CustomSelect = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<string>(options[0].label);
+  const [selected, setSelected] = useState<string>(wineTypeOptions[0].label);
   const outsideRef = useRef<HTMLDivElement | null>(null);
 
   // 바깥 클릭 시 처리
@@ -28,12 +29,12 @@ const CustomSelect = () => {
   return (
     <Container ref={outsideRef}>
       <SelectBox onClick={() => setOpen((prev) => !prev)}>
-        <span>{selected}</span>
-        <MdFilterListAlt />
+        <Selected>{selected}</Selected>
+        <MdArrowForwardIos />
       </SelectBox>
       {open && (
         <OptionBox>
-          {options.map((data) => {
+          {wineTypeOptions.map((data) => {
             return (
               <Option key={data.id} onClick={() => onClickOption(data.label)}>
                 {data.label}
@@ -48,26 +49,23 @@ const CustomSelect = () => {
 
 export default CustomSelect;
 
-const options = [
-  { id: 'recent', label: '최근 작성 순' },
-  { id: 'low_price', label: '가격 낮은 순' },
-  { id: 'high_price', label: '가격 높은 순' },
-  { id: 'low_rating', label: '평점 낮은 순' },
-  { id: 'high_rating', label: '평점 높은 순' },
-];
-
 const Container = styled.div`
   display: flex;
   position: relative;
 `;
 
+const Selected = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.base};
+  font-weight: 400;
+`;
+
 const SelectBox = styled.div`
-  width: 90px;
+  width: 100%;
   display: flex;
   align-items: center;
   gap: 10px;
   box-sizing: content-box;
-  font-size: ${({ theme }) => theme.fontSize.sm};
+
   color: ${({ theme }) => theme.colors.text_black};
   border: 1px solid ${({ theme }) => theme.colors.border_gray};
   border-radius: 8px;
@@ -75,6 +73,8 @@ const SelectBox = styled.div`
   cursor: pointer;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.bg_white};
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 20px 0px;
+  font-weight: 400;
 
   &:focus {
     outline: none;
@@ -89,6 +89,7 @@ const SelectBox = styled.div`
     width: 14px;
     height: 14px;
     color: ${({ theme }) => theme.colors.text_black};
+    transform: rotate(90deg);
   }
 `;
 
@@ -98,7 +99,7 @@ const OptionBox = styled.div`
   flex-direction: column;
 
   position: absolute;
-  bottom: -170px;
+  bottom: -295px;
   z-index: 10;
   background-color: ${({ theme }) => theme.colors.bg_white};
 

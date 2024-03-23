@@ -3,25 +3,63 @@ import styled from 'styled-components';
 import { Line } from '../../../styles/GlobalStyle';
 import GrapeInput from './GrapeInput';
 import { AiOutlinePlus } from 'react-icons/ai';
+import uuid from 'react-uuid';
+import { GrapeData } from '../../../types/grapeInfo';
 
 const GrapeInfo = () => {
-  const [num, setNum] = useState<number>(1);
+  const [grapeData, setGrapeData] = useState<GrapeData[]>([
+    {
+      id: uuid(),
+      name: '',
+      percent: 0,
+    },
+  ]);
+
+  /* ----- 품종 추가 함수 ----- */
+  const addNewGrape = () => {
+    const newData = {
+      id: uuid(),
+      name: '',
+      percent: 0,
+    };
+
+    setGrapeData((prev) => [...prev, newData]);
+  };
+
+  /* ----- 품종 삭제 함수 ----- */
+  const deleteGrape = (id: string) => {
+    const filtered = grapeData.filter((grape) => grape.id !== id);
+    setGrapeData(filtered);
+  };
+
+  /* ----- 품종 업데이트 함수 ----- */
+  const updateGrape = (newData: GrapeData) => {
+    setGrapeData((prev) =>
+      prev.map((grape) =>
+        grape.id === newData.id ? { ...grape, ...newData } : grape
+      )
+    );
+  };
+
   return (
     <Container>
       <TitleBar>
         <h3>품종 정보</h3>
-        <AddButton onClick={() => setNum((prev) => prev + 1)}>
+        <AddButton onClick={addNewGrape}>
           <AiOutlinePlus />
           품종 추가
         </AddButton>
       </TitleBar>
       <Line />
       <InputWrapper>
-        {Array(num)
-          .fill(0)
-          .map((i) => (
-            <GrapeInput key={i} />
-          ))}
+        {grapeData.map((data, i) => (
+          <GrapeInput
+            key={i}
+            grapeData={data}
+            updateGrape={updateGrape}
+            deleteGrape={deleteGrape}
+          />
+        ))}
       </InputWrapper>
     </Container>
   );

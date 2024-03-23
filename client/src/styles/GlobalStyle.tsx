@@ -47,31 +47,10 @@ export const fadein = keyframes`
   }
 `;
 
-export const StyledInput = styled.input`
-  border: 1.5px solid ${({ theme }) => theme.colors.border_gray};
-  padding: 10px 12px;
-  border-radius: 8px;
-
-  &:focus {
-    outline: none;
-    border: 1.5px solid ${({ theme }) => theme.colors.wine_purple};
-  }
-`;
-
-export const StyledInputLabel = styled.label`
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  font-size: ${({ theme }) => theme.fontSize.base};
-
-  & span {
-    font-weight: 600;
-  }
-`;
-
 export const Line = styled.div`
   height: 1px;
   background-color: ${({ theme }) => theme.colors.border_gray};
+  opacity: 0.8;
   margin-top: 10px;
   margin-bottom: 16px;
 `;

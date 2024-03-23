@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import CustomSelect from './CustomSelect';
+import FilterSelect from '../common/FilterSelect';
 import WineBox from './WineBox';
 
 const WineContainer: React.FC = () => {
@@ -8,7 +8,7 @@ const WineContainer: React.FC = () => {
     <Container>
       <TopBar>
         <Total>총 12개의 와인 기록이 있습니다.</Total>
-        <CustomSelect />
+        <FilterSelect />
       </TopBar>
       <WineBox />
     </Container>
