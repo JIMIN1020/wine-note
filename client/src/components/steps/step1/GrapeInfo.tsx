@@ -1,64 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Line } from '../../../styles/GlobalStyle';
 import GrapeInput from './GrapeInput';
 import { AiOutlinePlus } from 'react-icons/ai';
-import uuid from 'react-uuid';
-import { GrapeType } from '../../../types/steps/step1';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 
 const GrapeInfo = () => {
-  const [grapeData, setGrapeData] = useState<GrapeType[]>([
-    {
-      id: uuid(),
-      name: '',
-      percent: 0,
-    },
-  ]);
+  const { control } = useFormContext();
 
-  /* ----- 품종 추가 함수 ----- */
-  const addNewGrape = () => {
-    const newData = {
-      id: uuid(),
-      name: '',
-      percent: 0,
-    };
-
-    setGrapeData((prev) => [...prev, newData]);
-  };
-
-  /* ----- 품종 삭제 함수 ----- */
-  const deleteGrape = (id: string) => {
-    const filtered = grapeData.filter((grape) => grape.id !== id);
-    setGrapeData(filtered);
-  };
-
-  /* ----- 품종 업데이트 함수 ----- */
-  const updateGrape = (newData: GrapeType) => {
-    setGrapeData((prev) =>
-      prev.map((grape) =>
-        grape.id === newData.id ? { ...grape, ...newData } : grape
-      )
-    );
-  };
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'grapes',
+  });
 
   return (
     <Container>
       <TitleBar>
         <h3>품종 정보</h3>
-        <AddButton onClick={addNewGrape}>
+        <AddButton onClick={() => append({ name: '', percent: 0 })}>
           <AiOutlinePlus />
           품종 추가
         </AddButton>
       </TitleBar>
       <Line />
       <InputWrapper>
-        {grapeData.map((data, i) => (
-          <GrapeInput
-            key={i}
-            grapeData={data}
-            updateGrape={updateGrape}
-            deleteGrape={deleteGrape}
-          />
+        {fields.map((field, i) => (
+          <GrapeInput key={field.id} index={i} remove={remove} />
         ))}
       </InputWrapper>
     </Container>

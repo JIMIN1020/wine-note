@@ -8,7 +8,6 @@ import { StepContainer } from '../../styles/GlobalStyle';
 import { useForm, FormProvider } from 'react-hook-form';
 import { GrapeType } from '../../types/steps/step1';
 import { wineTypeOptions } from '../../data/selectOptionData';
-import uuid from 'react-uuid';
 
 interface Step1FormType {
   wineName: string;
@@ -28,7 +27,6 @@ const Step1 = () => {
       wineType: wineTypeOptions[0].label,
       grapes: [
         {
-          id: uuid(),
           name: '',
           percent: 0,
         },

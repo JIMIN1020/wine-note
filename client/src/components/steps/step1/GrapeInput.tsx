@@ -4,19 +4,15 @@ import { LuGrape } from 'react-icons/lu';
 import { StyledInput } from '../../../styles/CustomInputs';
 import { GrClose } from 'react-icons/gr';
 import { LiaPercentSolid } from 'react-icons/lia';
-import { GrapeType } from '../../../types/steps/step1';
+import { useFormContext } from 'react-hook-form';
 
 type GrapeInputProps = {
-  grapeData: GrapeType;
-  updateGrape: (data: GrapeType) => void;
-  deleteGrape: (id: string) => void;
+  index: number;
+  remove: (index?: number | number[] | undefined) => void;
 };
 
-const GrapeInput = ({
-  grapeData,
-  updateGrape,
-  deleteGrape,
-}: GrapeInputProps) => {
+const GrapeInput = ({ index, remove }: GrapeInputProps) => {
+  const { register, setValue, watch } = useFormContext();
   const [focus, setFocus] = useState<boolean>(false);
 
   /* ----- percentage input onchange 함수 ----- */
@@ -34,7 +30,7 @@ const GrapeInput = ({
     }
 
     // 업데이트 하기
-    updateGrape({ ...grapeData, percent: updateData });
+    setValue(`grapes[${index}].percent`, updateData);
   };
 
   return (
@@ -43,12 +39,9 @@ const GrapeInput = ({
         <InputWrapper>
           <Input
             type='text'
-            value={grapeData.name}
-            onChange={(e) =>
-              updateGrape({ ...grapeData, name: e.target.value })
-            }
             onFocus={() => setFocus(true)}
             $focus={focus}
+            {...register(`grapes[${index}].name`)}
           />
           <IconBox>
             <LuGrape />
@@ -57,7 +50,7 @@ const GrapeInput = ({
         <InputWrapper>
           <PercentInput
             type='text'
-            value={grapeData.percent}
+            value={watch(`grapes[${index}].percent`)}
             onChange={(e) => onChange(e)}
             onFocus={() => setFocus(true)}
             $focus={focus}
@@ -67,7 +60,7 @@ const GrapeInput = ({
           </PercentIcon>
         </InputWrapper>
       </InputContainer>
-      <DeleteBtn onClick={() => deleteGrape(grapeData.id)}>
+      <DeleteBtn onClick={() => remove(index)}>
         <GrClose />
       </DeleteBtn>
     </Container>
@@ -91,7 +84,7 @@ const InputContainer = styled.div`
 const Input = styled(StyledInput)<{ $focus: boolean }>`
   width: 100%;
   padding-left: 42px;
-  border-radius: 12px 0 0 12px;
+  border-radius: 10px 0 0 10px;
   color: ${({ theme }) => theme.colors.font_gray};
   box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 20px 0px;
 
@@ -109,7 +102,7 @@ const InputWrapper = styled.div`
 
 const PercentInput = styled(StyledInput)<{ $focus: boolean }>`
   width: 65px;
-  border-radius: 0 12px 12px 0;
+  border-radius: 0 10px 10px 0;
   border-left: none;
   text-align: end;
   color: ${({ theme }) => theme.colors.font_gray};
