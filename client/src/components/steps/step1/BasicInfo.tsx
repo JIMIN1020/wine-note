@@ -22,7 +22,7 @@ const BasicInfo = () => {
   /* ----- price onChange 함수 ----- */
   const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target as HTMLInputElement;
-    setValue('price', +value.replace(/[^\d]/g, ''));
+    setValue('step1[price]', +value.replace(/[^\d]/g, ''));
   };
 
   return (
@@ -37,7 +37,7 @@ const BasicInfo = () => {
             <StyledInput
               type='text'
               placeholder='빈티지를 제외한 영문명을 작성해주세요'
-              {...register('wineName', { required: true })}
+              {...register('step1[wineName]', { required: true })}
             />
           </StyledInputLabel>
           <StyledInputLabel>
@@ -51,7 +51,7 @@ const BasicInfo = () => {
                 type='text'
                 placeholder='숫자만 작성해주세요'
                 onChange={(e) => onChangePrice(e)}
-                value={addComma(watch('price')) || ''}
+                value={addComma(watch('step1[price]')) || ''}
               />
               <Icon>
                 <LiaWonSignSolid />

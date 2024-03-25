@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import StepTitle from './StepTitle';
 import { StepContainer } from '../../styles/GlobalStyle';
 import styled from 'styled-components';

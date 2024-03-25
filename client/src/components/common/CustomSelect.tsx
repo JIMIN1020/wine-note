@@ -23,14 +23,14 @@ const CustomSelect = () => {
   }, [outsideRef]);
 
   const onClickOption = (label: string) => {
-    setValue('wineType', label);
+    setValue('step1[wineType]', label);
     setOpen(false);
   };
 
   return (
     <Container ref={outsideRef}>
       <SelectBox onClick={() => setOpen((prev) => !prev)}>
-        <Selected>{watch('wineType')}</Selected>
+        <Selected>{watch('step1[wineType]')}</Selected>
         <MdArrowForwardIos />
       </SelectBox>
       {open && (

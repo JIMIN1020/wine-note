@@ -30,7 +30,7 @@ const GrapeInput = ({ index, remove }: GrapeInputProps) => {
     }
 
     // 업데이트 하기
-    setValue(`grapes[${index}].percent`, updateData);
+    setValue(`step1[grapes[${index}].percent]`, updateData);
   };
 
   return (
@@ -41,7 +41,7 @@ const GrapeInput = ({ index, remove }: GrapeInputProps) => {
             type='text'
             onFocus={() => setFocus(true)}
             $focus={focus}
-            {...register(`grapes[${index}].name`)}
+            {...register(`step1[grapes[${index}].name]`)}
           />
           <IconBox>
             <LuGrape />
@@ -50,7 +50,7 @@ const GrapeInput = ({ index, remove }: GrapeInputProps) => {
         <InputWrapper>
           <PercentInput
             type='text'
-            value={watch(`grapes[${index}].percent`)}
+            value={watch(`step1[grapes[${index}].percent]`)}
             onChange={(e) => onChange(e)}
             onFocus={() => setFocus(true)}
             $focus={focus}

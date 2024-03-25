@@ -6,6 +6,20 @@ import Step3 from '../steps/Step3';
 import Step4 from '../steps/Step4';
 import Step5 from '../steps/Step5';
 import { IoMdArrowForward, IoMdArrowBack } from 'react-icons/io';
+import { FormProvider, useForm } from 'react-hook-form';
+import { wineTypeOptions } from '../../data/selectOptionData';
+import { GrapeType } from '../../types/steps/step1';
+
+interface TastingFormType {
+  step1: {
+    wineName: string;
+    wineType: string;
+    price: number;
+    country: string;
+    regieon: string;
+    grapes: GrapeType[];
+  };
+}
 
 type ReviewBoxProps = {
   step: number;
@@ -13,6 +27,22 @@ type ReviewBoxProps = {
 };
 
 const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
+  const methods = useForm<TastingFormType>({
+    defaultValues: {
+      step1: {
+        country: 'France',
+        regieon: 'Bourdeux',
+        price: 0,
+        wineType: wineTypeOptions[0].label,
+        grapes: [
+          {
+            name: '',
+            percent: 0,
+          },
+        ],
+      },
+    },
+  });
   return (
     <Container>
       <ButtonBox>
@@ -23,15 +53,19 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
           <IoMdArrowBack />
         </StyledButton>
       </ButtonBox>
-      <Form>
-        <Wrapper $step={step}>
-          <Step1 />
-          <Step2 />
-          <Step3 />
-          <Step4 />
-          <Step5 />
-        </Wrapper>
-      </Form>
+
+      <FormProvider {...methods}>
+        <Form>
+          <Wrapper $step={step}>
+            <Step1 />
+            <Step2 />
+            <Step3 />
+            <Step4 />
+            <Step5 />
+          </Wrapper>
+        </Form>
+      </FormProvider>
+
       <ButtonBox>
         <StyledButton
           onClick={() => setStep((prev) => prev + 1)}
@@ -51,7 +85,7 @@ const Container = styled.div`
   width: fit-content;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   width: 100%;
   max-width: 720px;
   height: 100%;

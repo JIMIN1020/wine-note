@@ -10,14 +10,17 @@ const GrapeInfo = () => {
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'grapes',
+    name: 'step1[grapes]',
   });
 
   return (
     <Container>
       <TitleBar>
         <h3>품종 정보</h3>
-        <AddButton onClick={() => append({ name: '', percent: 0 })}>
+        <AddButton
+          type='button'
+          onClick={() => append({ name: '', percent: 0 })}
+        >
           <AiOutlinePlus />
           품종 추가
         </AddButton>
