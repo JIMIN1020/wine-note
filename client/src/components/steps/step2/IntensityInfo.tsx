@@ -2,36 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import IntensityBox from './IntensityBox';
 import { colorIntensity } from '../../../data/wineColorData';
-import {
-  WineColorIntensityType,
-  WineColorType,
-} from '../../../types/steps/step2';
 
-type IntensityInfoProps = {
-  colorData: WineColorType;
-  intensity: WineColorIntensityType;
-  setIntensity: (data: WineColorIntensityType) => void;
-};
-
-const IntensityInfo = ({
-  colorData,
-  intensity,
-  setIntensity,
-}: IntensityInfoProps) => {
+const IntensityInfo = () => {
   return (
     <Container>
       <Title>색의 강도</Title>
       <ColorContainer>
         {colorIntensity.map((data) => {
-          return (
-            <IntensityBox
-              key={data.id}
-              colorData={colorData}
-              intensityData={data}
-              isSelected={intensity.id === data.id}
-              onClick={() => setIntensity(data)}
-            />
-          );
+          return <IntensityBox key={data.id} intensityData={data} />;
         })}
       </ColorContainer>
     </Container>

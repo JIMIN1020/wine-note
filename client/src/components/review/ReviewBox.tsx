@@ -19,6 +19,10 @@ interface TastingFormType {
     regieon: string;
     grapes: GrapeType[];
   };
+  step2: {
+    color: string;
+    colorIntensity: string;
+  };
 }
 
 type ReviewBoxProps = {

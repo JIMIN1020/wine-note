@@ -24,7 +24,7 @@ export const wineColor: WineColorDataType = {
 };
 
 export const colorIntensity: WineColorIntensityType[] = [
-  { id: 1, name: 'Pale', opacity: 0.4 },
-  { id: 2, name: 'Medium', opacity: 0.6 },
+  { id: 1, name: 'Pale', opacity: 0.5 },
+  { id: 2, name: 'Medium', opacity: 0.8 },
   { id: 3, name: 'Deep', opacity: 1 },
 ];

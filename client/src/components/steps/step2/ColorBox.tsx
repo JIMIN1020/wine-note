@@ -1,16 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 import { WineColorType } from '../../../types/steps/step2';
+import { useFormContext } from 'react-hook-form';
 
 type ColorBoxProps = {
   colorData: WineColorType;
-  isSelected: boolean;
-  onClick: () => void;
 };
 
-const ColorBox = ({ colorData, isSelected, onClick }: ColorBoxProps) => {
+const ColorBox = ({ colorData }: ColorBoxProps) => {
+  const { watch, setValue } = useFormContext();
   return (
-    <Container $isSelected={isSelected} onClick={onClick}>
+    <Container
+      type='button'
+      $isSelected={watch('step2[color]') === colorData.code}
+      onClick={() => setValue('step2[color]', colorData.code)}
+    >
       <Color $color={colorData.code} />
       <ColorName>{colorData.colorName}</ColorName>
     </Container>

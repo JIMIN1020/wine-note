@@ -1,26 +1,22 @@
 import React from 'react';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
-import {
-  WineColorIntensityType,
-  WineColorType,
-} from '../../../types/steps/step2';
+import { WineColorIntensityType } from '../../../types/steps/step2';
 
-type IntensityBoxProps = {
-  colorData: WineColorType;
+interface IntensityBoxProps {
   intensityData: WineColorIntensityType;
-  isSelected: boolean;
-  onClick: () => void;
-};
+}
+const IntensityBox = ({ intensityData }: IntensityBoxProps) => {
+  const { watch, setValue } = useFormContext();
+  const selectedColor = watch('step2[color]');
 
-const IntensityBox = ({
-  colorData,
-  intensityData,
-  isSelected,
-  onClick,
-}: IntensityBoxProps) => {
   return (
-    <Container $isSelected={isSelected} onClick={onClick}>
-      <Color $color={colorData.code} $opacity={intensityData.opacity} />
+    <Container
+      type='button'
+      $isSelected={watch('step2[colorIntensity]') === intensityData.name}
+      onClick={() => setValue('step2[colorIntensity]', intensityData.name)}
+    >
+      <Color $color={selectedColor} $opacity={intensityData.opacity} />
       <ColorName>{intensityData.name}</ColorName>
     </Container>
   );

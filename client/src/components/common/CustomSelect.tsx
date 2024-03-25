@@ -1,8 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { wineTypeOptions } from '../../data/selectOptionData';
+import { getTypeFromLabel, wineTypeOptions } from '../../data/selectOptionData';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { useFormContext } from 'react-hook-form';
+import { wineColor } from '../../data/wineColorData';
+import { WineColorDataType } from '../../types/steps/step2';
 
 const CustomSelect = () => {
   const { watch, setValue } = useFormContext();
@@ -24,6 +26,8 @@ const CustomSelect = () => {
 
   const onClickOption = (label: string) => {
     setValue('step1[wineType]', label);
+    const type = getTypeFromLabel(label) as keyof WineColorDataType;
+    setValue('step2[color]', wineColor[type][0].code);
     setOpen(false);
   };
 

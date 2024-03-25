@@ -17,3 +17,8 @@ export const wineTypeOptions = [
   { id: 'red fortified', type: 'red', label: '주정강화 와인 (Red)' },
   { id: 'white fortified', type: 'white', label: '주정강화 와인 (White)' },
 ];
+
+export const getTypeFromLabel = (label: string): string => {
+  const wineType = wineTypeOptions.find((option) => option.label === label)!;
+  return wineType.type;
+};

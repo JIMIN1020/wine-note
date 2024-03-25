@@ -1,32 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 import ColorBox from './ColorBox';
-import { WineColorType } from '../../../types/steps/step2';
+import { wineColor } from '../../../data/wineColorData';
+import { useFormContext } from 'react-hook-form';
+import { WineColorDataType } from '../../../types/steps/step2';
+import { getTypeFromLabel } from '../../../data/selectOptionData';
 
-type ColorInfoProps = {
-  colorData: WineColorType[];
-  selectedColor: WineColorType;
-  setSelectedColor: (data: WineColorType) => void;
-};
+const ColorInfo = () => {
+  const { watch } = useFormContext();
+  const type = getTypeFromLabel(
+    watch('step1[wineType]')
+  ) as keyof WineColorDataType;
 
-const ColorInfo = ({
-  colorData,
-  selectedColor,
-  setSelectedColor,
-}: ColorInfoProps) => {
   return (
     <Container>
       <Title>와인의 색</Title>
       <ColorContainer>
-        {colorData.map((data) => {
-          return (
-            <ColorBox
-              key={data.id}
-              colorData={data}
-              isSelected={selectedColor.id === data.id}
-              onClick={() => setSelectedColor(data)}
-            />
-          );
+        {wineColor[type].map((data) => {
+          return <ColorBox key={data.id} colorData={data} />;
         })}
       </ColorContainer>
     </Container>
