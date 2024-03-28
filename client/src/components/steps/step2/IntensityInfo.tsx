@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import IntensityBox from './IntensityBox';
 import { colorIntensity } from '../../../data/wineColorData';
+import StepSubTitle from '../StepSubTitle';
 
 const IntensityInfo = () => {
   return (
     <Container>
-      <Title>색의 강도</Title>
+      <StepSubTitle title='색의 강도' />
       <ColorContainer>
         {colorIntensity.map((data) => {
           return <IntensityBox key={data.id} intensityData={data} />;
@@ -23,11 +24,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 25px;
-`;
-
-const Title = styled.h3`
-  font-size: ${({ theme }) => theme.fontSize.lg};
-  font-weight: 600;
 `;
 
 const ColorContainer = styled.div`

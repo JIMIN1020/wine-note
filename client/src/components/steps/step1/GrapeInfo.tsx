@@ -4,6 +4,7 @@ import { Line } from '../../../styles/GlobalStyle';
 import GrapeInput from './GrapeInput';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useFieldArray, useFormContext } from 'react-hook-form';
+import StepSubTitle from '../StepSubTitle';
 
 const GrapeInfo = () => {
   const { control } = useFormContext();
@@ -16,7 +17,7 @@ const GrapeInfo = () => {
   return (
     <Container>
       <TitleBar>
-        <h3>품종 정보</h3>
+        <StepSubTitle title='품종 정보' />
         <AddButton
           type='button'
           onClick={() => append({ name: '', percent: 0 })}
@@ -50,11 +51,6 @@ const TitleBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-
-  & h3 {
-    font-size: ${({ theme }) => theme.fontSize.lg};
-    font-weight: 600;
-  }
 `;
 
 const AddButton = styled.button`

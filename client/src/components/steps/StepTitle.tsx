@@ -42,7 +42,7 @@ const TitleBox = styled.div`
 
   & h2 {
     font-size: ${({ theme }) => theme.fontSize.xl};
-    font-weight: 600;
+    font-weight: 700;
   }
 
   & span {

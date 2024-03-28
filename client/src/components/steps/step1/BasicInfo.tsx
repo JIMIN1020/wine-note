@@ -10,6 +10,7 @@ import {
 } from '../../../styles/CustomInputs';
 import { LiaWonSignSolid } from 'react-icons/lia';
 import { useFormContext } from 'react-hook-form';
+import StepSubTitle from '../StepSubTitle';
 
 const BasicInfo = () => {
   const { register, setValue, watch } = useFormContext();
@@ -27,7 +28,7 @@ const BasicInfo = () => {
 
   return (
     <Container>
-      <Title>기본 정보</Title>
+      <StepSubTitle title='기본 정보' />
       <Line />
       <Wrapper>
         <Image />
@@ -70,11 +71,6 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-`;
-
-const Title = styled.h3`
-  font-size: ${({ theme }) => theme.fontSize.lg};
-  font-weight: 600;
 `;
 
 const Wrapper = styled.div`
