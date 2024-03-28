@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import IntensityBox from './IntensityBox';
-import { colorIntensity } from '../../../data/wineColorData';
+import { colorIntensity } from '../../../data/step2-data';
 import StepSubTitle from '../StepSubTitle';
 
 const IntensityInfo = () => {
