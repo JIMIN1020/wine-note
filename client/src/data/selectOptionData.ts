@@ -7,8 +7,8 @@ export const filterOptions = [
 ];
 
 export const wineTypeOptions = [
-  { id: 'white', type: 'white', label: '화이트 와인' },
   { id: 'red', type: 'red', label: '레드 와인' },
+  { id: 'white', type: 'white', label: '화이트 와인' },
   { id: 'rose', type: 'rose', label: '로제 와인' },
   { id: 'sparkling', type: 'white', label: '스파클링 와인' },
   { id: 'rose sparkling', type: 'rose', label: '로제 스파클링 와인' },

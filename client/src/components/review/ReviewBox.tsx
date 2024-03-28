@@ -45,6 +45,10 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
           },
         ],
       },
+      step2: {
+        color: '#612a54',
+        colorIntensity: 'Pale',
+      },
     },
   });
   return (
