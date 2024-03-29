@@ -23,6 +23,10 @@ interface TastingFormType {
     color: string;
     colorIntensity: string;
   };
+  step3: {
+    aromaIntensity: string;
+    aroma: string;
+  };
 }
 
 type ReviewBoxProps = {
@@ -48,6 +52,9 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
       step2: {
         color: '#612a54',
         colorIntensity: 'Pale',
+      },
+      step3: {
+        aromaIntensity: 'Light',
       },
     },
   });
