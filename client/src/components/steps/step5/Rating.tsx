@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import StepSubTitle from '../StepSubTitle';
 import { ImStarFull, ImStarHalf, ImStarEmpty } from 'react-icons/im';
 import { useFormContext } from 'react-hook-form';
+import SubFormLayout from '../../layout/SubFormLayout';
 
 const Rating = () => {
   const { setValue } = useFormContext();
@@ -24,8 +24,7 @@ const Rating = () => {
   };
 
   return (
-    <Container>
-      <StepSubTitle title='나의 평점' />
+    <SubFormLayout title='나의 평점'>
       <RatingScore>{score}점</RatingScore>
       <StarContainer>
         {Array(5)
@@ -64,20 +63,11 @@ const Rating = () => {
             </StarWrapper>
           ))}
       </StarContainer>
-    </Container>
+    </SubFormLayout>
   );
 };
 
 export default Rating;
-
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  gap: 25px;
-`;
 
 const StarContainer = styled.div`
   display: flex;

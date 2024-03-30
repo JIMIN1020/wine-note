@@ -2,29 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import IntensityBox from './IntensityBox';
 import { colorIntensity } from '../../../data/steps/step2-data';
-import StepSubTitle from '../StepSubTitle';
+import SubFormLayout from '../../layout/SubFormLayout';
 
 const IntensityInfo = () => {
   return (
-    <Container>
-      <StepSubTitle title='색의 강도' />
+    <SubFormLayout title='색의 강도'>
       <ColorContainer>
         {colorIntensity.map((data) => {
           return <IntensityBox key={data.id} intensityData={data} />;
         })}
       </ColorContainer>
-    </Container>
+    </SubFormLayout>
   );
 };
 
 export default IntensityInfo;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-`;
 
 const ColorContainer = styled.div`
   display: flex;

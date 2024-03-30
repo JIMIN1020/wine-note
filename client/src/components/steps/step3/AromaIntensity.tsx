@@ -1,12 +1,11 @@
 import React from 'react';
-import StepSubTitle from '../StepSubTitle';
 import styled from 'styled-components';
 import { aromaIntensity } from '../../../data/steps/step3-data';
+import SubFormLayout from '../../layout/SubFormLayout';
 
 const AromaIntensity = () => {
   return (
-    <Container>
-      <StepSubTitle title='향의 강도' />
+    <SubFormLayout title='향의 강도'>
       <Content>
         {aromaIntensity.map((data) => {
           return (
@@ -17,18 +16,11 @@ const AromaIntensity = () => {
           );
         })}
       </Content>
-    </Container>
+    </SubFormLayout>
   );
 };
 
 export default AromaIntensity;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 25px;
-`;
 
 const Type = styled.div`
   width: 100px;

@@ -5,7 +5,7 @@ import { wineColor } from '../../../data/steps/step2-data';
 import { useFormContext } from 'react-hook-form';
 import { WineColorDataType } from '../../../types/formType';
 import { getTypeFromLabel } from '../../../data/selectOptionData';
-import StepSubTitle from '../StepSubTitle';
+import SubFormLayout from '../../layout/SubFormLayout';
 
 const ColorInfo = () => {
   const { watch } = useFormContext();
@@ -14,25 +14,17 @@ const ColorInfo = () => {
   ) as keyof WineColorDataType;
 
   return (
-    <Container>
-      <StepSubTitle title='와인의 색' />
+    <SubFormLayout title='와인의 색'>
       <ColorContainer>
         {wineColor[type].map((data) => {
           return <ColorBox key={data.id} colorData={data} />;
         })}
       </ColorContainer>
-    </Container>
+    </SubFormLayout>
   );
 };
 
 export default ColorInfo;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 25px;
-`;
 
 const ColorContainer = styled.div`
   display: flex;
