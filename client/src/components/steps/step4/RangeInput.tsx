@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { RangeInputDataType } from '../../../types/steps/step4';
+import { RangeInputDataType } from '../../../types/formType';
 import { useFormContext } from 'react-hook-form';
 
 interface RangeInputProps {

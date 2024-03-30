@@ -1,7 +1,7 @@
 import React from 'react';
 import StepSubTitle from '../StepSubTitle';
 import styled from 'styled-components';
-import { aromaIntensity } from '../../../data/step3-data';
+import { aromaIntensity } from '../../../data/steps/step3-data';
 
 const AromaIntensity = () => {
   return (

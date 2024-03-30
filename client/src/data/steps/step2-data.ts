@@ -1,7 +1,7 @@
 import {
   WineColorDataType,
   WineColorIntensityType,
-} from '../types/steps/step2';
+} from '../../types/formType';
 
 export const wineColor: WineColorDataType = {
   white: [

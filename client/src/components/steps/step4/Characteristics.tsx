@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import StepSubTitle from '../StepSubTitle';
 import RangeInput from './RangeInput';
-import { rangeInputData } from '../../../data/step4-data';
+import { rangeInputData } from '../../../data/steps/step4-data';
 
 const Characteristics = () => {
   return (

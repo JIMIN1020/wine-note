@@ -1,4 +1,4 @@
-import { RangeInputDataType } from '../types/steps/step4';
+import { RangeInputDataType } from '../../types/formType';
 
 export const rangeInputData: RangeInputDataType[] = [
   { id: 'body', left: 'Light', right: 'Full' },

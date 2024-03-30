@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import ColorBox from './ColorBox';
-import { wineColor } from '../../../data/step2-data';
+import { wineColor } from '../../../data/steps/step2-data';
 import { useFormContext } from 'react-hook-form';
-import { WineColorDataType } from '../../../types/steps/step2';
+import { WineColorDataType } from '../../../types/formType';
 import { getTypeFromLabel } from '../../../data/selectOptionData';
 import StepSubTitle from '../StepSubTitle';
 

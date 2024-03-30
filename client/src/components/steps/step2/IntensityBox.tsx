@@ -1,11 +1,12 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
-import { WineColorIntensityType } from '../../../types/steps/step2';
+import { WineColorIntensityType } from '../../../types/formType';
 
 interface IntensityBoxProps {
   intensityData: WineColorIntensityType;
 }
+
 const IntensityBox = ({ intensityData }: IntensityBoxProps) => {
   const { watch, setValue } = useFormContext();
   const selectedColor = watch('step2[color]');

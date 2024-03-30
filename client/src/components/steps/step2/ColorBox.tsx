@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { WineColorType } from '../../../types/steps/step2';
+import { WineColorType } from '../../../types/formType';
 import { useFormContext } from 'react-hook-form';
 
 type ColorBoxProps = {

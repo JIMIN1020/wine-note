@@ -8,31 +8,7 @@ import Step5 from '../steps/Step5';
 import { IoMdArrowForward, IoMdArrowBack } from 'react-icons/io';
 import { FormProvider, useForm } from 'react-hook-form';
 import { wineTypeOptions } from '../../data/selectOptionData';
-import { GrapeType } from '../../types/steps/step1';
-import { CharacteristicType } from '../../types/steps/step4';
-
-interface TastingFormType {
-  step1: {
-    wineName: string;
-    wineType: string;
-    price: number;
-    country: string;
-    regieon: string;
-    grapes: GrapeType[];
-  };
-  step2: {
-    color: string;
-    colorIntensity: string;
-  };
-  step4: {
-    characteristics: CharacteristicType;
-    flavor: string;
-  };
-  step5: {
-    rating: number;
-    conclusion: string;
-  };
-}
+import { TastingFormType } from '../../types/formType';
 
 interface ReviewBoxProps {
   step: number;
