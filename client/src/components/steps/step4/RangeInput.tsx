@@ -1,33 +1,41 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { RangeInputDataType } from '../../../types/steps/step4';
+import { useFormContext } from 'react-hook-form';
 
 interface RangeInputProps {
   data: RangeInputDataType;
 }
 
-const RangeInput = ({ data: { left, right } }: RangeInputProps) => {
-  const [num, setNum] = useState<number>(1);
+const RangeInput = ({ data: { id, left, right } }: RangeInputProps) => {
+  const { watch, setValue } = useFormContext();
+
+  const handleSetValue = (num: number) => {
+    setValue(`step4.characteristics[${id}]`, num);
+  };
+
   return (
     <InputLine>
       <Label style={{ textAlign: 'end' }}>{left}</Label>
       <RangeBar>
-        <Button type='button' onClick={() => setNum(1)}>
+        <Button type='button' onClick={() => handleSetValue(1)}>
           1
         </Button>
-        <Button type='button' onClick={() => setNum(2)}>
+        <Button type='button' onClick={() => handleSetValue(2)}>
           2
         </Button>
-        <Button type='button' onClick={() => setNum(3)}>
+        <Button type='button' onClick={() => handleSetValue(3)}>
           3
         </Button>
-        <Button type='button' onClick={() => setNum(4)}>
+        <Button type='button' onClick={() => handleSetValue(4)}>
           4
         </Button>
-        <Button type='button' onClick={() => setNum(5)}>
+        <Button type='button' onClick={() => handleSetValue(5)}>
           5
         </Button>
-        <SelectBtn $num={num}>{num}</SelectBtn>
+        <SelectBtn $num={watch(`step4.characteristics[${id}]`)}>
+          {watch(`step4.characteristics[${id}]`)}
+        </SelectBtn>
       </RangeBar>
       <Label style={{ textAlign: 'start' }}>{right}</Label>
     </InputLine>

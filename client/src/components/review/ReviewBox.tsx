@@ -9,6 +9,7 @@ import { IoMdArrowForward, IoMdArrowBack } from 'react-icons/io';
 import { FormProvider, useForm } from 'react-hook-form';
 import { wineTypeOptions } from '../../data/selectOptionData';
 import { GrapeType } from '../../types/steps/step1';
+import { CharacteristicType } from '../../types/steps/step4';
 
 interface TastingFormType {
   step1: {
@@ -23,12 +24,16 @@ interface TastingFormType {
     color: string;
     colorIntensity: string;
   };
+  step4: {
+    characteristics: CharacteristicType;
+    flavor: string;
+  };
 }
 
-type ReviewBoxProps = {
+interface ReviewBoxProps {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
-};
+}
 
 const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
   const methods = useForm<TastingFormType>({
@@ -48,6 +53,14 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
       step2: {
         color: '#612a54',
         colorIntensity: 'Pale',
+      },
+      step4: {
+        characteristics: {
+          body: 3,
+          sweetness: 3,
+          tannin: 3,
+          acidity: 3,
+        },
       },
     },
   });

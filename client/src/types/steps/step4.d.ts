@@ -1,8 +1,8 @@
 export interface CharacteristicType {
-  body: string;
-  sweetness: string;
-  acidity: string;
-  tannin: string;
+  body: number;
+  sweetness: number;
+  tannin: number;
+  acidity: number;
 }
 
 export interface RangeInputDataType {
