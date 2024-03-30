@@ -5,7 +5,7 @@ import Step2 from '../steps/Step2';
 import Step3 from '../steps/Step3';
 import Step4 from '../steps/Step4';
 import Step5 from '../steps/Step5';
-import { IoMdArrowForward, IoMdArrowBack } from 'react-icons/io';
+import { IoMdArrowForward, IoMdArrowBack, IoMdCheckmark } from 'react-icons/io';
 import { FormProvider, useForm } from 'react-hook-form';
 import { wineTypeOptions } from '../../data/selectOptionData';
 import { TastingFormType } from '../../types/formType';
@@ -47,6 +47,15 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
       },
     },
   });
+
+  const handleClickRight = () => {
+    if (step === 5) {
+      // 폼 제출 - handleSubmit
+    } else {
+      setStep((prev) => prev + 1);
+    }
+  };
+
   return (
     <Container>
       <ButtonBox>
@@ -71,11 +80,8 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
       </FormProvider>
 
       <ButtonBox>
-        <StyledButton
-          onClick={() => setStep((prev) => prev + 1)}
-          disabled={step === 5}
-        >
-          <IoMdArrowForward />
+        <StyledButton onClick={handleClickRight} disabled={false}>
+          {step === 5 ? <IoMdCheckmark /> : <IoMdArrowForward />}
         </StyledButton>
       </ButtonBox>
     </Container>
