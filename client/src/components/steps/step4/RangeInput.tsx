@@ -1,0 +1,74 @@
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { RangeInputDataType } from '../../../types/steps/step4';
+
+interface RangeInputProps {
+  data: RangeInputDataType;
+}
+
+const RangeInput = ({ data: { left, right } }: RangeInputProps) => {
+  const [num, setNum] = useState<number>(1);
+  return (
+    <InputLine>
+      <Label style={{ textAlign: 'end' }}>{left}</Label>
+      <RangeBar>
+        <Button type='button' onClick={() => setNum(1)}>
+          1
+        </Button>
+        <Button type='button' onClick={() => setNum(2)}>
+          2
+        </Button>
+        <Button type='button' onClick={() => setNum(3)}>
+          3
+        </Button>
+        <Button type='button' onClick={() => setNum(4)}>
+          4
+        </Button>
+        <Button type='button' onClick={() => setNum(5)}>
+          5
+        </Button>
+        <SelectBtn $num={num}>{num}</SelectBtn>
+      </RangeBar>
+      <Label style={{ textAlign: 'start' }}>{right}</Label>
+    </InputLine>
+  );
+};
+
+export default RangeInput;
+
+const InputLine = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+
+const RangeBar = styled.div`
+  width: fit-content;
+  border-radius: 12px;
+  background-color: #e7e7e7;
+  position: relative;
+  overflow: hidden;
+`;
+
+const Button = styled.button`
+  width: 80px;
+  cursor: pointer;
+  padding: 2px 0;
+`;
+
+const Label = styled.span`
+  width: 40px;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  font-weight: 500;
+`;
+
+const SelectBtn = styled.button<{ $num: number }>`
+  width: 80px;
+  padding: 2px 0;
+  position: absolute;
+  top: 0;
+  left: ${({ $num }) => ($num - 1) * 80}px;
+  transition: all 0.2s ease-in-out;
+  border-radius: 12px;
+  background-color: ${({ theme }) => theme.colors.wine_purple};
+  color: ${({ theme }) => theme.colors.font_white};
+`;
