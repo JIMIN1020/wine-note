@@ -28,6 +28,10 @@ interface TastingFormType {
     characteristics: CharacteristicType;
     flavor: string;
   };
+  step5: {
+    rating: number;
+    conclusion: string;
+  };
 }
 
 interface ReviewBoxProps {
@@ -61,6 +65,9 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
           tannin: 3,
           acidity: 3,
         },
+      },
+      step5: {
+        rating: 0,
       },
     },
   });
