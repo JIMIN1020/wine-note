@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GrClose } from 'react-icons/gr';
+import { IoMdClose } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 
 const ButtonBar = () => {
+  const navigate = useNavigate();
   return (
     <Container>
-      <CancelBtn>
-        <GrClose />
+      <CancelBtn type='button' onClick={() => navigate('/winelist')}>
+        <IoMdClose size={28} />
       </CancelBtn>
     </Container>
   );
@@ -21,11 +23,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: 70px 50px;
+  padding: 60px 40px;
 `;
 
 const CancelBtn = styled.button`
-  padding: 16px;
+  padding: 12px;
   font-weight: 600;
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.colors.font_white};
@@ -36,11 +38,6 @@ const CancelBtn = styled.button`
   display: flex;
   gap: 10px;
   transition: all 0.1s ease-in-out;
-
-  & svg {
-    width: 20px;
-    height: 20px;
-  }
 
   &:hover {
     background-color: #ffffff2d;

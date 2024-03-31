@@ -1,13 +1,21 @@
 import React from 'react';
-import styled from 'styled-components';
+import { StepContainer } from '../../styles/GlobalStyle';
+import StepTitle from './StepTitle';
+import Characteristics from './step4/Characteristics';
+import FlavorTextarea from './step4/FlavorTextarea';
 
 const Step4 = () => {
-  return <Container>Step4</Container>;
+  return (
+    <StepContainer>
+      <StepTitle
+        stepNum={4}
+        title='와인의 맛'
+        description='와인의 맛에 대해 평가해보세요'
+      />
+      <Characteristics />
+      <FlavorTextarea />
+    </StepContainer>
+  );
 };
 
 export default Step4;
-
-const Container = styled.div`
-  width: 720px;
-  height: 100%;
-`;

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { getTypeFromLabel, wineTypeOptions } from '../../data/selectOptionData';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { useFormContext } from 'react-hook-form';
-import { wineColor } from '../../data/step2-data';
-import { WineColorDataType } from '../../types/steps/step2';
+import { wineColor } from '../../data/steps/step2-data';
+import { WineColorDataType } from '../../types/formType';
 
 const CustomSelect = () => {
   const { watch, setValue } = useFormContext();

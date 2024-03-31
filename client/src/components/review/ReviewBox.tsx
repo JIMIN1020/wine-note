@@ -5,34 +5,16 @@ import Step2 from '../steps/Step2';
 import Step3 from '../steps/Step3';
 import Step4 from '../steps/Step4';
 import Step5 from '../steps/Step5';
-import { IoMdArrowForward, IoMdArrowBack } from 'react-icons/io';
+import { IoMdArrowForward, IoMdArrowBack, IoMdCheckmark } from 'react-icons/io';
 import { FormProvider, useForm } from 'react-hook-form';
 import { wineTypeOptions } from '../../data/selectOptionData';
-import { GrapeType } from '../../types/steps/step1';
+import { TastingFormType } from '../../types/formType';
 
-interface TastingFormType {
-  step1: {
-    wineName: string;
-    wineType: string;
-    price: number;
-    country: string;
-    regieon: string;
-    grapes: GrapeType[];
-  };
-  step2: {
-    color: string;
-    colorIntensity: string;
-  };
-  step3: {
-    aromaIntensity: string;
-    aroma: string;
-  };
-}
 
-type ReviewBoxProps = {
+interface ReviewBoxProps = {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
-};
+}
 
 const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
   const methods = useForm<TastingFormType>({
@@ -56,8 +38,27 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
       step3: {
         aromaIntensity: 'Light',
       },
+      step4: {
+        characteristics: {
+          body: 3,
+          sweetness: 3,
+          tannin: 3,
+          acidity: 3,
+        },
+      },
+      step5: {
+        rating: 0,
     },
   });
+
+  const handleClickRight = () => {
+    if (step === 5) {
+      // 폼 제출 - handleSubmit
+    } else {
+      setStep((prev) => prev + 1);
+    }
+  };
+
   return (
     <Container>
       <ButtonBox>
@@ -82,11 +83,8 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
       </FormProvider>
 
       <ButtonBox>
-        <StyledButton
-          onClick={() => setStep((prev) => prev + 1)}
-          disabled={step === 5}
-        >
-          <IoMdArrowForward />
+        <StyledButton onClick={handleClickRight} disabled={false}>
+          {step === 5 ? <IoMdCheckmark /> : <IoMdArrowForward />}
         </StyledButton>
       </ButtonBox>
     </Container>
