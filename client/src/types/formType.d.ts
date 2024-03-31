@@ -47,7 +47,7 @@ export interface RangeInputDataType {
 }
 
 /* ----- Form ----- */
-interface TastingFormType {
+export interface TastingFormType {
   step1: {
     wineName: string;
     wineType: string;
@@ -59,6 +59,10 @@ interface TastingFormType {
   step2: {
     color: string;
     colorIntensity: string;
+  };
+  step3: {
+    aroma: string;
+    aromaIntensity: string;
   };
   step4: {
     characteristics: CharacteristicType;
