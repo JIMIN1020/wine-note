@@ -10,7 +10,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { wineTypeOptions } from '../../data/selectOptionData';
 import { TastingFormType } from '../../types/formType';
 
-interface ReviewBoxProps {
+
+interface ReviewBoxProps = {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -34,6 +35,9 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
         color: '#612a54',
         colorIntensity: 'Pale',
       },
+      step3: {
+        aromaIntensity: 'Light',
+      },
       step4: {
         characteristics: {
           body: 3,
@@ -44,7 +48,6 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
       },
       step5: {
         rating: 0,
-      },
     },
   });
 
