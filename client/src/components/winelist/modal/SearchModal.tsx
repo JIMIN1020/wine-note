@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import ResultBox from './ResultBox';
 import { GrClose } from 'react-icons/gr';
-import { fadein } from '../../../styles/GlobalStyle';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 type SearchModalProps = {
   setOpenSearchModal: (isOpen: boolean) => void;
@@ -32,7 +32,15 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
 
   return (
     <Container>
-      <Modal>
+      <Modal
+        initial={{ scale: 0.5 }}
+        animate={{ scale: 1 }}
+        transition={{
+          type: 'spring',
+          stiffness: 400,
+          damping: 25,
+        }}
+      >
         <SearchBox>
           <CloseBtn onClick={() => setOpenSearchModal(false)}>
             <GrClose />
@@ -46,7 +54,7 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
               type='text'
               placeholder='빈티지를 제외한 와인 이름을 영문으로 작성해주세요.'
             />
-            <SearchButton onClick={handleSearch}>
+            <SearchButton whileTap={{ scale: 0.95 }} onClick={handleSearch}>
               {loading ? '...' : '검색하기'}
             </SearchButton>
           </InputWrapper>
@@ -73,7 +81,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Modal = styled.div`
+const Modal = styled(motion.div)`
   width: 600px;
   height: fit-content;
   background-color: ${({ theme }) => theme.colors.bg_white};
@@ -87,8 +95,6 @@ const Modal = styled.div`
   overflow: hidden;
 
   z-index: 21;
-  animation: ${fadein} 0.5s;
-  transition: all 0.5s ease-in-out;
 `;
 
 const SearchBox = styled.div`
@@ -155,7 +161,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const SearchButton = styled.button`
+const SearchButton = styled(motion.button)`
   width: 100px;
   font-size: ${({ theme }) => theme.fontSize.base};
   background-color: ${({ theme }) => theme.colors.wine_purple};
@@ -163,9 +169,4 @@ const SearchButton = styled.button`
   padding: 10px;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-
-  &:hover {
-    scale: calc(1.05);
-  }
 `;

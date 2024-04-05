@@ -1,9 +1,10 @@
 import React from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import exImg from '../../../assets/image/exImg.png';
 import Flag from '../../common/Flag';
 import { SiVivino } from 'react-icons/si';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 type ResultBoxProps = {
   handleWriteReview: () => void;
@@ -11,7 +12,12 @@ type ResultBoxProps = {
 
 const ResultBox = ({ handleWriteReview }: ResultBoxProps) => {
   return (
-    <Container>
+    <Container
+      initial={{ height: 0 }}
+      animate={{ height: '360px' }}
+      exit={{ height: 0 }}
+      transition={{ duration: 1, ease: 'easeInOut' }}
+    >
       <Title>
         <h3>찾으시는 와인이 이 와인인가요?</h3>
         <span>
@@ -37,8 +43,10 @@ const ResultBox = ({ handleWriteReview }: ResultBoxProps) => {
         </ExLink>
       </WineResult>
       <BtnWrapper>
-        <Button onClick={handleWriteReview}>기록 시작</Button>
-        <Button>직접 기록하기</Button>
+        <Button whileTap={{ scale: 0.95 }} onClick={handleWriteReview}>
+          기록 시작
+        </Button>
+        <Button whileTap={{ scale: 0.95 }}>직접 기록하기</Button>
       </BtnWrapper>
     </Container>
   );
@@ -46,23 +54,13 @@ const ResultBox = ({ handleWriteReview }: ResultBoxProps) => {
 
 export default ResultBox;
 
-const openResult = keyframes`
-  0% {
-    height: 0px;
-  }
-  100% {
-    height: 360px;
-  }
-`;
-
-const Container = styled.div`
+const Container = styled(motion.div)`
   width: 100%;
   height: 0;
   border-radius: 0 0 12px 12px;
   padding: 0px 30px;
 
   background-color: ${({ theme }) => theme.colors.bg_lightgray};
-  animation: 1s ease-in-out normal forwards running ${openResult};
 
   display: flex;
   flex-direction: column;
@@ -155,18 +153,13 @@ const BtnWrapper = styled.div`
   gap: 20px;
 `;
 
-const Button = styled.button`
+const Button = styled(motion.button)`
   width: 120px;
   padding: 10px 0px;
   background-color: ${({ theme }) => theme.colors.wine_purple};
   color: ${({ theme }) => theme.colors.font_white};
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-
-  &:hover {
-    scale: calc(1.05);
-  }
 `;
 
 const ExLink = styled(Link)`

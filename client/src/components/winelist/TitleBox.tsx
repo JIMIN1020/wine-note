@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { defaultWidth } from '../../styles/GlobalStyle';
+import { motion } from 'framer-motion';
 
 type TitleBoxProps = {
   setOpenSearchModal: (isOpen: boolean) => void;
@@ -15,7 +16,10 @@ const TitleBox = ({ setOpenSearchModal }: TitleBoxProps) => {
           <h2>와인 기록</h2>
           <span>내가 마신 와인을 기록하고 관리해보세요!</span>
         </PageTitle>
-        <AddButton onClick={() => setOpenSearchModal(true)}>
+        <AddButton
+          whileTap={{ scale: 0.95 }}
+          onClick={() => setOpenSearchModal(true)}
+        >
           <AiOutlinePlus />
           새로운 와인 기록 추가
         </AddButton>
@@ -55,7 +59,7 @@ const PageTitle = styled.div`
   }
 `;
 
-const AddButton = styled.button`
+const AddButton = styled(motion.button)`
   padding: 12px 20px;
   border-radius: 10px;
   font-size: ${({ theme }) => theme.fontSize.sm};
@@ -67,14 +71,9 @@ const AddButton = styled.button`
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
 
   & svg {
     width: 18px;
     height: 18px;
-  }
-
-  &:hover {
-    scale: calc(1.05);
   }
 `;
