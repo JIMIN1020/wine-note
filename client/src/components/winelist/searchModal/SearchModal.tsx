@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useClickOutside from '../../../hooks/useClickOutside';
 import { IoSearchSharp } from 'react-icons/io5';
 import Button from '../../common/Button';
+import { modalBackgroundVariants } from '../../../styles/motionVariants';
 
 type SearchModalProps = {
   setOpenSearchModal: (isOpen: boolean) => void;
@@ -37,10 +38,11 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
   };
 
   return (
-    <Container
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <Background
+      variants={modalBackgroundVariants}
+      initial='initial'
+      animate='animate'
+      exit='exit'
     >
       <Modal
         ref={ref}
@@ -73,19 +75,18 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
           {resultOpen && <ResultBox handleWriteReview={handleWriteReview} />}
         </AnimatePresence>
       </Modal>
-    </Container>
+    </Background>
   );
 };
 
 export default SearchModal;
 
-const Container = styled(motion.div)`
+const Background = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #2b2b2b94;
   z-index: 20;
 
   display: flex;

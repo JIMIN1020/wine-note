@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import TitleBox from '../components/winelist/TitleBox';
 import Content from '../components/winelist/Content';
-import SearchModal from '../components/winelist/modal/SearchModal';
+import SearchModal from '../components/winelist/searchModal/SearchModal';
 import { AnimatePresence } from 'framer-motion';
 
 const WineListPage = () => {

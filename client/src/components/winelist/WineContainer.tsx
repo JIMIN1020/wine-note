@@ -1,16 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { AnimatePresence } from 'framer-motion';
 import FilterSelect from '../common/FilterSelect';
-import WineBox from './WineBox';
+import { wineDummy } from '../../data/wineDummy';
+import Wine from '../common/Wine';
+import WineDetailModal from './wineDetailModal/WineDetailModal';
 
 const WineContainer: React.FC = () => {
+  const [selectedWine, setSelectedWine] = useState<string | null>(null);
   return (
     <Container>
       <TopBar>
         <Total>총 12개의 와인 기록이 있습니다.</Total>
         <FilterSelect />
       </TopBar>
-      <WineBox />
+      <WineWrapper>
+        {wineDummy.map((data) => {
+          return (
+            <Wine
+              key={data.id}
+              wineData={data}
+              onClick={() => setSelectedWine(data.id)}
+            />
+          );
+        })}
+      </WineWrapper>
+      <AnimatePresence>
+        {selectedWine && (
+          <WineDetailModal
+            layoutId={selectedWine}
+            setSelectedWine={setSelectedWine}
+          />
+        )}
+      </AnimatePresence>
     </Container>
   );
 };
@@ -40,4 +62,11 @@ const Total = styled.h3`
   display: flex;
   align-items: center;
   gap: 5px;
+`;
+
+const WineWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;

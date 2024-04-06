@@ -4,29 +4,36 @@ import exImg from '../../assets/image/exImg.png';
 import Flag from './Flag';
 import { BiWon } from 'react-icons/bi';
 import { IoStar } from 'react-icons/io5';
+import { WineDataType } from '../../data/wineDummy';
+import { motion } from 'framer-motion';
 
-const Wine = () => {
+interface WineProps {
+  wineData: WineDataType;
+  onClick: () => void;
+}
+
+const Wine = ({ wineData, onClick }: WineProps) => {
   return (
-    <Container>
+    <Container onClick={onClick} layoutId={wineData.id}>
       <ImgBox>
         <img src={exImg} alt='wine' />
       </ImgBox>
       <TextContent>
-        <WineName>
-          Rombauer Vineyards Chardonnay Proprietor Selection 2022
-        </WineName>
+        <WineName>{wineData.name}</WineName>
         <Country>
-          <Flag countryName='usa' size='15px' />
-          <span>California, United States</span>
+          <Flag countryName={wineData.country} size='15px' />
+          <span>
+            {wineData.region}, {wineData.country}
+          </span>
         </Country>
         <Price>
           <BiWon />
-          <span>127,000</span>
+          <span>{wineData.price}</span>
         </Price>
       </TextContent>
       <Rating>
         <IoStar />
-        4.5
+        {wineData.rating}
       </Rating>
     </Container>
   );
@@ -34,7 +41,9 @@ const Wine = () => {
 
 export default Wine;
 
-const Container = styled.div`
+const Container = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
   width: 220px;
   height: 350px;
   border-radius: 12px;
@@ -43,7 +52,7 @@ const Container = styled.div`
   color: ${({ theme }) => theme.colors.font_black};
   position: relative;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  transition: scale 0.3s ease-in-out;
 
   &:hover {
     scale: calc(1.05);

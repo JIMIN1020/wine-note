@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Wine from '../common/Wine';
 import { defaultWidth } from '../../styles/GlobalStyle';
+import { wineDummy } from '../../data/wineDummy';
 
 const BottomSheet: React.FC = () => {
   return (
@@ -12,9 +13,15 @@ const BottomSheet: React.FC = () => {
           <span>지민님이 높은 평점을 준 와인과 비슷한 와인을 찾아봤어요</span>
         </TitleWrapper>
         <WineWrapper>
-          <Wine />
-          <Wine />
-          <Wine />
+          {wineDummy.map((data) => {
+            return (
+              <Wine
+                key={data.id}
+                wineData={data}
+                onClick={() => console.log('test')}
+              />
+            );
+          })}
         </WineWrapper>
       </Wrapper>
     </Container>
