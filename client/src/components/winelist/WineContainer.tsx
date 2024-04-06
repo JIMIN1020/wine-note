@@ -11,7 +11,7 @@ const WineContainer: React.FC = () => {
   return (
     <Container>
       <TopBar>
-        <Total>총 12개의 와인 기록이 있습니다.</Total>
+        <Total>총 {wineDummy.length}개의 와인 기록이 있습니다.</Total>
         <FilterSelect />
       </TopBar>
       <WineWrapper>
@@ -20,11 +20,13 @@ const WineContainer: React.FC = () => {
             <Wine
               key={data.id}
               wineData={data}
+              layoutId={data.id}
               onClick={() => setSelectedWine(data.id)}
             />
           );
         })}
       </WineWrapper>
+      {/* 와인 상세 모달 */}
       <AnimatePresence>
         {selectedWine && (
           <WineDetailModal

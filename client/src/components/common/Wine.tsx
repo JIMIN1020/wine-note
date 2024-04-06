@@ -10,11 +10,12 @@ import { motion } from 'framer-motion';
 interface WineProps {
   wineData: WineDataType;
   onClick: () => void;
+  layoutId?: string;
 }
 
-const Wine = ({ wineData, onClick }: WineProps) => {
+const Wine = ({ wineData, onClick, layoutId }: WineProps) => {
   return (
-    <Container onClick={onClick} layoutId={wineData.id}>
+    <Container onClick={onClick} layoutId={layoutId}>
       <ImgBox>
         <img src={exImg} alt='wine' />
       </ImgBox>
