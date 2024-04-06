@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import ResultBox from './ResultBox';
-import { GrClose } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import useClickOutside from '../../../hooks/useClickOutside';
+import { IoSearchSharp } from 'react-icons/io5';
+import Button from '../../common/Button';
 
 type SearchModalProps = {
   setOpenSearchModal: (isOpen: boolean) => void;
 };
 
 const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
+  const ref = useRef<HTMLDivElement | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [resultOpen, setResultOpen] = useState<boolean>(false);
   const navigate = useNavigate();
+
+  /* ----- 모달 바깥 클릭 시 닫힘 처리 ----- */
+  useClickOutside(ref, () => setOpenSearchModal(false));
 
   /* ----- vivino 검색 함수 ----- */
   const handleSearch = () => {
@@ -21,7 +27,7 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
     setTimeout(() => {
       setLoading(false);
       setResultOpen(true);
-    }, 5000);
+    }, 3000);
   };
 
   /* ----- 기록 작성하기 버튼 ----- */
@@ -31,35 +37,41 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
   };
 
   return (
-    <Container>
+    <Container
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <Modal
-        initial={{ scale: 0.5 }}
-        animate={{ scale: 1 }}
+        ref={ref}
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 50 }}
         transition={{
           type: 'spring',
-          stiffness: 400,
+          stiffness: 200,
           damping: 25,
         }}
       >
         <SearchBox>
-          <CloseBtn onClick={() => setOpenSearchModal(false)}>
-            <GrClose />
-          </CloseBtn>
           <Title>
-            <h3>와인 검색하기</h3>
-            <span>와인 기록을 작성하기 전, 와인 정보를 검색합니다.</span>
+            <h3>
+              <IoSearchSharp size='24' />
+              와인 검색하기
+            </h3>
+            <span>와인 기록을 작성할 와인을 검색합니다.</span>
           </Title>
           <InputWrapper>
             <StyledInput
               type='text'
               placeholder='빈티지를 제외한 와인 이름을 영문으로 작성해주세요.'
             />
-            <SearchButton whileTap={{ scale: 0.95 }} onClick={handleSearch}>
-              {loading ? '...' : '검색하기'}
-            </SearchButton>
+            <Button text='검색하기' disabled={loading} onClick={handleSearch} />
           </InputWrapper>
         </SearchBox>
-        {resultOpen && <ResultBox handleWriteReview={handleWriteReview} />}
+        <AnimatePresence>
+          {resultOpen && <ResultBox handleWriteReview={handleWriteReview} />}
+        </AnimatePresence>
       </Modal>
     </Container>
   );
@@ -67,13 +79,13 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
 
 export default SearchModal;
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   width: 100vw;
   height: 100vh;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #49494979;
+  background-color: #2b2b2b94;
   z-index: 20;
 
   display: flex;
@@ -99,8 +111,7 @@ const Modal = styled(motion.div)`
 
 const SearchBox = styled.div`
   width: 100%;
-  height: 210px;
-  padding: 40px 30px;
+  padding: 40px 50px;
   border-radius: 12px;
 
   display: flex;
@@ -111,46 +122,35 @@ const SearchBox = styled.div`
   position: relative;
 `;
 
-const CloseBtn = styled.button`
-  display: flex;
-  background: none;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-
-  & svg {
-    width: 20px;
-    height: 20px;
-    color: ${({ theme }) => theme.colors.font_black};
-  }
-`;
-
 const InputWrapper = styled.div`
   display: flex;
+  width: 100%;
   gap: 20px;
 `;
 
 const Title = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: end;
   gap: 8px;
 
   & h3 {
-    font-size: ${({ theme }) => theme.fontSize.title};
-    font-weight: 600;
+    font-size: ${({ theme }) => theme.fontSize.xl};
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
   & span {
+    margin-bottom: 3px;
     font-size: ${({ theme }) => theme.fontSize.base};
     color: ${({ theme }) => theme.colors.font_gray};
   }
 `;
 
 const StyledInput = styled.input`
-  width: 350px;
+  flex: 1;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.colors.border_gray};
@@ -159,14 +159,4 @@ const StyledInput = styled.input`
   &:focus {
     outline: none;
   }
-`;
-
-const SearchButton = styled(motion.button)`
-  width: 100px;
-  font-size: ${({ theme }) => theme.fontSize.base};
-  background-color: ${({ theme }) => theme.colors.wine_purple};
-  color: ${({ theme }) => theme.colors.font_white};
-  padding: 10px;
-  border-radius: 12px;
-  cursor: pointer;
 `;

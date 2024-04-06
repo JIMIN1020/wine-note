@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import TitleBox from '../components/winelist/TitleBox';
 import Content from '../components/winelist/Content';
 import SearchModal from '../components/winelist/modal/SearchModal';
+import { AnimatePresence } from 'framer-motion';
 
 const WineListPage = () => {
   const [openSearchModal, setOpenSearchModal] = useState<boolean>(false);
@@ -18,9 +19,11 @@ const WineListPage = () => {
     <Container>
       <TitleBox setOpenSearchModal={setOpenSearchModal} />
       <Content />
-      {openSearchModal && (
-        <SearchModal setOpenSearchModal={setOpenSearchModal} />
-      )}
+      <AnimatePresence>
+        {openSearchModal && (
+          <SearchModal setOpenSearchModal={setOpenSearchModal} />
+        )}
+      </AnimatePresence>
     </Container>
   );
 };

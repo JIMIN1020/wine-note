@@ -53,7 +53,7 @@ const Quote = styled.div`
   gap: 16px;
 
   & h5 {
-    font-size: ${({ theme }) => theme.fontSize.title};
+    font-size: ${({ theme }) => theme.fontSize.xl};
   }
 
   & span {

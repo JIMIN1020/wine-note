@@ -17,8 +17,8 @@ declare module 'styled-components' {
     base: string;
     md: string;
     lg: string;
-    title: string;
     xl: string;
+    xxl: string;
     logo: string;
   }
 }

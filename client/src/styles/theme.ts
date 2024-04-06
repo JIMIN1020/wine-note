@@ -17,8 +17,8 @@ const fontSize: Font = {
   base: '14px',
   md: '16px',
   lg: '18px',
-  title: '20px',
-  xl: '24px',
+  xl: '20px',
+  xxl: '24px',
   logo: '28px',
 };
 

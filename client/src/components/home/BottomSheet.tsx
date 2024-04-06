@@ -56,7 +56,7 @@ const TitleWrapper = styled.div`
 
 const Title = styled.h5`
   color: ${({ theme }) => theme.colors.font_black};
-  font-size: ${({ theme }) => theme.fontSize.title};
+  font-size: ${({ theme }) => theme.fontSize.xl};
   font-weight: 600;
 `;
 
