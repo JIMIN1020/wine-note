@@ -20,7 +20,6 @@ const WineContainer: React.FC = () => {
             <Wine
               key={data.id}
               wineData={data}
-              layoutId={data.id}
               onClick={() => setSelectedWine(data.id)}
             />
           );
@@ -28,12 +27,7 @@ const WineContainer: React.FC = () => {
       </WineWrapper>
       {/* 와인 상세 모달 */}
       <AnimatePresence>
-        {selectedWine && (
-          <WineDetailModal
-            layoutId={selectedWine}
-            setSelectedWine={setSelectedWine}
-          />
-        )}
+        {selectedWine && <WineDetailModal setSelectedWine={setSelectedWine} />}
       </AnimatePresence>
     </Container>
   );

@@ -51,7 +51,7 @@ export default WineInfo;
 
 const WineContainer = styled.div`
   width: 100%;
-  height: 400px;
+  height: 380px;
   border-radius: 12px;
   display: flex;
   gap: 30px;
@@ -83,13 +83,13 @@ const Content = styled.div`
 `;
 
 const TypeOfWine = styled.span`
-  font-size: ${({ theme }) => theme.fontSize.md};
+  font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.colors.font_gray};
   text-decoration: underline;
 `;
 
 const WineName = styled.h2`
-  font-size: ${({ theme }) => theme.fontSize.logo};
+  font-size: ${({ theme }) => theme.fontSize.xxl};
   font-weight: 600;
   line-height: 130%;
   letter-spacing: 0.5px;
@@ -108,7 +108,7 @@ const Country = styled.div`
   gap: 6px;
 
   & span {
-    font-size: ${({ theme }) => theme.fontSize.md};
+    font-size: ${({ theme }) => theme.fontSize.base};
   }
 `;
 
@@ -116,6 +116,7 @@ const Price = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+  font-size: ${({ theme }) => theme.fontSize.base};
 `;
 
 const Rating = styled.div`
@@ -136,7 +137,7 @@ const VivinoLink = styled.a`
   gap: 8px;
   align-items: center;
 
-  font-size: ${({ theme }) => theme.fontSize.md};
+  font-size: ${({ theme }) => theme.fontSize.base};
   font-weight: 400;
   color: ${({ theme }) => theme.colors.font_gray};
 `;
@@ -144,4 +145,6 @@ const VivinoLink = styled.a`
 const Grapes = styled.div`
   display: flex;
   gap: 6px;
+  align-items: center;
+  font-size: ${({ theme }) => theme.fontSize.base};
 `;
