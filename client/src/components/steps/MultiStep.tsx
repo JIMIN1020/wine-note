@@ -10,7 +10,6 @@ const MultiStep = ({ step }: MultiStepProps) => {
   return (
     <Container>
       <Wrapper>
-        {/* <Title>Steps</Title> */}
         <StepContainer>
           <Step number={1} title='와인 정보' complete={step >= 1} />
           <Line $complete={step > 1} />

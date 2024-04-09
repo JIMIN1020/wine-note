@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Line } from '../../../styles/GlobalStyle';
 import CustomSelect from '../../common/CustomSelect';
 import {
   LabelInput,
@@ -10,7 +9,7 @@ import {
 } from '../../../styles/CustomInputs';
 import { LiaWonSignSolid } from 'react-icons/lia';
 import { useFormContext } from 'react-hook-form';
-import StepSubTitle from '../StepSubTitle';
+import SubFormLayout from '../../layout/SubFormLayout';
 
 const BasicInfo = () => {
   const { register, setValue, watch } = useFormContext();
@@ -27,11 +26,11 @@ const BasicInfo = () => {
   };
 
   return (
-    <Container>
-      <StepSubTitle title='기본 정보' />
-      <Line />
+    <SubFormLayout title='기본 정보'>
       <Wrapper>
-        <Image />
+        <ImageWrapper>
+          <WineImage src='' alt='임시' />
+        </ImageWrapper>
         <InputBox>
           <StyledInputLabel>
             <span>와인명</span>
@@ -61,28 +60,31 @@ const BasicInfo = () => {
           </StyledInputLabel>
         </InputBox>
       </Wrapper>
-    </Container>
+    </SubFormLayout>
   );
 };
 
 export default BasicInfo;
 
-const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
 const Wrapper = styled.div`
+  width: 100%;
   display: flex;
   gap: 20px;
 `;
 
-const Image = styled.div`
+const ImageWrapper = styled.div`
   width: 230px;
   height: 230px;
-  background-color: #dedede;
   border-radius: 12px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+`;
+
+const WineImage = styled.img`
+  height: 100%;
 `;
 
 const InputBox = styled.div`

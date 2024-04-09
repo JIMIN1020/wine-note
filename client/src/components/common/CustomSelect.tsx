@@ -1,29 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { getTypeFromLabel, wineTypeOptions } from '../../data/selectOptionData';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { useFormContext } from 'react-hook-form';
 import { wineColor } from '../../data/steps/step2-data';
 import { WineColorDataType } from '../../types/formType';
+import useClickOutside from '../../hooks/useClickOutside';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const CustomSelect = () => {
   const { watch, setValue } = useFormContext();
   const [open, setOpen] = useState<boolean>(false);
-  const outsideRef = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  // 바깥 클릭 시 처리
-  useEffect(() => {
-    function handleClickOutside(event: any) {
-      if (outsideRef.current && !outsideRef.current?.contains(event.target)) {
-        setOpen(false);
-      }
-    }
-    document.addEventListener('click', handleClickOutside);
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [outsideRef]);
+  /* ----- 모달 바깥 클릭 시 닫힘 ----- */
+  useClickOutside(ref, () => setOpen(false));
 
+  /* ----- 옵션 클릭 시 처리 함수 ----- */
   const onClickOption = (label: string) => {
     setValue('step1[wineType]', label);
     const type = getTypeFromLabel(label) as keyof WineColorDataType;
@@ -32,29 +25,40 @@ const CustomSelect = () => {
   };
 
   return (
-    <Container ref={outsideRef}>
-      <SelectBox onClick={() => setOpen((prev) => !prev)}>
+    <Container ref={ref}>
+      <SelectBox
+        whileTap={{ scale: 0.98 }}
+        $open={open}
+        onClick={() => setOpen((prev) => !prev)}
+      >
         <Selected>{watch('step1[wineType]')}</Selected>
         <MdArrowForwardIos />
       </SelectBox>
-      {open && (
-        <OptionBox>
-          {wineTypeOptions.map((data) => {
-            return (
-              <Option key={data.id} onClick={() => onClickOption(data.label)}>
-                {data.label}
-              </Option>
-            );
-          })}
-        </OptionBox>
-      )}
+      <AnimatePresence>
+        {open && (
+          <OptionBox
+            initial={{ opacity: 0.7, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+          >
+            {wineTypeOptions.map((data) => {
+              return (
+                <Option key={data.id} onClick={() => onClickOption(data.label)}>
+                  {data.label}
+                </Option>
+              );
+            })}
+          </OptionBox>
+        )}
+      </AnimatePresence>
     </Container>
   );
 };
 
 export default CustomSelect;
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   display: flex;
   position: relative;
 `;
@@ -64,7 +68,7 @@ const Selected = styled.div`
   font-weight: 400;
 `;
 
-const SelectBox = styled.div`
+const SelectBox = styled(motion.div)<{ $open: boolean }>`
   width: 100%;
   display: flex;
   align-items: center;
@@ -72,7 +76,9 @@ const SelectBox = styled.div`
   box-sizing: content-box;
 
   color: ${({ theme }) => theme.colors.text_black};
-  border: 1px solid ${({ theme }) => theme.colors.border_gray};
+  border: 1px solid
+    ${({ theme, $open }) =>
+      $open ? theme.colors.wine_purple : theme.colors.border_gray};
   border-radius: 8px;
   padding: 10px 14px;
   cursor: pointer;
@@ -98,7 +104,7 @@ const SelectBox = styled.div`
   }
 `;
 
-const OptionBox = styled.div`
+const OptionBox = styled(motion.div)`
   width: 100%;
   display: flex;
   flex-direction: column;

@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle, css, keyframes } from 'styled-components';
+import styled, { createGlobalStyle, css } from 'styled-components';
 import reset from 'styled-reset';
 
 export const GlobalStyle = createGlobalStyle`
@@ -36,25 +36,6 @@ export const flexCenter = css`
   align-items: center;
 `;
 
-export const fadein = keyframes`
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 5%, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translateZ(0);
-  }
-`;
-
-export const Line = styled.div`
-  height: 1px;
-  background-color: ${({ theme }) => theme.colors.border_gray};
-  opacity: 0.8;
-  margin-top: 10px;
-  margin-bottom: 16px;
-`;
-
 export const StepContainer = styled.div`
   width: 720px;
   height: 100%;
@@ -63,5 +44,5 @@ export const StepContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  gap: 50px;
 `;

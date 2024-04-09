@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Line } from '../../../styles/GlobalStyle';
 import GrapeInput from './GrapeInput';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useFieldArray, useFormContext } from 'react-hook-form';
@@ -15,55 +14,46 @@ const GrapeInfo = () => {
   });
 
   return (
-    <Container>
-      <TitleBar>
-        <StepSubTitle title='품종 정보' />
-        <AddButton
-          type='button'
-          onClick={() => append({ name: '', percent: 0 })}
-        >
-          <AiOutlinePlus />
-          품종 추가
-        </AddButton>
-      </TitleBar>
-      <Line />
+    <Wrapper>
+      <StepSubTitle title='품종 정보' />
       <InputWrapper>
         {fields.map((field, i) => (
           <GrapeInput key={field.id} index={i} remove={remove} />
         ))}
+        <AddButton
+          type='button'
+          onClick={() => append({ name: '', percent: 0 })}
+        >
+          <AiOutlinePlus size={15} />
+        </AddButton>
       </InputWrapper>
-    </Container>
+    </Wrapper>
   );
 };
 
 export default GrapeInfo;
 
-const Container = styled.div`
+const Wrapper = styled.div`
   flex: 1;
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: 25px;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
 `;
 
-const TitleBar = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-`;
-
 const AddButton = styled.button`
-  padding: 8px 10px;
-  border-radius: 8px;
-  font-weight: 600;
+  width: 85%;
+  height: 30px;
+  border-radius: 6px;
   font-size: ${({ theme }) => theme.fontSize.sm};
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.bg_lightgray};
+  background-color: #f1f1f1;
 
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
   transition: all 0.2s ease-in-out;
 
   &:hover {

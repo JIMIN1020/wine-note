@@ -9,6 +9,7 @@ import { IoMdArrowForward, IoMdArrowBack, IoMdCheckmark } from 'react-icons/io';
 import { FormProvider, useForm } from 'react-hook-form';
 import { wineTypeOptions } from '../../data/selectOptionData';
 import { TastingFormType } from '../../types/formType';
+import { motion } from 'framer-motion';
 
 interface ReviewBoxProps {
   step: number;
@@ -36,6 +37,7 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
       },
       step3: {
         aromaIntensity: 'Light',
+        aroma: '',
       },
       step4: {
         characteristics: {
@@ -44,9 +46,11 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
           tannin: 3,
           acidity: 3,
         },
+        flavor: '',
       },
       step5: {
         rating: 0,
+        conclusion: '',
       },
     },
   });
@@ -63,6 +67,7 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
     <Container>
       <ButtonBox>
         <StyledButton
+          whileTap={{ scale: 0.92 }}
           onClick={() => setStep((prev) => prev - 1)}
           disabled={step === 1}
         >
@@ -83,7 +88,11 @@ const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
       </FormProvider>
 
       <ButtonBox>
-        <StyledButton onClick={handleClickRight} disabled={false}>
+        <StyledButton
+          whileTap={{ scale: 0.92 }}
+          onClick={handleClickRight}
+          disabled={false}
+        >
           {step === 5 ? <IoMdCheckmark /> : <IoMdArrowForward />}
         </StyledButton>
       </ButtonBox>
@@ -122,7 +131,7 @@ const ButtonBox = styled.div`
   padding: 0 20px;
 `;
 
-const StyledButton = styled.button<{ disabled: boolean }>`
+const StyledButton = styled(motion.button)<{ disabled: boolean }>`
   width: 48px;
   height: 54px;
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};

@@ -1,15 +1,14 @@
 import React from 'react';
-import { useFormContext } from 'react-hook-form';
-import { FormTextarea } from '../../../styles/FormTextarea';
 import SubFormLayout from '../../layout/SubFormLayout';
+import TextArea from '../../common/TextArea';
 
 const FlavorTextarea = () => {
-  const { register } = useFormContext();
   return (
     <SubFormLayout title='와인의 맛'>
-      <FormTextarea
-        placeholder='와인에서 감지되는 맛을 모두 적어보세요.'
-        {...register('step4[flavor]')}
+      <TextArea
+        stepName='step4[flavor]'
+        placeholder='와인에서 느껴지는 맛을 모두 적어보세요.'
+        maxLength={200}
       />
     </SubFormLayout>
   );

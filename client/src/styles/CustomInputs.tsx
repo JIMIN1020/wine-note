@@ -4,7 +4,6 @@ export const StyledInput = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.border_gray};
   padding: 10px 12px;
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 20px 0px;
 
   &:focus {
     outline: none;

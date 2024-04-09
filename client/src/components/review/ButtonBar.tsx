@@ -2,12 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { IoMdClose } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const ButtonBar = () => {
   const navigate = useNavigate();
   return (
     <Container>
-      <CancelBtn type='button' onClick={() => navigate('/winelist')}>
+      <CancelBtn
+        whileTap={{ scale: 0.98 }}
+        type='button'
+        onClick={() => navigate('/winelist')}
+      >
         <IoMdClose size={28} />
       </CancelBtn>
     </Container>
@@ -26,7 +31,7 @@ const Container = styled.div`
   padding: 60px 40px;
 `;
 
-const CancelBtn = styled.button`
+const CancelBtn = styled(motion.button)`
   padding: 12px;
   font-weight: 600;
   font-size: ${({ theme }) => theme.fontSize.base};
