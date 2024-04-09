@@ -8,6 +8,7 @@ import { CgNotes } from 'react-icons/cg';
 import WineInfo from './WineInfo';
 import AromaReview from './AromaReview';
 import ColorReview from './ColorReview';
+import FlavorReview from './FlavorReview';
 
 interface WineDetailModalProps {
   setSelectedWine: React.Dispatch<React.SetStateAction<string | null>>;
@@ -53,6 +54,7 @@ const WineDetailModal = ({ setSelectedWine }: WineDetailModalProps) => {
           </NoteTitle>
           <ColorReview />
           <AromaReview />
+          <FlavorReview />
         </NoteWrapper>
       </Modal>
     </Background>
@@ -86,6 +88,10 @@ const Modal = styled(motion.div)`
   gap: 30px;
   color: ${({ theme }) => theme.colors.font_black};
   overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const NoteTitle = styled.h2`
@@ -96,7 +102,6 @@ const NoteTitle = styled.h2`
   gap: 6px;
   font-size: ${({ theme }) => theme.fontSize.xl};
   font-weight: 600;
-  margin: 20px 0;
 `;
 
 const Conclusion = styled.div`
@@ -127,5 +132,6 @@ const NoteWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 50px;
+  padding: 30px 0;
 `;

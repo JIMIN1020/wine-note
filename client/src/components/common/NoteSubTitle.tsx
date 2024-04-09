@@ -28,12 +28,13 @@ const TitleBar = styled.div`
 
 const Title = styled.h3`
   font-size: ${({ theme }) => theme.fontSize.xl};
-  font-weight: 500;
+  font-weight: 600;
 
   & small {
-    font-size: ${({ theme }) => theme.fontSize.md};
+    font-size: ${({ theme }) => theme.fontSize.base};
     color: ${({ theme }) => theme.colors.font_gray};
     font-weight: 400;
+    margin-left: 4px;
   }
 `;
 
