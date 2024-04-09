@@ -51,7 +51,7 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
         exit={{ opacity: 0, y: 50 }}
         transition={{
           type: 'spring',
-          stiffness: 200,
+          stiffness: 300,
           damping: 25,
         }}
       >

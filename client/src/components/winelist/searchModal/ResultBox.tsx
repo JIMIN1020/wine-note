@@ -16,10 +16,11 @@ const ResultBox = ({ handleWriteReview }: ResultBoxProps) => {
   return (
     <Container
       initial={{ height: 0 }}
-      animate={{ height: 'auto' }}
+      animate={{ height: '400px' }}
       exit={{ height: 0 }}
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
+      <Bar />
       <Title>
         <h3>
           <IoIosCheckmarkCircleOutline
@@ -65,8 +66,7 @@ const Container = styled(motion.div)`
   height: 0;
   border-radius: 0 0 12px 12px;
   padding: 0px 50px;
-  padding-bottom: 40px;
-
+  /* padding-bottom: 40px; */
   background-color: ${({ theme }) => theme.colors.bg_white};
 
   display: flex;
@@ -76,13 +76,20 @@ const Container = styled(motion.div)`
   overflow: hidden;
 `;
 
+const Bar = styled.div`
+  height: 2px;
+  width: 100%;
+  margin: 20px 0px;
+  background-color: ${({ theme }) => theme.colors.border_gray};
+`;
+
 const Title = styled.div`
   width: 100%;
   display: flex;
   align-items: end;
   gap: 8px;
-  border-top: 2px solid ${({ theme }) => theme.colors.border_gray};
-  padding-top: 40px;
+  /* border-top: 2px solid ${({ theme }) => theme.colors.border_gray}; */
+  /* padding-top: 40px; */
 
   & h3 {
     font-size: ${({ theme }) => theme.fontSize.xl};
