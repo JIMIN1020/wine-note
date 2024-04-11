@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Lottie from 'lottie-react';
 import { FaWineGlass } from 'react-icons/fa';
 import grapeLottie from '../../assets/image/grape_lottie.json';
+import { IoMdArrowForward } from 'react-icons/io';
+import { motion } from 'framer-motion';
 
 const Banner: React.FC = () => {
   return (
@@ -21,6 +23,10 @@ const Banner: React.FC = () => {
             나만 볼 수 있는 공간에 와인 테이스팅 노트를 기록하고 관리하며, 와인
             취향을 알아볼 수 있어요
           </Description>
+          <LookAroundBtn whileTap={{ scale: 0.95 }}>
+            둘러보기
+            <IoMdArrowForward size={18} style={{ marginBottom: '2px' }} />
+          </LookAroundBtn>
         </Content>
         <LottieContainer>
           <LottieWrapper>
@@ -107,4 +113,20 @@ const LottieWrapper = styled.div`
   width: 500px;
   height: 500px;
   overflow: hidden;
+`;
+
+const LookAroundBtn = styled(motion.button)`
+  width: 110px;
+  color: ${({ theme }) => theme.colors.wine_purple};
+  background-color: ${({ theme }) => theme.colors.bg_white};
+  font-size: ${({ theme }) => theme.fontSize.md};
+  font-weight: 600;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 14px 16px;
+  border-radius: 10px;
 `;

@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-// import Login from './Login';
+import Login from './Login';
 import Signup from './Signup';
 
 const FormBox: React.FC = () => {
+  const [signUp, setSignUp] = useState<boolean>(false);
   return (
     <LoginContainer>
       <Box>
-        {/* <Login /> */}
-        <Signup />
+        {signUp ? (
+          <Signup setSignUp={setSignUp} />
+        ) : (
+          <Login setSignUp={setSignUp} />
+        )}
       </Box>
     </LoginContainer>
   );
@@ -38,4 +42,5 @@ const Box = styled.div`
   border-radius: 18px;
   background-color: ${({ theme }) => theme.colors.bg_white};
   padding: 60px 100px;
+  transition: all 0.3s ease-in-out;
 `;

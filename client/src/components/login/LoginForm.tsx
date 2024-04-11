@@ -16,6 +16,7 @@ const LoginForm = () => {
           inputName='EMAIL'
           value={value.email}
           setValue={(value) => setValue((prev) => ({ ...prev, email: value }))}
+          placeholder='이메일을 입력해주세요'
         />
         <FormInput
           inputName='PASSWORD'
@@ -23,6 +24,7 @@ const LoginForm = () => {
           setValue={(value) =>
             setValue((prev) => ({ ...prev, password: value }))
           }
+          placeholder='비밀번호를 입력해주세요'
         />
       </InputContainer>
 

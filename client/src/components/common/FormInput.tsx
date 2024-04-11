@@ -5,9 +5,15 @@ interface FormInputProps {
   inputName: string;
   value: string;
   setValue: (value: string) => void;
+  placeholder: string;
 }
 
-const FormInput = ({ inputName, value, setValue }: FormInputProps) => {
+const FormInput = ({
+  inputName,
+  value,
+  setValue,
+  placeholder,
+}: FormInputProps) => {
   const [focused, setFocused] = useState<boolean>(false);
   return (
     <InputWrapper>
@@ -17,6 +23,7 @@ const FormInput = ({ inputName, value, setValue }: FormInputProps) => {
         onChange={(e) => setValue(e.target.value)}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
+        placeholder={placeholder}
       />
       <InputTitle $isFocused={focused}>{inputName}</InputTitle>
     </InputWrapper>
@@ -33,7 +40,7 @@ const InputWrapper = styled.div`
 const StyledInput = styled.input`
   width: 100%;
   border: 2px solid ${({ theme }) => theme.colors.border_gray};
-  padding: 16px 16px;
+  padding: 14px 16px;
   border-radius: 10px;
   font-size: ${({ theme }) => theme.fontSize.base};
 
@@ -41,13 +48,17 @@ const StyledInput = styled.input`
     outline: none;
     border: 2px solid ${({ theme }) => theme.colors.wine_purple};
   }
+
+  &::placeholder {
+    font-size: ${({ theme }) => theme.fontSize.sm};
+  }
 `;
 
 const InputTitle = styled.span<{ $isFocused: boolean }>`
   background-color: ${({ theme }) => theme.colors.bg_white};
   color: ${({ theme, $isFocused }) =>
     $isFocused ? theme.colors.wine_purple : theme.colors.font_gray};
-  font-size: ${({ theme }) => theme.fontSize.base};
+  font-size: ${({ theme }) => theme.fontSize.sm};
   position: absolute;
   padding: 0 6px;
   top: -5px;

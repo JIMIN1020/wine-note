@@ -4,12 +4,16 @@ import { AiOutlineUser } from 'react-icons/ai';
 import styled from 'styled-components';
 import FormTitle from '../common/FormTitle';
 
-const Login = () => {
+interface LoginProps {
+  setSignUp: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Login = ({ setSignUp }: LoginProps) => {
   return (
     <>
       <FormTitle title='Log In' sub='로그인하고 와인 기록을 관리해보세요' />
       <LoginForm />
-      <SignupButton>
+      <SignupButton type='button' onClick={() => setSignUp(true)}>
         <AiOutlineUser size={20} />
         회원가입
       </SignupButton>
