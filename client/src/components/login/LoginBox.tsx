@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledInput } from '../../styles/CustomInputs';
+import LoginForm from './LoginForm';
+import { IoMdArrowForward } from 'react-icons/io';
 
 const LoginBox: React.FC = () => {
   return (
@@ -10,8 +11,10 @@ const LoginBox: React.FC = () => {
           <h2>Log In</h2>
           <span>로그인하고 와인 기록을 작성해보세요</span>
         </LoginTitle>
-        <StyledInput type='text' />
-        <span>둘러보기</span>
+        <LoginForm />
+        <LookAroundBtn>
+          둘러보기 <IoMdArrowForward />
+        </LookAroundBtn>
       </Box>
     </LoginContainer>
   );
@@ -32,13 +35,14 @@ const LoginContainer = styled.div`
 
 const Box = styled.div`
   width: 600px;
-  height: 800px;
+  height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   border-radius: 18px;
   background-color: ${({ theme }) => theme.colors.bg_white};
-  padding: 50px;
+  padding: 60px 100px;
 `;
 
 const LoginTitle = styled.div`
@@ -58,25 +62,20 @@ const LoginTitle = styled.div`
   }
 `;
 
-// const GoogleLogin = styled.input`
-//   width: 200px;
-//   border: 1px solid ${({ theme }) => theme.colors.border_gray};
-//   padding: 8px 12px;
-//   border-radius: 10px;
-//   font-size: ${({ theme }) => theme.fontSize.base};
-//   cursor: pointer;
+const LookAroundBtn = styled.div`
+  color: ${({ theme }) => theme.colors.font_gray};
+  font-size: ${({ theme }) => theme.fontSize.md};
+  font-size: 600;
 
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
 
-//   & svg {
-//     width: 22px;
-//     height: 22px;
-//   }
-
-//   &:hover {
-//     background-color: #f3f3f3;
-//   }
-// `;
+  &:hover {
+    background-color: #c3c3c353;
+  }
+`;

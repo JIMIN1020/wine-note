@@ -47,7 +47,7 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   width: 600px;
-  height: 800px;
+  height: 700px;
 
   display: flex;
   flex-direction: column;
