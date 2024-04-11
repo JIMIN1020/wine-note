@@ -7,24 +7,27 @@ import grapeLottie from '../../assets/image/grape_lottie.json';
 const Banner: React.FC = () => {
   return (
     <Container>
-      <Logo>
-        <FaWineGlass />
-        <h1>Wine Note</h1>
-      </Logo>
-      <Phrase>
-        와인을 기록하고,
-        <br />내 와인 취향을 분석해보세요!
-      </Phrase>
-      <Description>
-        나만 볼 수 있는 공간에 와인 테이스팅 노트를
-        <br />
-        기록하고 관리하며, 와인 취향을 알아볼 수 있어요
-      </Description>
-      <LottieContainer>
-        <LottieWrapper>
-          <Lottie animationData={grapeLottie} />
-        </LottieWrapper>
-      </LottieContainer>
+      <Wrapper>
+        <Content>
+          <Logo>
+            <FaWineGlass />
+            <h1>Wine Note</h1>
+          </Logo>
+          <Phrase>
+            와인을 기록하고,
+            <br />내 와인 취향을 분석해보세요!
+          </Phrase>
+          <Description>
+            나만 볼 수 있는 공간에 와인 테이스팅 노트를 기록하고 관리하며, 와인
+            취향을 알아볼 수 있어요
+          </Description>
+        </Content>
+        <LottieContainer>
+          <LottieWrapper>
+            <Lottie animationData={grapeLottie} />
+          </LottieWrapper>
+        </LottieContainer>
+      </Wrapper>
     </Container>
   );
 };
@@ -39,7 +42,25 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 100px;
+  align-items: center;
+`;
+
+const Wrapper = styled.div`
+  width: 600px;
+  height: 800px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  gap: 100px;
+`;
+
+const Content = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+
   gap: 30px;
 `;
 
@@ -73,7 +94,7 @@ const Description = styled.p`
 
 const LottieContainer = styled.div`
   width: 100%;
-  height: 300px;
+  height: 380px;
   overflow: hidden;
   position: relative;
 `;

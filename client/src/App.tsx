@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
-    setIsLoggedIn(true);
+    setIsLoggedIn(false);
   }, []);
   return (
     <>
