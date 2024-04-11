@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import Banner from '../components/login/Banner';
-import LoginBox from '../components/login/LoginBox';
+import FormBox from '../components/login/FormBox';
 
 const LoginPage = () => {
   return (
     <Container>
       <Banner />
-      <LoginBox />
+      <FormBox />
     </Container>
   );
 };
