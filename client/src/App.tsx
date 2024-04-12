@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
-    setIsLoggedIn(false);
+    setIsLoggedIn(true);
   }, []);
   return (
     <>
@@ -32,7 +32,7 @@ const App: React.FC = () => {
       ) : (
         <Routes>
           <Route element={<EmptyLayout />}>
-            <Route path='/login' element={<LoginPage />} />
+            <Route path='/' element={<LoginPage />} />
           </Route>
         </Routes>
       )}

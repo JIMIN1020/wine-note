@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { MdFilterListAlt } from 'react-icons/md';
 import { filterOptions } from '../../data/selectOptionData';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const FilterSelect = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -28,21 +29,31 @@ const FilterSelect = () => {
 
   return (
     <Container ref={outsideRef}>
-      <SelectBox onClick={() => setOpen((prev) => !prev)}>
+      <SelectBox
+        whileTap={{ scale: 0.98 }}
+        onClick={() => setOpen((prev) => !prev)}
+      >
         <span>{selected}</span>
         <MdFilterListAlt />
       </SelectBox>
-      {open && (
-        <OptionBox>
-          {filterOptions.map((data) => {
-            return (
-              <Option key={data.id} onClick={() => onClickOption(data.label)}>
-                {data.label}
-              </Option>
-            );
-          })}
-        </OptionBox>
-      )}
+      <AnimatePresence>
+        {open && (
+          <OptionBox
+            initial={{ opacity: 0.7, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 10 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+          >
+            {filterOptions.map((data) => {
+              return (
+                <Option key={data.id} onClick={() => onClickOption(data.label)}>
+                  {data.label}
+                </Option>
+              );
+            })}
+          </OptionBox>
+        )}
+      </AnimatePresence>
     </Container>
   );
 };
@@ -54,7 +65,7 @@ const Container = styled.div`
   position: relative;
 `;
 
-const SelectBox = styled.div`
+const SelectBox = styled(motion.div)`
   width: 90px;
   display: flex;
   align-items: center;
@@ -85,7 +96,7 @@ const SelectBox = styled.div`
   }
 `;
 
-const OptionBox = styled.div`
+const OptionBox = styled(motion.div)`
   width: 100%;
   display: flex;
   flex-direction: column;
