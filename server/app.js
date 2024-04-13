@@ -1,10 +1,14 @@
 // 필요한 모듈 불러오기
 const express = require("express");
 const app = express();
+const cors = require("cors");
+require("dotenv").config();
 
 // body-parser 세팅
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cors());
 
 // port 할당
 const PORT = process.env.PORT || 4000;
@@ -13,6 +17,10 @@ const PORT = process.env.PORT || 4000;
 app.get("/", (req, res) => {
   res.send(`Response Complate`);
 });
+
+// routes
+const apiRouter = require("./routes/api");
+app.use("/api", apiRouter);
 
 // 서버 실행
 app.listen(PORT, () => {
