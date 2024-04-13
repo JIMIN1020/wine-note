@@ -24,4 +24,18 @@ router.post("/chat", async (req, res) => {
   res.send(chatCompletion.choices[0].message.content);
 });
 
+/* ---------- Vivino API ---------- */
+const vivinoAPI = require("../vivino");
+
+router.post("/vivino", async function (req, res) {
+  const { wines } = req.body;
+
+  try {
+    const result = await vivinoAPI(wines);
+    res.send(result);
+  } catch (err) {
+    console.log("Error response:", err);
+  }
+});
+
 module.exports = router;

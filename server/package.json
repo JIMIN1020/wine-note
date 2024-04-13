@@ -12,7 +12,10 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.2",
-    "openai": "^4.33.1"
+    "minimist": "^1.2.8",
+    "openai": "^4.33.1",
+    "puppeteer": "^22.6.4",
+    "puppeteer-core": "^22.6.4"
   },
   "devDependencies": {
     "dotenv": "^16.4.5",
