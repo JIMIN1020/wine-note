@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import ResultBox from './ResultBox';
 import { useNavigate } from 'react-router-dom';
@@ -7,28 +7,47 @@ import useClickOutside from '../../../hooks/useClickOutside';
 import { IoSearchSharp } from 'react-icons/io5';
 import Button from '../../common/Button';
 import { modalBackgroundVariants } from '../../../styles/motionVariants';
+import axios from 'axios';
+import { WineDataType } from '../../../types/wineType';
 
-type SearchModalProps = {
+interface SearchModalProps {
   setOpenSearchModal: (isOpen: boolean) => void;
-};
+}
 
 const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [resultOpen, setResultOpen] = useState<boolean>(false);
+  const [wineName, setWineName] = useState<string>('');
+  const [wineData, setWineData] = useState<WineDataType | undefined>(undefined);
   const navigate = useNavigate();
 
   /* ----- 모달 바깥 클릭 시 닫힘 처리 ----- */
   useClickOutside(ref, () => setOpenSearchModal(false));
 
+  useEffect(() => {
+    if (wineData) {
+      setResultOpen(true);
+    }
+  }, [wineData]);
+
   /* ----- vivino 검색 함수 ----- */
-  const handleSearch = () => {
+  const handleSearch = async () => {
     setResultOpen(false);
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setResultOpen(true);
-    }, 3000);
+
+    // vivino api
+    await axios
+      .post('http://localhost:4000/api/wine-search', { wines: [wineName] })
+      .then((res) => {
+        if (res.status === 200) {
+          setWineData(res.data[0]);
+        } else if (res.status === 500) {
+          console.log(res.data);
+        }
+        setLoading(false);
+      })
+      .catch((err) => console.log(err));
   };
 
   /* ----- 기록 작성하기 버튼 ----- */
@@ -66,13 +85,20 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
           <InputWrapper>
             <StyledInput
               type='text'
+              value={wineName}
+              onChange={(e) => setWineName(e.target.value)}
               placeholder='빈티지를 제외한 와인 이름을 영문으로 작성해주세요.'
             />
             <Button text='검색하기' disabled={loading} onClick={handleSearch} />
           </InputWrapper>
         </SearchBox>
         <AnimatePresence>
-          {resultOpen && <ResultBox handleWriteReview={handleWriteReview} />}
+          {resultOpen && (
+            <ResultBox
+              wineData={wineData}
+              handleWriteReview={handleWriteReview}
+            />
+          )}
         </AnimatePresence>
       </Modal>
     </Background>

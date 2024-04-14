@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import exImg from '../../../assets/image/exImg.png';
 import Flag from '../../common/Flag';
 import { SiVivino } from 'react-icons/si';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import Button from '../../common/Button';
+import { WineDataType } from '../../../types/wineType';
+import { IoStar } from 'react-icons/io5';
 
 type ResultBoxProps = {
+  wineData: WineDataType | undefined;
   handleWriteReview: () => void;
 };
 
-const ResultBox = ({ handleWriteReview }: ResultBoxProps) => {
+const ResultBox = ({ wineData, handleWriteReview }: ResultBoxProps) => {
   return (
     <Container
       initial={{ height: 0 }}
@@ -33,28 +34,32 @@ const ResultBox = ({ handleWriteReview }: ResultBoxProps) => {
       </Title>
       <WineResult>
         <ImageBox>
-          <img src={exImg} alt='wineImg' />
+          <img src={wineData?.thumb} alt='wineImg' />
         </ImageBox>
         <TextBox>
-          <h5>Rombauer Vineyards Chardonnay Proprietor Selection 2022</h5>
+          <h5>{wineData?.name}</h5>
           <Country>
             <Flag countryName='usa' size='15px' />
-            <span>California, United States</span>
+            <span>
+              {wineData?.region}, {wineData?.country}
+            </span>
           </Country>
-          <span>Chardonnay 100%</span>
+          <Rating>
+            <IoStar />
+            <span>{wineData?.average_rating}</span>
+          </Rating>
         </TextBox>
-        <ExLink to='/'>
+        <ExLink href={wineData?.link} target='_blank'>
           <SiVivino />
           Vivino
         </ExLink>
       </WineResult>
-      <BtnWrapper>
-        <Button
-          text='기록 시작하기'
-          disabled={false}
-          onClick={handleWriteReview}
-        />
-      </BtnWrapper>
+
+      <Button
+        text='기록 시작하기'
+        disabled={false}
+        onClick={handleWriteReview}
+      />
     </Container>
   );
 };
@@ -163,14 +168,19 @@ const Country = styled.div`
   }
 `;
 
-const BtnWrapper = styled.div`
-  width: 100%;
+const Rating = styled.div`
   display: flex;
-  justify-content: end;
-  gap: 20px;
+  align-items: center;
+  gap: 6px;
+  color: #b82b21;
+
+  & span {
+    font-size: ${({ theme }) => theme.fontSize.md};
+    font-weight: 600;
+  }
 `;
 
-const ExLink = styled(Link)`
+const ExLink = styled.a`
   background-color: ${({ theme }) => theme.colors.bg_lightgray};
 
   display: flex;
