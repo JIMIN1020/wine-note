@@ -18,11 +18,14 @@ app.get("/", (req, res) => {
   res.send(`Response Complate`);
 });
 
-// routes
-const apiRouter = require("./routes/api");
-app.use("/api", apiRouter);
-
 // 서버 실행
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}...`);
 });
+
+// routes
+const apiRouter = require("./routes/api");
+const userRouter = require("./routes/user");
+
+app.use("/api", apiRouter);
+app.use("/user", userRouter);
