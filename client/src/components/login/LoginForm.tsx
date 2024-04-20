@@ -20,15 +20,24 @@ const LoginForm = () => {
     <Container>
       <FormProvider {...methods}>
         <InputContainer>
-          <FormInput inputName='email' placeholder='이메일을 입력해주세요' />
           <FormInput
+            inputName='email'
+            placeholder='이메일을 입력해주세요'
+            options={{}}
+          />
+          <FormInput
+            type='password'
             inputName='password'
             placeholder='비밀번호를 입력해주세요'
+            options={{}}
           />
         </InputContainer>
       </FormProvider>
 
-      <FormButton disabled={false}>로그인</FormButton>
+      <Wrapper>
+        <ErrorMsg></ErrorMsg>
+        <FormButton disabled={false}>로그인</FormButton>
+      </Wrapper>
     </Container>
   );
 };
@@ -39,7 +48,7 @@ const Container = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 50px;
 `;
 
 const InputContainer = styled.div`
@@ -49,4 +58,20 @@ const InputContainer = styled.div`
   align-items: center;
 
   gap: 40px;
+`;
+
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+`;
+
+const ErrorMsg = styled.span`
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  color: red;
+  width: 100%;
+  height: 15px;
+  text-align: center;
+  padding-left: 4px;
 `;
