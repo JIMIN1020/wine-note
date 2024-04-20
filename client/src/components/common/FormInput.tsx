@@ -1,31 +1,24 @@
 import React, { useState } from 'react';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 interface FormInputProps {
   inputName: string;
-  value: string;
-  setValue: (value: string) => void;
   placeholder: string;
 }
 
-const FormInput = ({
-  inputName,
-  value,
-  setValue,
-  placeholder,
-}: FormInputProps) => {
+const FormInput = ({ inputName, placeholder }: FormInputProps) => {
   const [focused, setFocused] = useState<boolean>(false);
+  const { register } = useFormContext();
   return (
-    <InputWrapper>
+    <InputWrapper onBlur={() => setFocused(false)}>
       <StyledInput
         type='text'
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
         onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
         placeholder={placeholder}
+        {...register(inputName)}
       />
-      <InputTitle $isFocused={focused}>{inputName}</InputTitle>
+      <InputTitle $isFocused={focused}>{inputName.toUpperCase()}</InputTitle>
     </InputWrapper>
   );
 };

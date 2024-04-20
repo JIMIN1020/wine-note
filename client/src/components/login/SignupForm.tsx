@@ -1,66 +1,72 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import FormInput from '../common/FormInput';
 import { FormButton } from '../../styles/FormButton';
 import { motion } from 'framer-motion';
+import { FormProvider, useForm } from 'react-hook-form';
+
+type SignUpFormType = {
+  nickname: string;
+  email: string;
+  password: string;
+  pwCheck: string;
+};
 
 const SignupForm = () => {
-  const [value, setValue] = useState({
-    email: '',
-    password: '',
+  const methods = useForm<SignUpFormType>({
+    defaultValues: {
+      nickname: '',
+      email: '',
+      password: '',
+      pwCheck: '',
+    },
   });
-  const [pwCheck, setPwCheck] = useState('');
-
   return (
     <Container>
-      <InputContainer>
-        <Wrapper>
-          <WithButtonWrapper>
+      <FormProvider {...methods}>
+        <FormContainer>
+          <Wrapper>
             <FormInput
-              inputName='EMAIL'
-              value={value.email}
-              setValue={(value) =>
-                setValue((prev) => ({ ...prev, email: value }))
-              }
-              placeholder='이메일을 입력해주세요'
+              inputName='nickname'
+              placeholder='닉네임을 입력해주세요. (최대 10자)'
             />
-            <CheckBtn type='button' whileTap={{ scale: 0.93 }}>
-              중복 확인
-            </CheckBtn>
-          </WithButtonWrapper>
-          <ErrorMsg></ErrorMsg>
-        </Wrapper>
-        <Wrapper>
-          <FormInput
-            inputName='PASSWORD'
-            value={value.password}
-            setValue={(value) =>
-              setValue((prev) => ({ ...prev, password: value }))
-            }
-            placeholder='8~15자리 영문 소문자, 숫자로 비밀번호를 입력해주세요'
-          />
-          <ErrorMsg></ErrorMsg>
-        </Wrapper>
-        <Wrapper>
-          <WithButtonWrapper>
+            <ErrorMsg></ErrorMsg>
+          </Wrapper>
+          <Wrapper>
+            <WithButtonWrapper>
+              <FormInput
+                inputName='email'
+                placeholder='이메일을 입력해주세요'
+              />
+              <CheckBtn type='button' whileTap={{ scale: 0.93 }}>
+                중복 확인
+              </CheckBtn>
+            </WithButtonWrapper>
+            <ErrorMsg></ErrorMsg>
+          </Wrapper>
+          <Wrapper>
             <FormInput
-              inputName='PASSWORD CHECK'
-              value={pwCheck}
-              setValue={(value) => setPwCheck(value)}
-              placeholder='비밀번호를 한번 더 입력해주세요'
+              inputName='password'
+              placeholder='8~15자리 영문 소문자, 숫자로 비밀번호를 입력해주세요'
             />
-            <CheckBtn type='button' whileTap={{ scale: 0.93 }}>
-              비밀번호 확인
-            </CheckBtn>
-          </WithButtonWrapper>
-          <ErrorMsg></ErrorMsg>
-        </Wrapper>
-      </InputContainer>
+            <ErrorMsg></ErrorMsg>
+          </Wrapper>
+          <Wrapper>
+            <WithButtonWrapper>
+              <FormInput
+                inputName='check'
+                placeholder='비밀번호를 한번 더 입력해주세요'
+              />
+              <CheckBtn type='button' whileTap={{ scale: 0.93 }}>
+                비밀번호 확인
+              </CheckBtn>
+            </WithButtonWrapper>
+            <ErrorMsg></ErrorMsg>
+          </Wrapper>
+        </FormContainer>
+      </FormProvider>
 
-      <Wrapper>
-        <ErrorMsg></ErrorMsg>
-        <FormButton>회원가입</FormButton>
-      </Wrapper>
+      <FormButton>회원가입</FormButton>
     </Container>
   );
 };
@@ -71,17 +77,17 @@ const Container = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 30px;
   margin: 60px 0 40px 0;
 `;
 
-const InputContainer = styled.div`
+const FormContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  gap: 30px;
+  gap: 25px;
 `;
 
 const WithButtonWrapper = styled.div`
