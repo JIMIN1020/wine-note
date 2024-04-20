@@ -10,6 +10,12 @@ const pwValidation = () =>
     .isString()
     .withMessage("password가 유효하지 않습니다.");
 
+const nameValidation = () =>
+  body("nickname")
+    .notEmpty()
+    .isString()
+    .withMessage("nickname이 유효하지 않습니다.");
+
 /* ----- 유효성 검사 처리 함수 ----- */
 const validationCheck = (req, res, next) => {
   const err = validationResult(req);
@@ -27,4 +33,9 @@ const validationCheck = (req, res, next) => {
   }
 };
 
-module.exports = { emailValidation, pwValidation, validationCheck };
+module.exports = {
+  emailValidation,
+  pwValidation,
+  nameValidation,
+  validationCheck,
+};

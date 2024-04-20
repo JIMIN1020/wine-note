@@ -6,6 +6,7 @@ const validation = require("../util/validation");
 const join = [
   validation.emailValidation(),
   validation.pwValidation(),
+  validation.nameValidation(),
   validation.validationCheck,
   async (req, res) => {
     const { email, password, nickname } = req.body;
@@ -42,9 +43,24 @@ const emailCheck = [
 ];
 
 /* ----- 로그인 API ----- */
-const login = (req, res) => {
-  //
-};
+const login = [
+  validation.emailValidation(),
+  validation.pwValidation(),
+  validation.validationCheck,
+  async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+      const result = await userService.login(email, password);
+      res.status(StatusCodes.OK).json(result);
+    } catch (err) {
+      res.status(err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+        isSuccess: false,
+        message: err.message,
+      });
+    }
+  },
+];
 
 module.exports = {
   join,

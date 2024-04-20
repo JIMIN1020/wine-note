@@ -32,16 +32,8 @@ const join = async (email, password, nickname) => {
 
     // 결과 응답
     if (result[0].affectedRows > 0) {
-      // jwt token 발행
-      const token = jwt.sign(
-        { userId: userId, email: email },
-        process.env.PRIVATE_KEY,
-        { expiresIn: "1d" }
-      );
-
       return {
         isSuccess: true,
-        accessToken: token,
         message: "회원가입 완료",
       };
     } else {
@@ -76,8 +68,43 @@ const emailCheck = async (email) => {
 };
 
 /* ----- 로그인 API ----- */
-const login = () => {
-  //
+const login = async (email, password) => {
+  try {
+    // user data 꺼내기
+    const result = await conn.query(userQuery.emailCheck, email);
+    const userData = result[0];
+
+    if (!userData) {
+      throw new Error();
+    }
+
+    // 요청 password 암호화
+    const requestedPw = crypto
+      .pbkdf2Sync(password, userData.salt, 10000, 32, "sha512")
+      .toString("base64");
+
+    // 기존 password와 대조
+    if (userData.password === requestedPw) {
+      // jwt token 발행
+      const token = jwt.sign(
+        { userId: userData.id, email: userData.email },
+        process.env.PRIVATE_KEY,
+        { expiresIn: "1d" }
+      );
+      return {
+        isSuccess: true,
+        accessToken: token,
+        message: "로그인 성공",
+      };
+    } else {
+      throw new Error();
+    }
+  } catch (err) {
+    throw new CustomError(
+      "이메일, 비밀번호를 다시 확인해주세요.",
+      StatusCodes.UNAUTHORIZED
+    );
+  }
 };
 
 module.exports = {
