@@ -53,8 +53,26 @@ const join = async (email, password, nickname) => {
 };
 
 /* ----- 화원가입 - 이메일 중복 확인 API ----- */
-const emailCheck = () => {
-  //
+const emailCheck = async (email) => {
+  try {
+    const result = await conn.query(userQuery.emailCheck, email);
+
+    if (result[0] === 0) {
+      return {
+        isSuccess: true,
+        result: true,
+        message: "사용 가능한 이메일입니다.",
+      };
+    } else {
+      return {
+        isSuccess: true,
+        result: false,
+        message: "이미 사용 중인 이메일입니다.",
+      };
+    }
+  } catch (err) {
+    throw err;
+  }
 };
 
 /* ----- 로그인 API ----- */

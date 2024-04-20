@@ -23,9 +23,23 @@ const join = [
 ];
 
 /* ----- 화원가입 - 이메일 중복 확인 API ----- */
-const emailCheck = (req, res) => {
-  //
-};
+const emailCheck = [
+  validation.emailValidation(),
+  validation.validationCheck,
+  async (req, res) => {
+    const { email } = req.body;
+
+    try {
+      const result = await userService.emailCheck(email);
+      res.status(StatusCodes.OK).json(result);
+    } catch (err) {
+      res.status(err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+        isSuccess: false,
+        message: err.message,
+      });
+    }
+  },
+];
 
 /* ----- 로그인 API ----- */
 const login = (req, res) => {
