@@ -3,6 +3,7 @@ const minimist = require("minimist");
 
 const run = async (
   names,
+  isForSearch = true,
   countryCode = "US",
   stateCode = "",
   minPrice,
@@ -220,7 +221,16 @@ const run = async (
           const pageItems = await page.evaluate(collectItems);
           if (pageItems.length) {
             console.log("Results were collected from the page:", index);
-            data.push(...pageItems);
+
+            // 검색하는 경우라면 -> 최대 3개의 검색 결과 전달
+            if (isForSearch) {
+              const items =
+                pageItems.length > 3 ? pageItems.slice(0, 3) : pageItems;
+              data.push(...items);
+            } else {
+              // 추천 와인을 받는 경우라면 -> 1개의 검색 결과 전달
+              data.push(pageItems[0]);
+            }
             index++;
           } else {
             // no more data
@@ -241,7 +251,7 @@ const run = async (
           result.status = STATUS_ERROR_RESPONSE;
         }
       }
-      result.push(data[0]);
+      result.push(...data);
     }
     return result;
   } catch (error) {
