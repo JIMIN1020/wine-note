@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
     body {
         margin: 0;
         font-family: "Pretendard";
-        background-color: #45007b;
+        background-color: #ffffff;
         position: relative;
         color: #1E1E1E;
     }

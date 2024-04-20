@@ -21,6 +21,8 @@ const TitleWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  background-color: ${({ theme }) => theme.colors.wine_purple};
+  border-radius: 0 0 50px 50px;
 `;
 
 const Wrapper = styled.div`

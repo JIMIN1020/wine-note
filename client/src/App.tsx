@@ -10,10 +10,10 @@ import EmptyLayout from './components/layout/EmptyLayout';
 import ReviewPage from './pages/ReviewPage';
 
 const App: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   useEffect(() => {
-    setIsLoggedIn(false);
+    setIsLoggedIn(true);
   }, []);
   return (
     <>
