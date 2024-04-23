@@ -55,6 +55,7 @@ const HeaderBar = styled.header`
 const Wrapper = styled.div`
   ${defaultWidth}
   display: flex;
+  align-items: center;
   justify-content: space-between;
 `;
 

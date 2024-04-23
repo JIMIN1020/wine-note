@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import ResultBox from './ResultBox';
-import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import useClickOutside from '../../../hooks/useClickOutside';
 import { IoSearchSharp } from 'react-icons/io5';
@@ -19,8 +18,9 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const [resultOpen, setResultOpen] = useState<boolean>(false);
   const [wineName, setWineName] = useState<string>('');
-  const [wineData, setWineData] = useState<WineDataType | undefined>(undefined);
-  const navigate = useNavigate();
+  const [wineData, setWineData] = useState<WineDataType[] | undefined>(
+    undefined
+  );
 
   /* ----- 모달 바깥 클릭 시 닫힘 처리 ----- */
   useClickOutside(ref, () => setOpenSearchModal(false));
@@ -36,24 +36,18 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
     setResultOpen(false);
     setLoading(true);
 
+    console.log('call');
     // vivino api
     await axios
       .post('http://localhost:4000/api/wine-search', { wines: [wineName] })
       .then((res) => {
+        console.log('End');
         if (res.status === 200) {
-          setWineData(res.data[0]);
-        } else if (res.status === 500) {
-          console.log(res.data);
+          setWineData(res.data);
         }
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  };
-
-  /* ----- 기록 작성하기 버튼 ----- */
-  const handleWriteReview = () => {
-    setOpenSearchModal(false);
-    navigate('/review');
   };
 
   return (
@@ -93,12 +87,7 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
           </InputWrapper>
         </SearchBox>
         <AnimatePresence>
-          {resultOpen && (
-            <ResultBox
-              wineData={wineData}
-              handleWriteReview={handleWriteReview}
-            />
-          )}
+          {resultOpen && <ResultBox wineData={wineData} />}
         </AnimatePresence>
       </Modal>
     </Background>
