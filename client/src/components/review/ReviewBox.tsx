@@ -10,18 +10,24 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { wineTypeOptions } from '../../data/selectOptionData';
 import { TastingFormType } from '../../types/formType';
 import { motion } from 'framer-motion';
+import { WineDataType } from '../../types/wineType';
+import wineBottleImg from '../../assets/image/wine-bottle.svg';
 
 interface ReviewBoxProps {
   step: number;
   setStep: React.Dispatch<React.SetStateAction<number>>;
+  wineData: WineDataType;
 }
 
-const ReviewBox = ({ step, setStep }: ReviewBoxProps) => {
+const ReviewBox = ({ step, setStep, wineData }: ReviewBoxProps) => {
   const methods = useForm<TastingFormType>({
     defaultValues: {
       step1: {
-        country: 'France',
-        regieon: 'Bourdeux',
+        wineName: wineData.name,
+        wineImg: wineData.thumb || wineBottleImg,
+        wineLink: wineData.link,
+        country: wineData.country,
+        region: wineData.region,
         price: 0,
         wineType: wineTypeOptions[0].label,
         grapes: [

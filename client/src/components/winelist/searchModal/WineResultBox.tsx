@@ -15,7 +15,7 @@ const WineResultBox = ({ wine }: WineResultBoxProps) => {
 
   /* ----- 와인 클릭 시 리뷰 작성 함수 ----- */
   const handleClick = () => {
-    navigate('/review', { state: { wine } });
+    navigate('/review', { state: wine });
   };
 
   return (
@@ -74,7 +74,6 @@ const ImageBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 12px 0 0 12px;
 
   & img {
     height: 140px;

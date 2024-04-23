@@ -31,6 +31,12 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
     }
   }, [wineData]);
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   /* ----- vivino 검색 함수 ----- */
   const handleSearch = async () => {
     setResultOpen(false);
@@ -80,6 +86,7 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
             <StyledInput
               type='text'
               value={wineName}
+              onKeyDown={handleKeyDown}
               onChange={(e) => setWineName(e.target.value)}
               placeholder='빈티지를 제외한 와인 이름을 영문으로 작성해주세요.'
             />

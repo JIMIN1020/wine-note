@@ -29,7 +29,7 @@ const BasicInfo = () => {
     <SubFormLayout title='기본 정보'>
       <Wrapper>
         <ImageWrapper>
-          <WineImage src='' alt='임시' />
+          <WineImage src={watch('step1[wineImg]')} alt='wine image' />
         </ImageWrapper>
         <InputBox>
           <StyledInputLabel>

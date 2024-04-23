@@ -49,11 +49,13 @@ export interface RangeInputDataType {
 /* ----- Form ----- */
 export interface TastingFormType {
   step1: {
+    wineImg: string | null;
+    wineLink: string;
     wineName: string;
     wineType: string;
     price: number;
     country: string;
-    regieon: string;
+    region: string;
     grapes: GrapeType[];
   };
   step2: {

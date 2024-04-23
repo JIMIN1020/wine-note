@@ -1,32 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
-
-// import Flag from '../../common/Flag';
-import { IoEarth } from 'react-icons/io5';
+import Flag from '../../common/Flag';
+// import { IoEarth } from 'react-icons/io5';
 import {
   LabelInput,
   LabelInputWrapper,
   StyledInput,
   StyledInputLabel,
 } from '../../../styles/CustomInputs';
+import { useFormContext } from 'react-hook-form';
 
 const RegionInfo = () => {
+  const { register, watch } = useFormContext();
   return (
     <Container>
       <Wrapper>
         <StyledInputLabel>
           <span>국가</span>
           <LabelInputWrapper>
-            <LabelInput type='text' />
+            <LabelInput type='text' {...register('step1[country]')} />
             <FlagIcon>
-              <IoEarth />
-              {/* <Flag countryName='USA' size='22px' /> */}
+              {/* <IoEarth /> */}
+              <Flag countryName={watch('step1[country]')} size='22px' />
             </FlagIcon>
           </LabelInputWrapper>
         </StyledInputLabel>
         <StyledInputLabel>
           <span>지역</span>
-          <StyledInput type='text' />
+          <StyledInput type='text' {...register('step1[region]')} />
         </StyledInputLabel>
       </Wrapper>
     </Container>
