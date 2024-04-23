@@ -22,4 +22,5 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  background-color: ${({ theme }) => theme.colors.wine_purple};
 `;

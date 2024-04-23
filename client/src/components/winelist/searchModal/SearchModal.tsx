@@ -4,10 +4,10 @@ import ResultBox from './ResultBox';
 import { AnimatePresence, motion } from 'framer-motion';
 import useClickOutside from '../../../hooks/useClickOutside';
 import { IoSearchSharp } from 'react-icons/io5';
-import Button from '../../common/Button';
 import { modalBackgroundVariants } from '../../../styles/motionVariants';
 import axios from 'axios';
 import { WineDataType } from '../../../types/wineType';
+import { BeatLoader } from 'react-spinners';
 
 interface SearchModalProps {
   setOpenSearchModal: (isOpen: boolean) => void;
@@ -83,7 +83,22 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
               onChange={(e) => setWineName(e.target.value)}
               placeholder='빈티지를 제외한 와인 이름을 영문으로 작성해주세요.'
             />
-            <Button text='검색하기' disabled={loading} onClick={handleSearch} />
+            <StyledButton
+              disabled={loading}
+              whileTap={{ scale: 0.95 }}
+              onClick={handleSearch}
+            >
+              {loading ? (
+                <BeatLoader
+                  color='#ffffff'
+                  margin={2}
+                  size={8}
+                  speedMultiplier={0.7}
+                />
+              ) : (
+                '검색하기'
+              )}
+            </StyledButton>
           </InputWrapper>
         </SearchBox>
         <AnimatePresence>
@@ -175,4 +190,14 @@ const StyledInput = styled.input`
   &:focus {
     outline: none;
   }
+`;
+
+const StyledButton = styled(motion.button)<{ disabled: boolean }>`
+  width: fit-content;
+  padding: 10px 22px;
+  background-color: ${({ theme }) => theme.colors.wine_purple};
+  color: ${({ theme }) => theme.colors.font_white};
+  border-radius: 12px;
+  cursor: pointer;
+  padding: 10px ${({ disabled }) => (disabled ? '27px' : '22px')};
 `;
