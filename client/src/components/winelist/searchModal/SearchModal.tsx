@@ -21,6 +21,7 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
   const [wineData, setWineData] = useState<WineDataType[] | undefined>(
     undefined
   );
+  const [error, setError] = useState<boolean>(false);
 
   /* ----- 모달 바깥 클릭 시 닫힘 처리 ----- */
   useClickOutside(ref, () => setOpenSearchModal(false));
@@ -31,6 +32,10 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
     }
   }, [wineData]);
 
+  useEffect(() => {
+    setError(false);
+  }, [wineName]);
+
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       handleSearch();
@@ -39,21 +44,29 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
 
   /* ----- vivino 검색 함수 ----- */
   const handleSearch = async () => {
+    // 입력값 검증
+    if (wineName.trim() === '') {
+      return;
+    }
+
+    // 결과 리셋 + 로딩 시작
     setResultOpen(false);
     setLoading(true);
 
-    console.log('call');
     // vivino api
     await axios
       .post('http://localhost:4000/api/wine-search', { wines: [wineName] })
       .then((res) => {
-        console.log('End');
-        if (res.status === 200) {
-          setWineData(res.data);
+        if (res.data.isSuccess) {
+          setWineData(res.data.result);
+        } else {
+          setError(true);
         }
-        setLoading(false);
       })
-      .catch((err) => console.log(err));
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
   };
 
   return (
@@ -82,31 +95,34 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
             </h3>
             <span>와인 기록을 작성할 와인을 검색합니다.</span>
           </Title>
-          <InputWrapper>
-            <StyledInput
-              type='text'
-              value={wineName}
-              onKeyDown={handleKeyDown}
-              onChange={(e) => setWineName(e.target.value)}
-              placeholder='빈티지를 제외한 와인 이름을 영문으로 작성해주세요.'
-            />
-            <StyledButton
-              disabled={loading}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleSearch}
-            >
-              {loading ? (
-                <BeatLoader
-                  color='#ffffff'
-                  margin={2}
-                  size={8}
-                  speedMultiplier={0.7}
-                />
-              ) : (
-                '검색하기'
-              )}
-            </StyledButton>
-          </InputWrapper>
+          <Wrapper>
+            <InputWrapper>
+              <StyledInput
+                type='text'
+                value={wineName}
+                onKeyDown={handleKeyDown}
+                onChange={(e) => setWineName(e.target.value)}
+                placeholder='빈티지를 제외한 와인 이름을 영문으로 작성해주세요.'
+              />
+              <StyledButton
+                disabled={loading}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleSearch}
+              >
+                {loading ? (
+                  <BeatLoader
+                    color='#ffffff'
+                    margin={2}
+                    size={8}
+                    speedMultiplier={0.7}
+                  />
+                ) : (
+                  '검색하기'
+                )}
+              </StyledButton>
+            </InputWrapper>
+            <Message>{error ? '다시 시도해주세요' : ''}</Message>
+          </Wrapper>
         </SearchBox>
         <AnimatePresence>
           {resultOpen && <ResultBox wineData={wineData} />}
@@ -149,7 +165,7 @@ const Modal = styled(motion.div)`
 
 const SearchBox = styled.div`
   width: 100%;
-  padding: 40px 50px;
+  padding: 40px 50px 30px 50px;
   border-radius: 12px;
 
   display: flex;
@@ -207,4 +223,18 @@ const StyledButton = styled(motion.button)<{ disabled: boolean }>`
   border-radius: 12px;
   cursor: pointer;
   padding: 10px ${({ disabled }) => (disabled ? '27px' : '22px')};
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 4px;
+`;
+
+const Message = styled.span`
+  height: 12px;
+  padding-left: 6px;
+  font-size: ${({ theme }) => theme.fontSize.sm};
+  color: red;
 `;

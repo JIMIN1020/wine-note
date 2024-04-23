@@ -257,7 +257,7 @@ const run = async (
   } catch (error) {
     result.status = STATUS_ERROR_EXCEPTION;
     result.message = error;
-    console.log("Exception:", error);
+    throw error;
   } finally {
     console.log("Finish!");
 

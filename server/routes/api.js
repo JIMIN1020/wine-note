@@ -33,10 +33,13 @@ router.post("/wine-search", async (req, res) => {
 
   try {
     const result = await vivinoAPI(wines);
-    res.status(200).json(result);
+    res.status(200).json({
+      isSuccess: true,
+      result,
+    });
   } catch (err) {
-    console.log("Error response:", err);
     res.status(500).json({
+      isSuccess: false,
       message: err.message,
     });
   }
