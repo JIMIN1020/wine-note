@@ -29,7 +29,7 @@ const ReviewBox = ({ step, setStep, wineData }: ReviewBoxProps) => {
         country: wineData.country,
         region: wineData.region,
         price: 0,
-        wineType: wineTypeOptions[0].label,
+        wineType: wineTypeOptions[0].id,
         grapes: [
           {
             name: '',

@@ -7,18 +7,23 @@ export const filterOptions = [
 ];
 
 export const wineTypeOptions = [
-  { id: 'red', type: 'red', label: '레드 와인' },
-  { id: 'white', type: 'white', label: '화이트 와인' },
-  { id: 'rose', type: 'rose', label: '로제 와인' },
-  { id: 'sparkling', type: 'white', label: '스파클링 와인' },
-  { id: 'rose sparkling', type: 'rose', label: '로제 스파클링 와인' },
-  { id: 'red dessert', type: 'red', label: '디저트 와인 (Red)' },
-  { id: 'white dessert', type: 'white', label: '디저트 와인 (White)' },
-  { id: 'red fortified', type: 'red', label: '주정강화 와인 (Red)' },
-  { id: 'white fortified', type: 'white', label: '주정강화 와인 (White)' },
+  { id: 1, type: 'red', label: '레드 와인' },
+  { id: 2, type: 'white', label: '화이트 와인' },
+  { id: 3, type: 'rose', label: '로제 와인' },
+  { id: 4, type: 'white', label: '스파클링 와인' },
+  { id: 5, type: 'rose', label: '로제 스파클링 와인' },
+  { id: 6, type: 'red', label: '디저트 와인 (Red)' },
+  { id: 7, type: 'white', label: '디저트 와인 (White)' },
+  { id: 8, type: 'red', label: '주정강화 와인 (Red)' },
+  { id: 9, type: 'white', label: '주정강화 와인 (White)' },
 ];
 
-export const getTypeFromLabel = (label: string): string => {
-  const wineType = wineTypeOptions.find((option) => option.label === label)!;
+export const getTypeFromId = (id: number): string => {
+  const wineType = wineTypeOptions.find((option) => option.id === id)!;
   return wineType.type;
+};
+
+export const getLabelFromId = (id: number): string => {
+  const wineType = wineTypeOptions.find((option) => option.id === id)!;
+  return wineType.label;
 };

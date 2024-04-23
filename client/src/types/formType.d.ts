@@ -52,7 +52,7 @@ export interface TastingFormType {
     wineImg: string | null;
     wineLink: string;
     wineName: string;
-    wineType: string;
+    wineType: number;
     price: number;
     country: string;
     region: string;

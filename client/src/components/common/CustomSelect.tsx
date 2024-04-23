@@ -1,6 +1,10 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import { getTypeFromLabel, wineTypeOptions } from '../../data/selectOptionData';
+import {
+  getTypeFromId,
+  getLabelFromId,
+  wineTypeOptions,
+} from '../../data/selectOptionData';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { useFormContext } from 'react-hook-form';
 import { wineColor } from '../../data/steps/step2-data';
@@ -17,9 +21,9 @@ const CustomSelect = () => {
   useClickOutside(ref, () => setOpen(false));
 
   /* ----- 옵션 클릭 시 처리 함수 ----- */
-  const onClickOption = (label: string) => {
-    setValue('step1[wineType]', label);
-    const type = getTypeFromLabel(label) as keyof WineColorDataType;
+  const onClickOption = (id: number) => {
+    setValue('step1[wineType]', id);
+    const type = getTypeFromId(id) as keyof WineColorDataType;
     setValue('step2[color]', wineColor[type][0].code);
     setOpen(false);
   };
@@ -31,7 +35,7 @@ const CustomSelect = () => {
         $open={open}
         onClick={() => setOpen((prev) => !prev)}
       >
-        <Selected>{watch('step1[wineType]')}</Selected>
+        <Selected>{getLabelFromId(watch('step1[wineType]'))}</Selected>
         <MdArrowForwardIos />
       </SelectBox>
       <AnimatePresence>
@@ -44,7 +48,7 @@ const CustomSelect = () => {
           >
             {wineTypeOptions.map((data) => {
               return (
-                <Option key={data.id} onClick={() => onClickOption(data.label)}>
+                <Option key={data.id} onClick={() => onClickOption(data.id)}>
                   {data.label}
                 </Option>
               );

@@ -4,12 +4,12 @@ import ColorBox from './ColorBox';
 import { wineColor } from '../../../data/steps/step2-data';
 import { useFormContext } from 'react-hook-form';
 import { WineColorDataType } from '../../../types/formType';
-import { getTypeFromLabel } from '../../../data/selectOptionData';
+import { getTypeFromId } from '../../../data/selectOptionData';
 import SubFormLayout from '../../layout/SubFormLayout';
 
 const ColorInfo = () => {
   const { watch } = useFormContext();
-  const type = getTypeFromLabel(
+  const type = getTypeFromId(
     watch('step1[wineType]')
   ) as keyof WineColorDataType;
 
