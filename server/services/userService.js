@@ -89,7 +89,7 @@ const login = async (email, password) => {
       const token = jwt.sign(
         { userId: userData.id, email: userData.email },
         process.env.PRIVATE_KEY,
-        { expiresIn: "1d" }
+        { expiresIn: "24h" }
       );
       return {
         isSuccess: true,

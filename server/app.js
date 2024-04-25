@@ -26,6 +26,8 @@ app.listen(PORT, () => {
 // routes
 const apiRouter = require("./routes/api");
 const userRouter = require("./routes/user");
+const reviewRouter = require("./routes/review");
 
 app.use("/api", apiRouter);
 app.use("/user", userRouter);
+app.use("/review", reviewRouter);
