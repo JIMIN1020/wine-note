@@ -1,11 +1,11 @@
 const { StatusCodes } = require("http-status-codes");
-const reviewService = require("../services/reviewService");
+const wineService = require("../services/wineService");
 
 /* ----- 리뷰 전체 조회 API ----- */
 const getAllReviews = async (req, res) => {
   const { limit, page } = req.query;
   try {
-    const result = await reviewService.getAllReviews([
+    const result = await wineService.getAllReviews([
       "w+trJbtUGHf9ag==",
       +limit,
       +page - 1,
@@ -23,7 +23,7 @@ const getAllReviews = async (req, res) => {
 const getReview = async (req, res) => {
   const { reviewId } = req.params;
   try {
-    const result = await reviewService.getReview(+reviewId);
+    const result = await wineService.getReview(+reviewId);
     res.status(StatusCodes.CREATED).json(result);
   } catch (err) {
     res.status(err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
@@ -38,7 +38,7 @@ const review = async (req, res) => {
   const { wine, review } = req.body;
 
   try {
-    const result = await reviewService.review(wine, review);
+    const result = await wineService.review(wine, review);
     res.status(StatusCodes.CREATED).json(result);
   } catch (err) {
     res.status(err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
@@ -53,7 +53,7 @@ const deleteReview = async (req, res) => {
   const { wineId } = req.params;
 
   try {
-    const result = await reviewService.deleteReview(wineId);
+    const result = await wineService.deleteReview(wineId);
     res.status(StatusCodes.OK).json(result);
   } catch (err) {
     res.status(err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({

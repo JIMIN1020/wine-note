@@ -1,6 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
 const conn = require("../db/connection");
-const reviewQuery = require("../queries/reviewQuery");
+const reviewQuery = require("../queries/wineQuery");
 
 /* ----- 리뷰 전체 조회 API ----- */
 const getAllReviews = async () => {
