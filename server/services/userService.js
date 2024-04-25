@@ -19,7 +19,6 @@ const join = async (email, password, nickname) => {
     const userId = crypto
       .pbkdf2Sync(email, salt, 10, 10, "sha512")
       .toString("base64");
-    console.log(userId);
 
     // DB query
     const result = await conn.query(userQuery.join, [
@@ -49,7 +48,7 @@ const emailCheck = async (email) => {
   try {
     const result = await conn.query(userQuery.emailCheck, email);
 
-    if (result[0] === 0) {
+    if (result[0][0].count === 0) {
       return {
         isSuccess: true,
         result: true,
@@ -71,8 +70,8 @@ const emailCheck = async (email) => {
 const login = async (email, password) => {
   try {
     // user data 꺼내기
-    const result = await conn.query(userQuery.emailCheck, email);
-    const userData = result[0];
+    const result = await conn.query(userQuery.getUser, email);
+    const userData = result[0][0];
 
     if (!userData) {
       throw new Error();
@@ -101,7 +100,7 @@ const login = async (email, password) => {
     }
   } catch (err) {
     throw new CustomError(
-      "이메일, 비밀번호를 다시 확인해주세요.",
+      "이메일 또는 비밀번호를 다시 확인해주세요.",
       StatusCodes.UNAUTHORIZED
     );
   }
