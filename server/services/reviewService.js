@@ -55,8 +55,28 @@ const review = async (wine, review) => {
   }
 };
 
-const deleteReview = (req, res) => {
-  //
+/* ----- 리뷰 삭제 API ----- */
+const deleteReview = async (wineId) => {
+  try {
+    // 리뷰 DELETE
+    await conn.query(reviewQuery.deleteReview, [
+      wineId,
+      "w+trJbtUGHf9ag==", // userId
+    ]);
+
+    // 품종 DELETE
+    await conn.query(reviewQuery.deleteGrape, wineId);
+
+    // 와인 DELETE
+    await conn.query(reviewQuery.deleteWine, wineId);
+
+    return {
+      isSuccess: true,
+      message: "리뷰 삭제 완료",
+    };
+  } catch (err) {
+    throw err;
+  }
 };
 
 module.exports = { review, deleteReview };

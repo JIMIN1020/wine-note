@@ -3,6 +3,6 @@ const router = express.Router();
 const reviewController = require("../controllers/reviewController");
 
 router.post("/", reviewController.review); // 리뷰 작성 API
-router.delete("/", reviewController.deleteReview); // 리뷰 삭제 API
+router.delete("/:wineId", reviewController.deleteReview); // 리뷰 삭제 API
 
 module.exports = router;
