@@ -8,7 +8,6 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-// endpoint for chat GPT
 router.post("/chat", async (req, res) => {
   // 요청값 -> 메세지 받아오기
   const messages = req.body;
@@ -29,10 +28,10 @@ router.post("/chat", async (req, res) => {
 const vivinoAPI = require("../vivino");
 
 router.post("/wine-search", async (req, res) => {
-  const { wines } = req.body;
+  const { name } = req.query;
 
   try {
-    const result = await vivinoAPI(wines);
+    const result = await vivinoAPI([name]);
     res.status(200).json({
       isSuccess: true,
       result,
