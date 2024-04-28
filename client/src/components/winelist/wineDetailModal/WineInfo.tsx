@@ -5,6 +5,7 @@ import Flag from '../../common/Flag';
 import { BiWon } from 'react-icons/bi';
 import RatingStar from './RatingStar';
 import { LuLink, LuGrape } from 'react-icons/lu';
+import { MdOutlineCalendarMonth } from 'react-icons/md';
 
 const WineInfo = () => {
   return (
@@ -13,7 +14,9 @@ const WineInfo = () => {
         <img src={exImg} alt='wine' />
       </WineImgBox>
       <Content>
-        <TypeOfWine>화이트 와인</TypeOfWine>
+        <SmallHead>
+          <span>화이트 와인</span> • 2024.03.12
+        </SmallHead>
         <WineName>
           Rombauer Vineyards Chardonnay Proprietor Selection 2022
         </WineName>
@@ -30,10 +33,16 @@ const WineInfo = () => {
             <LuGrape size={18} />
             <span>Cabernnet Sauvignon 50%, Shiraz 50%</span>
           </Grapes>
+
+          <Vintage>
+            <MdOutlineCalendarMonth size={20} />
+            <span>2022 Vintage</span>
+          </Vintage>
           <Price>
             <BiWon size={20} />
             <span>127,000</span>
           </Price>
+
           <VivinoLink
             href='https://www.vivino.com/US-CA/en/beau-vigne-owner-s-reserve-guest-cottage-cabernet-sauvignon/w/2131484?year=2021&price_id=35204260'
             target='_blank'
@@ -82,10 +91,15 @@ const Content = styled.div`
   padding-top: 20px;
 `;
 
-const TypeOfWine = styled.span`
+const SmallHead = styled.div`
+  display: flex;
+  gap: 4px;
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.colors.font_gray};
-  text-decoration: underline;
+
+  & span {
+    text-decoration: underline;
+  }
 `;
 
 const WineName = styled.h2`
@@ -143,6 +157,13 @@ const VivinoLink = styled.a`
 `;
 
 const Grapes = styled.div`
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: ${({ theme }) => theme.fontSize.base};
+`;
+
+const Vintage = styled.div`
   display: flex;
   gap: 6px;
   align-items: center;
