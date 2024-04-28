@@ -5,7 +5,7 @@ import Category from './Category';
 import WineContainer from './WineContainer';
 import SearchBar from './SearchBar';
 
-const Content: React.FC = () => {
+const Content = () => {
   return (
     <Container>
       <Wrapper>
@@ -24,7 +24,7 @@ export default Content;
 const Container = styled.div`
   width: 100%;
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.bg_white};
+  background-color: ${({ theme }) => theme.colors.bg_white_gray};
 
   display: flex;
   justify-content: center;

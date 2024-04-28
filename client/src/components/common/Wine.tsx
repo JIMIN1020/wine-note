@@ -49,7 +49,7 @@ const Container = styled(motion.div)`
   height: 350px;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.colors.bg_white};
-  box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 40px 0px;
+  /* box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 40px 0px; */
   color: ${({ theme }) => theme.colors.font_black};
   position: relative;
   cursor: pointer;

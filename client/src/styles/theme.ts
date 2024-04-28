@@ -5,6 +5,7 @@ const colors: Colors = {
   wine_mid_purple: '#46007bca',
   wine_light_purple: '#faf7ff',
   bg_white: '#ffffff',
+  bg_white_gray: '#f8f8f8',
   bg_lightgray: '#eeeeee',
   border_gray: '#b1b1b1d2',
   font_white: '#ffffff',

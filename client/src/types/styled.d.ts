@@ -6,6 +6,7 @@ declare module 'styled-components' {
     wine_mid_purple: string;
     wine_light_purple: string;
     bg_white: string;
+    bg_white_gray: string;
     bg_lightgray: string;
     border_gray: string;
     font_white: string;

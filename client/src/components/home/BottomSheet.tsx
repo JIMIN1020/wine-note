@@ -32,7 +32,7 @@ export default BottomSheet;
 
 const Container = styled.div`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.bg_white};
+  background-color: ${({ theme }) => theme.colors.bg_white_gray};
   box-sizing: content-box;
 
   display: flex;
