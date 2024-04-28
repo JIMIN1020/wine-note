@@ -33,7 +33,9 @@ const getReview = async (reviewId) => {
     return {
       isSuccess: true,
       result: {
-        ...reviewResult[0][0],
+        review: {
+          ...reviewResult[0][0],
+        },
         wine: {
           ...wineResult[0][0],
           grapes: grapeResult[0],
@@ -57,6 +59,7 @@ const review = async (wine, review) => {
       wine.price,
       wine.url,
       wine.img,
+      wine.vintage,
     ];
 
     const wineInsertResult = await conn.query(reviewQuery.insertWine, [
