@@ -27,7 +27,7 @@ router.post("/chat", async (req, res) => {
 /* ---------- Vivino API ---------- */
 const vivinoAPI = require("../vivino");
 
-router.post("/wine-search", async (req, res) => {
+router.get("/wine-search", async (req, res) => {
   const { name } = req.query;
 
   try {

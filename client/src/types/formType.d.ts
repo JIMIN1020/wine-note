@@ -54,6 +54,7 @@ export interface TastingFormType {
     wineName: string;
     wineType: number;
     price: number;
+    vintage: number;
     country: string;
     region: string;
     grapes: GrapeType[];

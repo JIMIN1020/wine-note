@@ -55,7 +55,7 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
 
     // vivino api
     await axios
-      .post('http://localhost:4000/api/wine-search', { wines: [wineName] })
+      .get(`http://localhost:4000/api/wine-search?name=${wineName}`)
       .then((res) => {
         if (res.data.isSuccess) {
           setWineData(res.data.result);

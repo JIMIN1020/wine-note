@@ -29,6 +29,7 @@ const ReviewBox = ({ step, setStep, wineData }: ReviewBoxProps) => {
         country: wineData.country,
         region: wineData.region,
         price: 0,
+        vintage: 2024,
         wineType: wineTypeOptions[0].id,
         grapes: [
           {

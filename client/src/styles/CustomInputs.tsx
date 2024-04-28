@@ -12,6 +12,7 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledInputLabel = styled.label`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 5px;

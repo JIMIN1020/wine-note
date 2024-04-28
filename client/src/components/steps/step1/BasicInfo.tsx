@@ -42,22 +42,28 @@ const BasicInfo = () => {
           </StyledInputLabel>
           <StyledInputLabel>
             <span>와인 종류</span>
-            <CustomSelect />
+            <CustomSelect type='wine type' />
           </StyledInputLabel>
-          <StyledInputLabel>
-            <span>가격</span>
-            <LabelInputWrapper>
-              <LabelInput
-                type='text'
-                placeholder='숫자만 작성해주세요'
-                onChange={(e) => onChangePrice(e)}
-                value={addComma(watch('step1[price]')) || ''}
-              />
-              <Icon>
-                <LiaWonSignSolid />
-              </Icon>
-            </LabelInputWrapper>
-          </StyledInputLabel>
+          <RowWrapper>
+            <StyledInputLabel>
+              <span>가격</span>
+              <LabelInputWrapper>
+                <LabelInput
+                  type='text'
+                  placeholder='숫자만 작성해주세요'
+                  onChange={(e) => onChangePrice(e)}
+                  value={addComma(watch('step1[price]')) || ''}
+                />
+                <Icon>
+                  <LiaWonSignSolid />
+                </Icon>
+              </LabelInputWrapper>
+            </StyledInputLabel>
+            <StyledInputLabel>
+              <span>빈티지</span>
+              <CustomSelect type='vintage' />
+            </StyledInputLabel>
+          </RowWrapper>
         </InputBox>
       </Wrapper>
     </SubFormLayout>
@@ -105,4 +111,10 @@ const Icon = styled.div`
     height: 22px;
     color: ${({ theme }) => theme.colors.border_gray};
   }
+`;
+
+const RowWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 10px;
 `;

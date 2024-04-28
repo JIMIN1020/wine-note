@@ -18,6 +18,14 @@ export const wineTypeOptions = [
   { id: 9, type: 'white', label: '주정강화 와인 (White)' },
 ];
 
+export const vintageOptions = Array.from(
+  { length: 2025 - 1980 },
+  (_, index) => {
+    const year = 2024 - index;
+    return { id: year, year: year };
+  }
+);
+
 export const getTypeFromId = (id: number): string => {
   const wineType = wineTypeOptions.find((option) => option.id === id)!;
   return wineType.type;
