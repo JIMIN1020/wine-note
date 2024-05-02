@@ -1,14 +1,11 @@
 const { StatusCodes } = require("http-status-codes");
 const conn = require("../db/connection");
-const reviewQuery = require("../queries/wineQuery");
+const wineQuery = require("../queries/wineQuery");
 
 /* ----- 리뷰 전체 조회 API ----- */
-const getAllReviews = async () => {
+const getAllReviews = async (sql, userId) => {
   try {
-    const result = await conn.query(
-      reviewQuery.getAllReviews,
-      "w+trJbtUGHf9ag=="
-    );
+    const result = await conn.query(sql, userId);
 
     return {
       isSuccess: true,
@@ -23,12 +20,12 @@ const getAllReviews = async () => {
 const getReview = async (reviewId) => {
   try {
     // 리뷰 GET
-    const reviewResult = await conn.query(reviewQuery.getReview, reviewId);
+    const reviewResult = await conn.query(wineQuery.getReview, reviewId);
     const wineId = reviewResult[0][0].wine_id;
 
     // 와인 정보 GET
-    const wineResult = await conn.query(reviewQuery.getWine, wineId);
-    const grapeResult = await conn.query(reviewQuery.getGrape, wineId);
+    const wineResult = await conn.query(wineQuery.getWine, wineId);
+    const grapeResult = await conn.query(wineQuery.getGrape, wineId);
 
     return {
       isSuccess: true,
@@ -62,7 +59,7 @@ const review = async (wine, review) => {
       wine.vintage,
     ];
 
-    const wineInsertResult = await conn.query(reviewQuery.insertWine, [
+    const wineInsertResult = await conn.query(wineQuery.insertWine, [
       wineValues,
     ]);
     const wineId = wineInsertResult[0].insertId;
@@ -73,7 +70,7 @@ const review = async (wine, review) => {
       grape.name,
       grape.percent,
     ]);
-    await conn.query(reviewQuery.insertGrapes, grapeValues);
+    await conn.query(wineQuery.insertGrapes, grapeValues);
 
     // 리뷰 INSERT
     const reviewValues = [
@@ -91,7 +88,7 @@ const review = async (wine, review) => {
       review.rating,
       review.conclusion,
     ];
-    await conn.query(reviewQuery.insertReview, [reviewValues]);
+    await conn.query(wineQuery.insertReview, [reviewValues]);
 
     return {
       isSuccess: true,
@@ -106,16 +103,16 @@ const review = async (wine, review) => {
 const deleteReview = async (wineId) => {
   try {
     // 리뷰 DELETE
-    await conn.query(reviewQuery.deleteReview, [
+    await conn.query(wineQuery.deleteReview, [
       wineId,
       "w+trJbtUGHf9ag==", // userId
     ]);
 
     // 품종 DELETE
-    await conn.query(reviewQuery.deleteGrape, wineId);
+    await conn.query(wineQuery.deleteGrape, wineId);
 
     // 와인 DELETE
-    await conn.query(reviewQuery.deleteWine, wineId);
+    await conn.query(wineQuery.deleteWine, wineId);
 
     return {
       isSuccess: true,
