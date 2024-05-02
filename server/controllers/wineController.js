@@ -5,12 +5,14 @@ const wineQuery = require("../queries/wineQuery");
 /* ----- 리뷰 전체 조회 API ----- */
 const getAllReviews = async (req, res) => {
   const { limit, page } = req.query;
-  const { category } = req.query;
+  const { category, name } = req.query;
 
   const sql = wineQuery.getAllReviews;
 
   if (category) {
     sql += ` AND wine.country = ${category}`;
+  } else if (name) {
+    sql += ` AND wine.name LIKE '%${name}%'`;
   }
   sql = +` LIMIT ${(+page - 1) * +limit} ${+limit}`;
 
