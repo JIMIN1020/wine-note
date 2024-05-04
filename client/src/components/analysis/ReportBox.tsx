@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import { defaultWidth } from '../../styles/GlobalStyle';
+import WineLife from './statistic/WineLife';
 
 const ReportBox = () => {
   return (
     <Container>
       <Wrapper>
         <ColumnWrapper>
-          <Box1>나의 와인 생활</Box1>
+          <WineLife />
           <Box2>별점 통계</Box2>
           <Box4>선호하는 와인 종류</Box4>
         </ColumnWrapper>
@@ -47,18 +48,12 @@ const ColumnWrapper = styled.div`
   gap: 30px;
 `;
 
-const Box1 = styled.div`
-  width: 100%;
-  height: 180px;
-  background-color: white;
-  border-radius: 20px;
-`;
-
 const Box2 = styled.div`
   width: 100%;
   height: 300px;
   background-color: white;
   border-radius: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.border_lightgray};
 `;
 
 const Box3 = styled.div`
@@ -66,6 +61,7 @@ const Box3 = styled.div`
   height: 600px;
   background-color: white;
   border-radius: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.border_lightgray};
 `;
 
 const Box4 = styled.div`
@@ -73,6 +69,7 @@ const Box4 = styled.div`
   height: 400px;
   background-color: white;
   border-radius: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.border_lightgray};
 `;
 
 const Box5 = styled.div`
@@ -80,4 +77,5 @@ const Box5 = styled.div`
   height: 400px;
   background-color: white;
   border-radius: 20px;
+  border: 1px solid ${({ theme }) => theme.colors.border_lightgray};
 `;
