@@ -2,23 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { FaWineGlassAlt } from 'react-icons/fa';
 import StatLayout from '../../layout/StatLayout';
+import StatBox from './StatBox';
 
 const WineLife = () => {
   return (
-    <StatLayout icon={<FaWineGlassAlt size={20} />} title='나의 와인 생활'>
+    <StatLayout
+      icon={<FaWineGlassAlt size={20} />}
+      title='나의 와인 생활'
+      height={180}
+    >
       <Wrapper>
-        <Box>
-          <h5>19개</h5>
-          <span>마신 와인 수</span>
-        </Box>
-        <Box>
-          <h5>2.5일</h5>
-          <span>평균 와인 소비 주기</span>
-        </Box>
-        <Box>
-          <h5>78,000원</h5>
-          <span>평균 구매 금액</span>
-        </Box>
+        <StatBox name='마신 와인 수' value='19개' />
+        <StatBox name='평균 와인 소비 주기' value='2.5일 마다' />
+        <StatBox name='평균 구매 금액' value='78,000원' />
       </Wrapper>
     </StatLayout>
   );
@@ -31,25 +27,4 @@ const Wrapper = styled.div`
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-`;
-
-const Box = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  & h5 {
-    color: ${({ theme }) => theme.colors.font_black};
-    font-size: ${({ theme }) => theme.fontSize.xxl};
-    font-weight: 600;
-  }
-
-  & span {
-    color: ${({ theme }) => theme.colors.font_gray};
-    font-size: ${({ theme }) => theme.fontSize.base};
-    font-weight: 300;
-  }
 `;

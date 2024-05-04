@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { defaultWidth } from '../../styles/GlobalStyle';
 import WineLife from './statistic/WineLife';
+import RatingStat from './statistic/RatingStat';
 
 const ReportBox = () => {
   return (
@@ -9,7 +10,7 @@ const ReportBox = () => {
       <Wrapper>
         <ColumnWrapper>
           <WineLife />
-          <Box2>별점 통계</Box2>
+          <RatingStat />
           <Box4>선호하는 와인 종류</Box4>
         </ColumnWrapper>
         <ColumnWrapper>
@@ -46,14 +47,6 @@ const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-`;
-
-const Box2 = styled.div`
-  width: 100%;
-  height: 300px;
-  background-color: white;
-  border-radius: 20px;
-  border: 1px solid ${({ theme }) => theme.colors.border_lightgray};
 `;
 
 const Box3 = styled.div`

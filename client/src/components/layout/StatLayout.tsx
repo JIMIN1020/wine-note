@@ -5,11 +5,12 @@ interface StatLayoutProps {
   children: React.ReactNode;
   icon: React.ReactNode;
   title: string;
+  height: number;
 }
 
-const StatLayout = ({ children, icon, title }: StatLayoutProps) => {
+const StatLayout = ({ children, icon, title, height }: StatLayoutProps) => {
   return (
-    <Container>
+    <Container $height={height}>
       <TitleBar>
         {icon}
         <h3>{title}</h3>
@@ -21,13 +22,16 @@ const StatLayout = ({ children, icon, title }: StatLayoutProps) => {
 
 export default StatLayout;
 
-const Container = styled.div`
+const Container = styled.div<{ $height: number }>`
   width: 100%;
-  height: 180px;
+  height: ${({ $height }) => $height}px;
   background-color: white;
   border-radius: 20px;
   padding: 30px;
   border: 1px solid ${({ theme }) => theme.colors.border_lightgray};
+
+  display: flex;
+  flex-direction: column;
 `;
 
 const TitleBar = styled.div`
