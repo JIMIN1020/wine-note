@@ -8,6 +8,7 @@ const colors: Colors = {
   bg_white_gray: '#f8f8f8',
   bg_lightgray: '#eeeeee',
   border_gray: '#b1b1b1d2',
+  border_lightgray: '#dadada',
   font_white: '#ffffff',
   font_black: '#1E1E1E',
   font_darkgray: '#2f2f2f',
