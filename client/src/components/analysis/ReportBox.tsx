@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { defaultWidth } from '../../styles/GlobalStyle';
 import WineLife from './statistic/WineLife';
 import RatingStat from './statistic/RatingStat';
+import CountryStat from './statistic/CountryStat';
 
 const ReportBox = () => {
   return (
@@ -14,7 +15,7 @@ const ReportBox = () => {
           <Box4>선호하는 와인 종류</Box4>
         </ColumnWrapper>
         <ColumnWrapper>
-          <Box3>선호하는 와인 산지</Box3>
+          <CountryStat />
           <Box5>선호하는 포도 품종</Box5>
         </ColumnWrapper>
       </Wrapper>
@@ -47,14 +48,6 @@ const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-`;
-
-const Box3 = styled.div`
-  width: 100%;
-  height: 600px;
-  background-color: white;
-  border-radius: 20px;
-  border: 1px solid ${({ theme }) => theme.colors.border_lightgray};
 `;
 
 const Box4 = styled.div`
