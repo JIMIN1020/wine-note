@@ -18,7 +18,7 @@ const StatBox = ({ name, value }: StatBoxProps) => {
 export default StatBox;
 
 const Box = styled.div`
-  height: 100%;
+  height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;

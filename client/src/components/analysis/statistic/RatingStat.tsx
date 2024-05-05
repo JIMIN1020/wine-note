@@ -3,12 +3,15 @@ import StatLayout from '../../layout/StatLayout';
 import { IoStar } from 'react-icons/io5';
 import styled from 'styled-components';
 import StatBox from './StatBox';
+import RatingChart from '../../chart/RatingChart';
 
 const RatingStat = () => {
   return (
-    <StatLayout icon={<IoStar size={20} />} title='내가 준 별점' height={400}>
+    <StatLayout icon={<IoStar size={20} />} title='내가 준 별점'>
       <Wrapper>
-        <ChartContainer>d</ChartContainer>
+        <ChartContainer>
+          <RatingChart />
+        </ChartContainer>
         <StatWrapper>
           <StatBox name='평균 별점' value='3.5점' />
           <StatBox name='최고 별점' value='5점' />
@@ -31,7 +34,8 @@ const Wrapper = styled.div`
 
 const ChartContainer = styled.div`
   width: 100%;
-  flex: 1;
+  height: 270px;
+  padding-top: 24px;
 `;
 
 const StatWrapper = styled.div`
