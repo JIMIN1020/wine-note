@@ -23,11 +23,7 @@ ChartJS.register(
 );
 
 const RatingChart = () => {
-  return (
-    <Line data={data} options={options}>
-      RatingChart
-    </Line>
-  );
+  return <Line data={data} options={options} />;
 };
 
 export default RatingChart;
