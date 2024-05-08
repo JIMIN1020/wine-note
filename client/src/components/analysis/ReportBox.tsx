@@ -5,6 +5,7 @@ import WineLife from './statistic/WineLife';
 import RatingStat from './statistic/RatingStat';
 import CountryStat from './statistic/CountryStat';
 import TypeStat from './statistic/TypeStat';
+import GrapeStat from './statistic/GrapeStat';
 
 const ReportBox = () => {
   return (
@@ -17,7 +18,7 @@ const ReportBox = () => {
         </ColumnWrapper>
         <ColumnWrapper>
           <CountryStat />
-          <Box5>선호하는 포도 품종</Box5>
+          <GrapeStat />
         </ColumnWrapper>
       </Wrapper>
     </Container>
@@ -49,11 +50,4 @@ const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
-`;
-const Box5 = styled.div`
-  width: 100%;
-  height: 400px;
-  background-color: white;
-  border-radius: 20px;
-  border: 1px solid ${({ theme }) => theme.colors.border_lightgray};
 `;

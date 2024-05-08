@@ -1,17 +1,9 @@
 import 'styled-components';
+import { theme } from '../styles/theme';
 
 declare module 'styled-components' {
-  export interface Colors {
-    [key: string]: string;
-  }
-  export interface Font {
-    xs: string;
-    sm: string;
-    base: string;
-    md: string;
-    lg: string;
-    xl: string;
-    xxl: string;
-    logo: string;
+  export interface DefaultTheme {
+    colors: typeof theme.color;
+    fontSize: typeof theme.fontSize;
   }
 }
