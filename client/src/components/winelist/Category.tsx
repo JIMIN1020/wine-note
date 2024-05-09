@@ -1,45 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdOutlineFormatListBulleted } from 'react-icons/md';
-import { BiCategory } from 'react-icons/bi';
-import Flag from '../common/Flag';
+import { category } from '../../data/categoryData';
+import CategoryItem from './CategoryItem';
 
-const Category: React.FC = () => {
+const Category = () => {
+  const [selected, setSelected] = useState<string>('All');
   return (
     <Container>
       <Title>
-        <MdOutlineFormatListBulleted />
-        Category <small>(12)</small>
+        <MdOutlineFormatListBulleted size={18} />
+        Category
       </Title>
       <Wrapper>
-        <CategoryBox>
-          <BiCategory size={16} />
-          <span>All</span>
-        </CategoryBox>
-        <CategoryBox>
-          <Flag countryName='france' size='16px' />
-          <span>France</span>
-        </CategoryBox>
-        <CategoryBox>
-          <Flag countryName='usa' size='16px' />
-          <span>United States</span>
-        </CategoryBox>
-        <CategoryBox>
-          <Flag countryName='italy' size='16px' />
-          <span>Italy</span>
-        </CategoryBox>
-        <CategoryBox>
-          <Flag countryName='german' size='16px' />
-          <span>German</span>
-        </CategoryBox>
-        <CategoryBox>
-          <Flag countryName='new zealand' size='16px' />
-          <span>New Zealand</span>
-        </CategoryBox>
-        <CategoryBox>
-          <Flag countryName='australia' size='16px' />
-          <span>Australia</span>
-        </CategoryBox>
+        {category.map((data) => (
+          <CategoryItem
+            key={data.id}
+            isSelected={selected === data.label}
+            onClick={() => setSelected(data.label)}
+            label={data.label}
+            count={12}
+          />
+        ))}
       </Wrapper>
     </Container>
   );
@@ -63,32 +45,10 @@ const Title = styled.h3`
   display: flex;
   align-items: center;
   gap: 5px;
-
-  & svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  & small {
-    font-size: ${({ theme }) => theme.fontSize.sm};
-    align-self: flex-end;
-  }
 `;
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-`;
-
-const CategoryBox = styled.div`
-  width: 100%;
-  display: flex;
-  gap: 10px;
-  border: 1px solid ${({ theme }) => theme.colors.border_gray};
-  border-radius: 8px;
-  padding: 10px 14px;
-  font-size: ${({ theme }) => theme.fontSize.base};
-  color: ${({ theme }) => theme.colors.text_gray};
-  background-color: ${({ theme }) => theme.colors.bg_white};
 `;

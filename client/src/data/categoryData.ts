@@ -1,0 +1,18 @@
+export const category = [
+  { id: 0, label: 'All' },
+  { id: 1, label: 'France' },
+  { id: 2, label: 'United States' },
+  { id: 3, label: 'Italy' },
+  { id: 4, label: 'Spain' },
+  { id: 5, label: 'Australia' },
+  { id: 6, label: 'Argentina' },
+  { id: 7, label: 'Germany' },
+  { id: 8, label: 'Chile' },
+  { id: 9, label: 'South Africa' },
+  { id: 10, label: 'Portugal' },
+  { id: 11, label: 'New Zealand' },
+  { id: 12, label: 'Hungary' },
+  { id: 13, label: 'Austria' },
+  { id: 14, label: 'Canada' },
+  { id: 15, label: '기타' },
+];
