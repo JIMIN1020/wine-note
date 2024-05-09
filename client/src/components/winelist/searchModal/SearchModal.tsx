@@ -5,9 +5,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import useClickOutside from '../../../hooks/useClickOutside';
 import { IoSearchSharp } from 'react-icons/io5';
 import { modalBackgroundVariants } from '../../../styles/motionVariants';
-import axios from 'axios';
 import { WineDataType } from '../../../types/wineType';
 import { BeatLoader } from 'react-spinners';
+import { wineAPI } from '../../../apis/api/wine';
+import { getWineData } from '../../../apis/services/wine';
 
 interface SearchModalProps {
   setOpenSearchModal: (isOpen: boolean) => void;
@@ -54,19 +55,11 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
     setLoading(true);
 
     // vivino api
-    await axios
-      .get(`http://localhost:4000/api/wine-search?name=${wineName}`)
-      .then((res) => {
-        if (res.data.isSuccess) {
-          setWineData(res.data.result);
-        } else {
-          setError(true);
-        }
-      })
-      .catch(() => {
-        setError(true);
-        setLoading(false);
-      });
+    await wineAPI
+      .getWineSearch(wineName)
+      .then(getWineData)
+      .then((res) => setWineData(res))
+      .catch((err) => console.log(err));
   };
 
   return (
