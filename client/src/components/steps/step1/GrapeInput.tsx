@@ -85,14 +85,14 @@ const Input = styled(StyledInput)<{ $focus: boolean }>`
   width: 100%;
   padding-left: 42px;
   border-radius: 10px 0 0 10px;
-  color: ${({ theme }) => theme.colors.font_gray};
+  color: ${({ theme }) => theme.colors.text_gray};
   box-shadow: rgba(0, 0, 0, 0.04) 0px 2px 20px 0px;
 
   ${({ $focus }) =>
     $focus &&
     css`
       border: 1px solid ${({ theme }) => theme.colors.wine_purple};
-      color: ${({ theme }) => theme.colors.font_black};
+      color: ${({ theme }) => theme.colors.text_black};
     `}
 `;
 
@@ -105,7 +105,7 @@ const PercentInput = styled(StyledInput)<{ $focus: boolean }>`
   border-radius: 0 10px 10px 0;
   border-left: none;
   text-align: end;
-  color: ${({ theme }) => theme.colors.font_gray};
+  color: ${({ theme }) => theme.colors.text_gray};
   padding-right: 30px;
 
   &:focus {
@@ -117,7 +117,7 @@ const PercentInput = styled(StyledInput)<{ $focus: boolean }>`
     css`
       border: 1px solid ${({ theme }) => theme.colors.wine_purple};
       border-left: none;
-      color: ${({ theme }) => theme.colors.font_black};
+      color: ${({ theme }) => theme.colors.text_black};
     `}
 `;
 

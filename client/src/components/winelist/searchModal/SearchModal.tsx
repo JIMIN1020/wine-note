@@ -151,7 +151,7 @@ const Modal = styled(motion.div)`
   width: 600px;
   height: fit-content;
   background-color: ${({ theme }) => theme.colors.bg_white};
-  color: ${({ theme }) => theme.colors.font_black};
+  color: ${({ theme }) => theme.colors.text_black};
 
   position: fixed;
   border-radius: 12px;
@@ -199,7 +199,7 @@ const Title = styled.div`
   & span {
     margin-bottom: 3px;
     font-size: ${({ theme }) => theme.fontSize.base};
-    color: ${({ theme }) => theme.colors.font_gray};
+    color: ${({ theme }) => theme.colors.text_gray};
   }
 `;
 
@@ -219,7 +219,7 @@ const StyledButton = styled(motion.button)<{ disabled: boolean }>`
   width: fit-content;
   padding: 10px 22px;
   background-color: ${({ theme }) => theme.colors.wine_purple};
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
   border-radius: 12px;
   cursor: pointer;
   padding: 10px ${({ disabled }) => (disabled ? '27px' : '22px')};

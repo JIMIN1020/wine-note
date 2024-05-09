@@ -46,7 +46,7 @@ const HeaderBar = styled.header`
   position: absolute;
   top: 0;
   left: 0;
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
   background-color: ${({ theme }) => theme.colors.wine_purple};
 
   ${flexCenter}

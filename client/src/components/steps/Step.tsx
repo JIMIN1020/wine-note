@@ -45,7 +45,7 @@ const StepNum = styled.div<{ $complete: boolean }>`
   border: ${({ theme, $complete }) =>
     $complete ? 'none' : `2px solid ${theme.colors.bg_white}`};
   color: ${({ $complete, theme }) =>
-    $complete ? theme.colors.wine_mid_purple : theme.colors.font_white};
+    $complete ? theme.colors.wine_mid_purple : theme.colors.text_white};
 `;
 
 const StepTitle = styled.div`

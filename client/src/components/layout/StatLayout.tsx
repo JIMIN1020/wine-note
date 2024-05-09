@@ -38,7 +38,7 @@ const TitleBar = styled.div`
   display: flex;
   align-items: center;
   gap: 6px;
-  color: ${({ theme }) => theme.colors.font_black};
+  color: ${({ theme }) => theme.colors.text_black};
 
   & h3 {
     font-size: ${({ theme }) => theme.fontSize.lg};

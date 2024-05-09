@@ -29,7 +29,7 @@ const Container = styled.div`
   }
 
   & span {
-    color: ${({ theme }) => theme.colors.font_gray};
+    color: ${({ theme }) => theme.colors.text_gray};
     font-size: ${({ theme }) => theme.fontSize.base};
   }
 `;

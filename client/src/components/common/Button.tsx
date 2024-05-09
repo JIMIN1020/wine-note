@@ -26,7 +26,7 @@ const StyledButton = styled(motion.button)`
   width: fit-content;
   padding: 10px 22px;
   background-color: ${({ theme }) => theme.colors.wine_purple};
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
   border-radius: 12px;
   cursor: pointer;
 `;

@@ -86,7 +86,7 @@ const Modal = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: 30px;
-  color: ${({ theme }) => theme.colors.font_black};
+  color: ${({ theme }) => theme.colors.text_black};
   overflow: auto;
 
   &::-webkit-scrollbar {

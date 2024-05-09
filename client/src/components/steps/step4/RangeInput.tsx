@@ -78,5 +78,5 @@ const SelectBtn = styled.button<{ $num: number }>`
   transition: all 0.2s ease-in-out;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.colors.wine_purple};
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
 `;

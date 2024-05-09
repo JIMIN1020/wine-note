@@ -51,7 +51,7 @@ const Container = styled(motion.div)`
   background-color: ${({ theme }) => theme.colors.bg_white};
   /* box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 40px 0px; */
   border: 1px solid ${({ theme }) => theme.colors.border_lightgray};
-  color: ${({ theme }) => theme.colors.font_black};
+  color: ${({ theme }) => theme.colors.text_black};
   position: relative;
   cursor: pointer;
   transition: scale 0.3s ease-in-out;
@@ -117,7 +117,7 @@ const Price = styled.div`
   & svg {
     width: 15px;
     height: 15px;
-    color: ${({ theme }) => theme.colors.font_black};
+    color: ${({ theme }) => theme.colors.text_black};
   }
 `;
 
@@ -135,7 +135,7 @@ const Rating = styled.div`
 
   font-size: ${({ theme }) => theme.fontSize.sm};
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
   background-color: ${({ theme }) => theme.colors.wine_purple};
   border-radius: 14px;
 

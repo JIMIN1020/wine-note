@@ -95,7 +95,7 @@ const SmallHead = styled.div`
   display: flex;
   gap: 4px;
   font-size: ${({ theme }) => theme.fontSize.base};
-  color: ${({ theme }) => theme.colors.font_gray};
+  color: ${({ theme }) => theme.colors.text_gray};
 
   & span {
     text-decoration: underline;
@@ -113,7 +113,7 @@ const DetailWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  color: ${({ theme }) => theme.colors.font_darkgray};
+  color: ${({ theme }) => theme.colors.text_darkgray};
 `;
 
 const Country = styled.div`
@@ -153,7 +153,7 @@ const VivinoLink = styled.a`
 
   font-size: ${({ theme }) => theme.fontSize.base};
   font-weight: 400;
-  color: ${({ theme }) => theme.colors.font_gray};
+  color: ${({ theme }) => theme.colors.text_gray};
 `;
 
 const Grapes = styled.div`

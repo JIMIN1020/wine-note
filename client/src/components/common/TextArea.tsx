@@ -57,5 +57,5 @@ const CharCount = styled.span<{ $isExceed: boolean }>`
   margin-right: 6px;
   font-size: ${({ theme }) => theme.fontSize.sm};
   color: ${({ theme, $isExceed }) =>
-    $isExceed ? 'red' : theme.colors.font_gray};
+    $isExceed ? 'red' : theme.colors.text_gray};
 `;

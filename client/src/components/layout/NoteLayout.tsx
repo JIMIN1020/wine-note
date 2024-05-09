@@ -24,5 +24,5 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  color: ${({ theme }) => theme.colors.font_black};
+  color: ${({ theme }) => theme.colors.text_black};
 `;

@@ -43,7 +43,7 @@ export default Banner;
 const Container = styled.div`
   width: 50%;
   height: 100%;
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
 
   display: flex;
   flex-direction: column;

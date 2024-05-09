@@ -135,7 +135,7 @@ const CheckBtn = styled(motion.button)`
   width: 120px;
   height: 40px;
   background-color: ${({ theme }) => theme.colors.wine_purple};
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
   font-size: ${({ theme }) => theme.fontSize.sm};
   font-weight: 500;
   border-radius: 10px;

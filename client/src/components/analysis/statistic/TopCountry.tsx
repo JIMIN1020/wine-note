@@ -39,13 +39,13 @@ const Wrapper = styled.div`
   gap: 8px;
 
   & h5 {
-    color: ${({ theme }) => theme.colors.font_black};
+    color: ${({ theme }) => theme.colors.text_black};
     font-size: ${({ theme }) => theme.fontSize.md};
     font-weight: 400;
   }
 
   & span {
-    color: ${({ theme }) => theme.colors.font_gray};
+    color: ${({ theme }) => theme.colors.text_gray};
     font-size: ${({ theme }) => theme.fontSize.base};
   }
 `;

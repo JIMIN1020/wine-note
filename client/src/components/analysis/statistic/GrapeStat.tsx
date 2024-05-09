@@ -76,7 +76,7 @@ const Top3 = styled.div`
   justify-content: space-between;
 
   & span {
-    color: ${({ theme }) => theme.colors.font_gray};
+    color: ${({ theme }) => theme.colors.text_gray};
   }
 `;
 
@@ -86,7 +86,7 @@ const NameWrapper = styled.div`
   gap: 10px;
 
   & span {
-    color: ${({ theme }) => theme.colors.font_black};
+    color: ${({ theme }) => theme.colors.text_black};
     font-weight: 600;
   }
 `;
@@ -108,7 +108,7 @@ const Others = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 12px;
-  color: ${({ theme }) => theme.colors.font_gray};
+  color: ${({ theme }) => theme.colors.text_gray};
 `;
 
 const Country = styled.div`

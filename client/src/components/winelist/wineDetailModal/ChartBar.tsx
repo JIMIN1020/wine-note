@@ -31,7 +31,7 @@ const Container = styled.div`
 
 const Label = styled.span`
   font-size: ${({ theme }) => theme.fontSize.base};
-  color: ${({ theme }) => theme.colors.font_black};
+  color: ${({ theme }) => theme.colors.text_black};
 `;
 
 const RangeBar = styled.div`

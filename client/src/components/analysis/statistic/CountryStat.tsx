@@ -69,7 +69,7 @@ const Others = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 12px;
-  color: ${({ theme }) => theme.colors.font_gray};
+  color: ${({ theme }) => theme.colors.text_gray};
 `;
 
 const Country = styled.div`

@@ -42,7 +42,7 @@ const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 30px;
-  color: ${({ theme }) => theme.colors.font_black};
+  color: ${({ theme }) => theme.colors.text_black};
 `;
 
 const ColumnWrapper = styled.div`

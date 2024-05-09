@@ -23,7 +23,7 @@ export default FormBox;
 const LoginContainer = styled.div`
   width: 50%;
   height: 100%;
-  color: ${({ theme }) => theme.colors.font_black};
+  color: ${({ theme }) => theme.colors.text_black};
 
   display: flex;
   flex-direction: column;

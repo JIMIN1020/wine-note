@@ -32,7 +32,7 @@ const Container = styled.div`
   width: 250px;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.wine_purple};
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
 
   border-radius: 12px;
   padding: 30px;

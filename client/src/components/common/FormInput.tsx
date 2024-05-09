@@ -70,7 +70,7 @@ const StyledInput = styled.input`
 const InputTitle = styled.span<{ $isFocused: boolean }>`
   background-color: ${({ theme }) => theme.colors.bg_white};
   color: ${({ theme, $isFocused }) =>
-    $isFocused ? theme.colors.wine_purple : theme.colors.font_gray};
+    $isFocused ? theme.colors.wine_purple : theme.colors.text_gray};
   font-size: ${({ theme }) => theme.fontSize.sm};
   position: absolute;
   padding: 0 6px;

@@ -32,7 +32,7 @@ const Title = styled.h3`
 
   & small {
     font-size: ${({ theme }) => theme.fontSize.base};
-    color: ${({ theme }) => theme.colors.font_gray};
+    color: ${({ theme }) => theme.colors.text_gray};
     font-weight: 400;
     margin-left: 4px;
   }
@@ -41,5 +41,5 @@ const Title = styled.h3`
 const TitleLine = styled.div`
   flex: 1;
   height: 1px;
-  background-color: ${({ theme }) => theme.colors.font_black};
+  background-color: ${({ theme }) => theme.colors.text_black};
 `;

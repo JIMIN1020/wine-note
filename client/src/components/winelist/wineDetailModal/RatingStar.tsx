@@ -47,6 +47,6 @@ const StarWrapper = styled.div`
 `;
 
 const Title = styled.h5`
-  color: ${({ theme }) => theme.colors.font_darkgray};
+  color: ${({ theme }) => theme.colors.text_darkgray};
   font-size: ${({ theme }) => theme.fontSize.base};
 `;

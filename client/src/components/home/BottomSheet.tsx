@@ -56,13 +56,13 @@ const TitleWrapper = styled.div`
   gap: 12px;
 
   & span {
-    color: ${({ theme }) => theme.colors.font_gray};
+    color: ${({ theme }) => theme.colors.text_gray};
     font-size: ${({ theme }) => theme.fontSize.base};
   }
 `;
 
 const Title = styled.h5`
-  color: ${({ theme }) => theme.colors.font_black};
+  color: ${({ theme }) => theme.colors.text_black};
   font-size: ${({ theme }) => theme.fontSize.xl};
   font-weight: 600;
 `;

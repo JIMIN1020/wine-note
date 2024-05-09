@@ -31,7 +31,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 600px;
   padding: 70px;
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
 
   display: flex;
   flex-direction: column;

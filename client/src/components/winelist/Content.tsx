@@ -35,7 +35,7 @@ const Wrapper = styled.div`
   padding: 50px;
   display: flex;
   gap: 40px;
-  color: ${({ theme }) => theme.colors.font_black};
+  color: ${({ theme }) => theme.colors.text_black};
 `;
 
 const SideBar = styled.div`

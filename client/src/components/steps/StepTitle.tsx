@@ -25,7 +25,7 @@ const StepNum = styled.div`
   font-size: ${({ theme }) => theme.fontSize.base};
   font-weight: 600;
   background-color: ${({ theme }) => theme.colors.wine_purple};
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
 
   display: flex;
   justify-content: center;

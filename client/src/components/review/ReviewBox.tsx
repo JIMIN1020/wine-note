@@ -149,7 +149,7 @@ const StyledButton = styled(motion.button)<{ disabled: boolean }>`
     width: 30px;
     height: 30px;
     color: ${({ theme, disabled }) =>
-      disabled ? '#ffffff64' : theme.colors.font_white};
+      disabled ? '#ffffff64' : theme.colors.text_white};
   }
 
   &:hover {

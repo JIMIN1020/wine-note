@@ -13,7 +13,7 @@ const Category: React.FC = () => {
       </Title>
       <Wrapper>
         <CategoryBox>
-          <BiCategory />
+          <BiCategory size={16} />
           <span>All</span>
         </CategoryBox>
         <CategoryBox>
@@ -89,10 +89,6 @@ const CategoryBox = styled.div`
   border-radius: 8px;
   padding: 10px 14px;
   font-size: ${({ theme }) => theme.fontSize.base};
-  color: ${({ theme }) => theme.colors.font_gray};
-
-  & svg {
-    width: 16px;
-    height: 16px;
-  }
+  color: ${({ theme }) => theme.colors.text_gray};
+  background-color: ${({ theme }) => theme.colors.bg_white};
 `;

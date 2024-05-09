@@ -6,7 +6,7 @@ export const FormButton = styled.button`
   text-align: center;
   border: none;
   background-color: ${({ theme }) => theme.colors.wine_purple};
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
   font-size: ${({ theme }) => theme.fontSize.md};
   font-weight: 600;
   border-radius: 10px;
@@ -15,7 +15,7 @@ export const FormButton = styled.button`
 
   &:disabled {
     cursor: default;
-    color: ${({ theme }) => theme.colors.font_gray};
+    color: ${({ theme }) => theme.colors.text_gray};
     background-color: ${({ theme }) => theme.colors.bg_lightgray};
   }
 `;

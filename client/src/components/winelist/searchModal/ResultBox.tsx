@@ -84,6 +84,6 @@ const Title = styled.div`
   & span {
     margin-bottom: 5px;
     font-size: ${({ theme }) => theme.fontSize.base};
-    color: ${({ theme }) => theme.colors.font_gray};
+    color: ${({ theme }) => theme.colors.text_gray};
   }
 `;

@@ -24,7 +24,7 @@ const Signup = ({ setSignUp }: SignupProps) => {
 export default Signup;
 
 const LoginButton = styled.button`
-  color: ${({ theme }) => theme.colors.font_gray};
+  color: ${({ theme }) => theme.colors.text_gray};
   font-size: ${({ theme }) => theme.fontSize.md};
   font-weight: 500;
   border: none;

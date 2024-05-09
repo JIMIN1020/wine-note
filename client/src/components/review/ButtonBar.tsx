@@ -35,7 +35,7 @@ const CancelBtn = styled(motion.button)`
   padding: 12px;
   font-weight: 600;
   font-size: ${({ theme }) => theme.fontSize.base};
-  color: ${({ theme }) => theme.colors.font_white};
+  color: ${({ theme }) => theme.colors.text_white};
   cursor: pointer;
   border-radius: 50%;
   background-color: #ffffff22;
