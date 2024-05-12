@@ -86,10 +86,7 @@ const login = async (email, password) => {
     if (userData.password === requestedPw) {
       // jwt token 발행
       const accessToken = createAccessToken(userData.id);
-      const refreshToken = createRefreshToken();
-
-      // refresh token 저장
-      await conn.query(userQuery.setRefresh, [refreshToken, userData.id]);
+      const refreshToken = createRefreshToken(userData.id);
 
       return {
         isSuccess: true,
