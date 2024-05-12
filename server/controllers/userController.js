@@ -1,6 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
 const userService = require("../services/userService");
-const validation = require("../util/validation");
+const validation = require("../utils/validation");
 
 /* ----- 화원가입 API ----- */
 const join = [

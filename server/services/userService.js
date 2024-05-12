@@ -1,10 +1,10 @@
 require("dotenv").config();
 const { StatusCodes } = require("http-status-codes");
 const conn = require("../db/connection");
-const CustomError = require("../util/CustomError");
+const CustomError = require("../utils/CustomError");
 const userQuery = require("../queries/userQuery");
 const crypto = require("crypto");
-const jwt = require("jsonwebtoken");
+const { createAccessToken, createRefreshToken } = require("../utils/token");
 
 /* ----- 화원가입 API ----- */
 const join = async (email, password, nickname) => {
@@ -85,14 +85,16 @@ const login = async (email, password) => {
     // 기존 password와 대조
     if (userData.password === requestedPw) {
       // jwt token 발행
-      const token = jwt.sign(
-        { userId: userData.id, email: userData.email },
-        process.env.PRIVATE_KEY,
-        { expiresIn: "24h" }
-      );
+      const accessToken = createAccessToken(userData.id);
+      const refreshToken = createRefreshToken();
+
+      // refresh token 저장
+      await conn.query(userQuery.setRefresh, [refreshToken, userData.id]);
+
       return {
         isSuccess: true,
-        accessToken: token,
+        accessToken,
+        refreshToken,
         message: "로그인 성공",
       };
     } else {
