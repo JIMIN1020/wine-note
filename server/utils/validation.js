@@ -1,4 +1,4 @@
-const { body, validationResult, param } = require("express-validator");
+const { body, validationResult, param, header } = require("express-validator");
 
 /* ----- user 유효성 검증 함수 ----- */
 const emailValidation = () =>
@@ -15,6 +15,18 @@ const nameValidation = () =>
     .notEmpty()
     .isString()
     .withMessage("nickname이 유효하지 않습니다.");
+
+const accessValidation = () =>
+  header("authorization")
+    .notEmpty()
+    .isString()
+    .withMessage("요청 값이 유효하지 않습니다.");
+
+const refreshValidation = () =>
+  header("refresh")
+    .notEmpty()
+    .isString()
+    .withMessage("요청 값이 유효하지 않습니다.");
 
 /* ----- 유효성 검사 처리 함수 ----- */
 const validationCheck = (req, res, next) => {
@@ -38,4 +50,6 @@ module.exports = {
   pwValidation,
   nameValidation,
   validationCheck,
+  accessValidation,
+  refreshValidation,
 };
