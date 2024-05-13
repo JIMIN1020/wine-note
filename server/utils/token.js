@@ -33,7 +33,7 @@ async function createRefreshToken(userId) {
 /* ----- accress token 검증 ----- */
 function verifyAccessToken(accessToken) {
   try {
-    jwt.verify(accessToken, JWT_SECRET_KEY);
+    jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
     return true;
   } catch (err) {
     return false;
@@ -50,7 +50,7 @@ async function verifyRefreshToken(refreshToken, userId) {
     if (originRefresh === refreshToken) {
       try {
         // 1-1. refresh token이 만료되지 않은 경우 -> 재발급
-        jwt.verify(refreshToken, JWT_SECRET_KEY); // refresh 토큰 만료 검증
+        jwt.verify(refreshToken, process.env.JWT_SECRET_KEY); // refresh 토큰 만료 검증
         const newAccess = createAccessToken(userId); // 새로운 토큰 발행
 
         return {
@@ -69,7 +69,7 @@ async function verifyRefreshToken(refreshToken, userId) {
     // 2. 일치하지 않는 경우
     else {
       throw new CustomError(
-        StatusCodes.UNAUTHORIZED,
+        StatusCodes.BAD_REQUEST,
         "refresh token이 일치하지 않습니다."
       );
     }
