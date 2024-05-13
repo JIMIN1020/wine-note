@@ -3,6 +3,7 @@ const userService = require("../services/userService");
 const validation = require("../utils/validation");
 const jwt = require("jsonwebtoken");
 const { verifyRefreshToken, verifyAccessToken } = require("../utils/token");
+const CustomError = require("../utils/CustomError");
 
 /* ----- 화원가입 API ----- */
 const join = [
@@ -73,28 +74,18 @@ const refresh = [
     const accessToken = req.headers["authorization"].split(" ")[1];
     const refreshToken = req.headers["refresh"];
 
-    // access token이 만료되지 않은 경우
-    const isNotExpired = verifyAccessToken(accessToken);
-
-    if (isNotExpired) {
-      return res.status(StatusCodes.BAD_REQUEST).json({
-        isSuccess: false,
-        message: "access token이 만료되지 않았습니다.",
-      });
-    }
-
-    // access token decoding
-    const userId = jwt.decode(accessToken);
-
-    // decoding 결과 없는 경우
-    if (!decoded) {
-      return res.status(StatusCodes.BAD_REQUEST).json({
-        isSuccess: false,
-        message: "잘못된 access token입니다.",
-      });
-    }
-
     try {
+      // access token decoding
+      const userId = jwt.decode(accessToken);
+
+      // decoding 결과 없는 경우
+      if (!decoded) {
+        throw new CustomError(
+          StatusCodes.BAD_REQUEST,
+          "잘못된 access token입니다."
+        );
+      }
+
       // refresh token 검증
       const result = await verifyRefreshToken(refreshToken, userId);
       res.status(StatusCodes.OK).json(result);
