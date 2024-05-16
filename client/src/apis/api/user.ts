@@ -18,6 +18,18 @@ export const userAPI = {
       return false;
     }
   },
+  join: async (nickname: string, email: string, password: string) => {
+    try {
+      const { data } = await baseInstance.post(`/user/join`, {
+        nickname,
+        email,
+        password,
+      });
+      return data.isSuccess;
+    } catch (err) {
+      return false;
+    }
+  },
   checkEmail: async (email: string) => {
     try {
       const { data } = await baseInstance.post(`/user/join/emailCheck`, {

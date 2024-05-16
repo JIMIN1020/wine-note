@@ -28,7 +28,6 @@ const SignupForm = () => {
 
   const {
     watch,
-    getValues,
     handleSubmit,
     formState: { errors },
   } = methods;
@@ -38,19 +37,36 @@ const SignupForm = () => {
 
   useEffect(() => {
     setEmailMsg('');
+    setCanUse(false);
   }, [email]);
 
-  const handleJoin = () => {
-    //
+  const handleJoin = async (data: SignUpFormType) => {
+    if (canUse) {
+      const result = await userAPI.join(
+        data.nickname,
+        data.email,
+        data.password
+      );
+
+      if (result) {
+        // TODO: 회원가입 팝업
+        window.location.reload();
+      }
+    } else {
+      return;
+    }
   };
 
   const checkEmail = async () => {
-    const result = await userAPI.checkEmail(getValues().email);
-    console.log(result);
-    setCanUse(result);
-    setEmailMsg(
-      result ? '사용 가능한 이메일입니다' : '이미 사용 중인 이메일입니다'
-    );
+    if (email.trim()) {
+      const result = await userAPI.checkEmail(email);
+      setCanUse(result);
+      setEmailMsg(
+        result ? '사용 가능한 이메일입니다' : '이미 사용 중인 이메일입니다'
+      );
+    } else {
+      return;
+    }
   };
 
   return (
@@ -176,6 +192,10 @@ const CheckBtn = styled(motion.button)`
   font-weight: 500;
   border-radius: 10px;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.95;
+  }
 `;
 
 const Wrapper = styled.div`

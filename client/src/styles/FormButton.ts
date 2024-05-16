@@ -18,4 +18,8 @@ export const FormButton = styled.button`
     color: ${({ theme }) => theme.colors.text_gray};
     background-color: ${({ theme }) => theme.colors.bg_lightgray};
   }
+
+  &:hover {
+    opacity: 0.95;
+  }
 `;

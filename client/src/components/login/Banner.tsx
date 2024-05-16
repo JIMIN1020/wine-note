@@ -5,8 +5,10 @@ import { FaWineGlass } from 'react-icons/fa';
 import grapeLottie from '../../assets/image/grape_lottie.json';
 import { IoMdArrowForward } from 'react-icons/io';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
-const Banner: React.FC = () => {
+const Banner = () => {
+  const navigate = useNavigate();
   return (
     <Container>
       <Wrapper>
@@ -23,7 +25,10 @@ const Banner: React.FC = () => {
             나만 볼 수 있는 공간에 와인 테이스팅 노트를 기록하고 관리하며, 와인
             취향을 알아볼 수 있어요
           </Description>
-          <LookAroundBtn whileTap={{ scale: 0.95 }}>
+          <LookAroundBtn
+            onClick={() => navigate('/')}
+            whileTap={{ scale: 0.95 }}
+          >
             둘러보기
             <IoMdArrowForward size={18} style={{ marginBottom: '2px' }} />
           </LookAroundBtn>
