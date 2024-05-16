@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -10,32 +10,24 @@ import EmptyLayout from './components/layout/EmptyLayout';
 import ReviewPage from './pages/ReviewPage';
 
 const App: React.FC = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
-  useEffect(() => {
-    setIsLoggedIn(true);
-  }, []);
   return (
     <>
       <GlobalStyle />
-      {isLoggedIn ? (
-        <Routes>
-          <Route element={<DefaultLayout />}>
-            <Route path='/' element={<HomePage />} />
-            <Route path='/winelist' element={<WineListPage />} />
-            <Route path='/analysis' element={<AnalysisPage />} />
-          </Route>
-          <Route element={<EmptyLayout />}>
-            <Route path='/review' element={<ReviewPage />} />
-          </Route>
-        </Routes>
-      ) : (
-        <Routes>
-          <Route element={<EmptyLayout />}>
-            <Route path='/' element={<LoginPage />} />
-          </Route>
-        </Routes>
-      )}
+      <Routes>
+        <Route element={<DefaultLayout />}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/winelist' element={<WineListPage />} />
+          <Route path='/analysis' element={<AnalysisPage />} />
+        </Route>
+        <Route element={<EmptyLayout />}>
+          <Route path='/review' element={<ReviewPage />} />
+        </Route>
+      </Routes>
+      <Routes>
+        <Route element={<EmptyLayout />}>
+          <Route path='/login' element={<LoginPage />} />
+        </Route>
+      </Routes>
     </>
   );
 };
