@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FormButton } from '../../styles/FormButton';
 import FormInput from '../common/FormInput';
@@ -12,6 +12,7 @@ type LoginFormType = {
 };
 
 const LoginForm = () => {
+  const [error, setError] = useState<string>('');
   const navigate = useNavigate();
   const methods = useForm<LoginFormType>({
     defaultValues: {
@@ -23,8 +24,11 @@ const LoginForm = () => {
 
   const handleLogin = async (data: LoginFormType) => {
     const result = await userAPI.login(data.email, data.password);
+
     if (result) {
       navigate('/');
+    } else {
+      setError('이메일 또는 비밀번호를 다시 확인해주세요');
     }
   };
 
@@ -46,7 +50,7 @@ const LoginForm = () => {
         </InputContainer>
 
         <Wrapper>
-          <ErrorMsg></ErrorMsg>
+          <ErrorMsg>{error}</ErrorMsg>
           <FormButton type='submit' disabled={false}>
             로그인
           </FormButton>

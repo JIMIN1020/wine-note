@@ -8,10 +8,14 @@ export const userAPI = {
         email,
         password,
       });
-      processUserData(data);
-      return data.isSuccess;
+      if (data.isSuccess) {
+        processUserData(data);
+        return true;
+      } else {
+        return false;
+      }
     } catch (err) {
-      return err;
+      return false;
     }
   },
 };
