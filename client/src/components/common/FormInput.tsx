@@ -7,6 +7,7 @@ interface FormInputProps {
   inputName: string;
   placeholder: string;
   options: {
+    required?: boolean;
     pattern?: {
       value: any;
       message: string;
