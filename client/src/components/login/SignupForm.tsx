@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import FormInput from '../common/FormInput';
 import { FormButton } from '../../styles/FormButton';
 import { motion } from 'framer-motion';
 import { FormProvider, useForm } from 'react-hook-form';
+import { userAPI } from '../../apis/api/user';
 
 type SignUpFormType = {
   nickname: string;
@@ -13,6 +14,8 @@ type SignUpFormType = {
 };
 
 const SignupForm = () => {
+  const [canUse, setCanUse] = useState<boolean>(false);
+  const [emailMsg, setEmailMsg] = useState<string>('');
   const methods = useForm<SignUpFormType>({
     defaultValues: {
       nickname: '',
@@ -22,18 +25,44 @@ const SignupForm = () => {
     },
     mode: 'onChange',
   });
+
   const {
+    watch,
+    getValues,
+    handleSubmit,
     formState: { errors },
   } = methods;
+
+  const email = watch('email');
+  const password = watch('password');
+
+  useEffect(() => {
+    setEmailMsg('');
+  }, [email]);
+
+  const handleJoin = () => {
+    //
+  };
+
+  const checkEmail = async () => {
+    const result = await userAPI.checkEmail(getValues().email);
+    console.log(result);
+    setCanUse(result);
+    setEmailMsg(
+      result ? '사용 가능한 이메일입니다' : '이미 사용 중인 이메일입니다'
+    );
+  };
+
   return (
-    <Container>
-      <FormProvider {...methods}>
+    <FormProvider {...methods}>
+      <Container onSubmit={handleSubmit(handleJoin)}>
         <FormContainer>
           <Wrapper>
             <FormInput
               inputName='nickname'
               placeholder='닉네임을 입력해주세요. (최대 10자)'
               options={{
+                required: true,
                 maxLength: {
                   value: 10,
                   message: '닉네임은 최대 10자입니다',
@@ -48,17 +77,24 @@ const SignupForm = () => {
                 inputName='email'
                 placeholder='이메일을 입력해주세요'
                 options={{
+                  required: true,
                   pattern: {
                     value: /\S+@\S+\.\S+/,
                     message: '이메일 형식에 맞지 않습니다',
                   },
                 }}
               />
-              <CheckBtn type='button' whileTap={{ scale: 0.93 }}>
+              <CheckBtn
+                type='button'
+                onClick={checkEmail}
+                whileTap={{ scale: 0.93 }}
+              >
                 중복 확인
               </CheckBtn>
             </WithButtonWrapper>
-            <ErrorMsg>{errors.email && errors.email.message}</ErrorMsg>
+            <ErrorMsg $isOk={canUse}>
+              {(errors.email && errors.email.message) || emailMsg}
+            </ErrorMsg>
           </Wrapper>
           <Wrapper>
             <FormInput
@@ -66,6 +102,7 @@ const SignupForm = () => {
               inputName='password'
               placeholder='8~15자리 영문, 숫자로 비밀번호를 입력해주세요'
               options={{
+                required: true,
                 pattern: {
                   value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,15}$/,
                   message: '영문, 숫자만 사용해주세요',
@@ -83,24 +120,23 @@ const SignupForm = () => {
             <ErrorMsg>{errors.password && errors.password.message}</ErrorMsg>
           </Wrapper>
           <Wrapper>
-            <WithButtonWrapper>
-              <FormInput
-                type='password'
-                inputName='check'
-                placeholder='비밀번호를 한번 더 입력해주세요'
-                options={{}}
-              />
-              <CheckBtn type='button' whileTap={{ scale: 0.93 }}>
-                비밀번호 확인
-              </CheckBtn>
-            </WithButtonWrapper>
+            <FormInput
+              type='password'
+              inputName='check'
+              placeholder='비밀번호를 한번 더 입력해주세요'
+              options={{
+                required: true,
+                validate: (value) =>
+                  value === password || '비밀번호가 일치하지 않습니다',
+              }}
+            />
             <ErrorMsg>{errors.check && errors.check.message}</ErrorMsg>
           </Wrapper>
         </FormContainer>
-      </FormProvider>
 
-      <FormButton>회원가입</FormButton>
-    </Container>
+        <FormButton>회원가입</FormButton>
+      </Container>
+    </FormProvider>
   );
 };
 
@@ -149,9 +185,9 @@ const Wrapper = styled.div`
   gap: 4px;
 `;
 
-const ErrorMsg = styled.span`
+const ErrorMsg = styled.span<{ $isOk?: boolean }>`
   font-size: ${({ theme }) => theme.fontSize.sm};
-  color: red;
+  color: ${({ $isOk }) => ($isOk ? 'green' : 'red')};
   width: 100%;
   height: 15px;
   padding-left: 4px;

@@ -20,6 +20,7 @@ interface FormInputProps {
       value: number;
       message: string;
     };
+    validate?: (v: string) => boolean | string;
   };
 }
 

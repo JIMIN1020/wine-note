@@ -18,4 +18,14 @@ export const userAPI = {
       return false;
     }
   },
+  checkEmail: async (email: string) => {
+    try {
+      const { data } = await baseInstance.post(`/user/join/emailCheck`, {
+        email,
+      });
+      return data.result;
+    } catch (err) {
+      return false;
+    }
+  },
 };
