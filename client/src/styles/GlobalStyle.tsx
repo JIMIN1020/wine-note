@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
         background: none;
         border: none;
         box-sizing: content-box;
+        cursor: pointer;
     }
     body {
         margin: 0;

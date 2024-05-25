@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FaWineGlass } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import { defaultWidth, flexCenter } from '../../styles/GlobalStyle';
 import { BiArchive, BiChart } from 'react-icons/bi';
+import ProfileModal from './ProfileModal';
+import { AnimatePresence } from 'framer-motion';
 
-const Header: React.FC = () => {
+const Header = () => {
+  const [openProfile, setOpenProfile] = useState<boolean>(false);
   const { pathname } = useLocation();
   return (
     <HeaderBar>
@@ -32,7 +35,13 @@ const Header: React.FC = () => {
             )}
           </MenuWrapper>
         </NavWrapper>
-        <Profile></Profile>
+        <Profile onClick={() => setOpenProfile((prev) => !prev)}>
+          <AnimatePresence>
+            {openProfile && (
+              <ProfileModal closeModal={() => setOpenProfile(false)} />
+            )}
+          </AnimatePresence>
+        </Profile>
       </Wrapper>
     </HeaderBar>
   );
@@ -113,4 +122,6 @@ const Profile = styled.div`
   height: 32px;
   border-radius: 50%;
   background-color: ${({ theme }) => theme.colors.bg_white};
+  position: relative;
+  cursor: pointer;
 `;
