@@ -27,7 +27,8 @@ const Container = styled.div`
   background-color: ${({ theme }) => theme.colors.bg_white};
   border-radius: 20px;
   padding: 30px;
-  border: 1px solid ${({ theme }) => theme.colors.border_lightgray};
+  /* border: 1px solid ${({ theme }) => theme.colors.border_lightgray}; */
+  box-shadow: ${({ theme }) => theme.shadow.basic};
 
   display: flex;
   flex-direction: column;

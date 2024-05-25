@@ -46,16 +46,17 @@ const Container = styled(motion.div)<{ $isSelected: boolean }>`
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 10px 14px;
+  padding: 14px 14px;
 
-  border: 1px solid
-    ${({ theme, $isSelected }) =>
-      $isSelected ? theme.colors.wine_purple : theme.colors.border_gray};
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.bg_white};
+  border: 1px solid
+    ${({ theme, $isSelected }) =>
+      $isSelected ? theme.colors.wine_purple : theme.colors.bg_white};
   cursor: pointer;
   color: ${({ theme, $isSelected }) =>
     $isSelected ? theme.colors.wine_purple : theme.colors.text_black};
+  box-shadow: ${({ theme }) => theme.shadow.basic};
 
   & h5 {
     font-size: ${({ theme }) => theme.fontSize.base};

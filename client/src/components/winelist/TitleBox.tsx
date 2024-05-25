@@ -73,6 +73,7 @@ const AddButton = styled(motion.button)`
   align-items: center;
   gap: 8px;
   cursor: pointer;
+  box-shadow: ${({ theme }) => theme.shadow.basic};
 
   & svg {
     width: 18px;

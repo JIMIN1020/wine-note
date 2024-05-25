@@ -63,6 +63,8 @@ export default FilterSelect;
 const Container = styled.div`
   display: flex;
   position: relative;
+  border-radius: 8px;
+  box-shadow: ${({ theme }) => theme.shadow.basic};
 `;
 
 const SelectBox = styled(motion.div)`

@@ -5,7 +5,7 @@ export const theme = {
     wine_light_purple: '#faf7ff',
     bg_white: '#ffffff',
     bg_white_gray: '#f8f8f8',
-    bg_lightgray: '#eeeeee',
+    bg_lightgray: '#eeeeee96',
     border_gray: '#b1b1b1d2',
     border_lightgray: '#dadada',
     text_white: '#ffffff',
@@ -22,5 +22,8 @@ export const theme = {
     xl: '20px',
     xxl: '24px',
     logo: '28px',
+  },
+  shadow: {
+    basic: 'rgba(0, 0, 0, 0.06) 0px 4px 40px 0px',
   },
 } as const;

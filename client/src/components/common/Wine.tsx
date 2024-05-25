@@ -15,7 +15,7 @@ interface WineProps {
 
 const Wine = ({ wineData, onClick, layoutId }: WineProps) => {
   return (
-    <Container onClick={onClick} layoutId={layoutId}>
+    <Container onClick={onClick} layoutId={layoutId} whileHover={{ y: -10 }}>
       <ImgBox>
         <img src={exImg} alt='wine' />
       </ImgBox>
@@ -49,16 +49,12 @@ const Container = styled(motion.div)`
   height: 350px;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.colors.bg_white};
-  /* box-shadow: rgba(0, 0, 0, 0.06) 0px 4px 40px 0px; */
-  border: 1px solid ${({ theme }) => theme.colors.border_lightgray};
+  box-shadow: ${({ theme }) => theme.shadow.basic};
+  /* border: 1px solid ${({ theme }) => theme.colors.border_lightgray}; */
   color: ${({ theme }) => theme.colors.text_black};
   position: relative;
   cursor: pointer;
   transition: scale 0.3s ease-in-out;
-
-  &:hover {
-    scale: calc(1.05);
-  }
 `;
 
 const ImgBox = styled.div`

@@ -24,7 +24,7 @@ export default Content;
 const Container = styled.div`
   width: 100%;
   flex: 1;
-  background-color: ${({ theme }) => theme.colors.bg_white_gray};
+  background-color: ${({ theme }) => theme.colors.bg_white};
 
   display: flex;
   justify-content: center;
