@@ -45,7 +45,7 @@ const getReview = async (reviewId) => {
 };
 
 /* ----- 리뷰 작성 API ----- */
-const review = async (wine, review) => {
+const review = async (wine, review, userId) => {
   try {
     // wine 정보 INSERT
     const wineValues = [
@@ -75,7 +75,7 @@ const review = async (wine, review) => {
     // 리뷰 INSERT
     const reviewValues = [
       wineId,
-      "w+trJbtUGHf9ag==", // userId
+      userId,
       review.color,
       review.color_intensity,
       review.aroma,

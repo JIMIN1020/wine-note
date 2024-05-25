@@ -34,7 +34,7 @@ async function createRefreshToken(userId) {
 function verifyAccessToken(accessToken) {
   try {
     jwt.verify(accessToken, process.env.JWT_SECRET_KEY);
-    return true;
+    return jwt.decode(accessToken).userId;
   } catch (err) {
     throw new CustomError(
       StatusCodes.UNAUTHORIZED,

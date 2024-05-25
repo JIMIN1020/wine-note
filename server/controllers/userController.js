@@ -76,7 +76,7 @@ const refresh = [
 
     try {
       // access token decoding
-      const userId = jwt.decode(accessToken);
+      const { userId } = jwt.decode(accessToken);
 
       // decoding 결과 없는 경우
       if (!decoded) {
