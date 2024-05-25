@@ -5,6 +5,7 @@ export interface WineDataType {
   country: string;
   region: string;
   price: string;
+  vintage?: string;
   rating: number;
 }
 

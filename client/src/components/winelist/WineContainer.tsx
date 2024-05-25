@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
 import FilterSelect from '../common/FilterSelect';
-import { wineDummy } from '../../data/wineDummy';
+import { WineDataType, wineDummy } from '../../data/wineDummy';
 import Wine from '../common/Wine';
 import WineDetailModal from './wineDetailModal/WineDetailModal';
+import { wineAPI } from '../../apis/api/wine';
 
 const WineContainer: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(true);
+  const [wineData, setWineData] = useState<WineDataType[]>([]);
   const [selectedWine, setSelectedWine] = useState<string | null>(null);
+
+  const getAllWineData = async () => {
+    const data = await wineAPI.getAllWine();
+    setWineData(data);
+  };
+
+  useEffect(() => {
+    getAllWineData();
+  }, []);
+
+  useEffect(() => {
+    if (wineData) {
+      setLoading(false);
+    }
+  }, [wineData]);
+
   return (
     <Container>
       <TopBar>
@@ -15,15 +34,16 @@ const WineContainer: React.FC = () => {
         <FilterSelect />
       </TopBar>
       <WineWrapper>
-        {wineDummy.map((data) => {
-          return (
-            <Wine
-              key={data.id}
-              wineData={data}
-              onClick={() => setSelectedWine(data.id)}
-            />
-          );
-        })}
+        {!loading &&
+          wineData!.map((data: WineDataType) => {
+            return (
+              <Wine
+                key={data.id}
+                wineData={data}
+                onClick={() => setSelectedWine(data.id)}
+              />
+            );
+          })}
       </WineWrapper>
       {/* 와인 상세 모달 */}
       <AnimatePresence>

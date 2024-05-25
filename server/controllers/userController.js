@@ -71,15 +71,15 @@ const refresh = [
   validation.refreshValidation(),
   validation.validationCheck,
   async (req, res) => {
-    const accessToken = req.headers["authorization"].split(" ")[1];
-    const refreshToken = req.headers["refresh"];
-
     try {
+      const accessToken = req.headers["authorization"].split(" ")[1];
+      const refreshToken = req.headers["refresh"];
+
       // access token decoding
-      const { userId } = jwt.decode(accessToken);
+      const userId = verifyAccessToken(accessToken);
 
       // decoding 결과 없는 경우
-      if (!decoded) {
+      if (!userId) {
         throw new CustomError(
           StatusCodes.BAD_REQUEST,
           "잘못된 access token입니다."
