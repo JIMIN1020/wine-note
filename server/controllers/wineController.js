@@ -11,14 +11,14 @@ const getAllReviews = async (req, res) => {
     const accessToken = req.headers["authorization"].split(" ")[1];
     const userId = verifyAccessToken(accessToken);
 
-    const sql = wineQuery.getAllReviews;
+    let sql = wineQuery.getAllReviews;
 
     if (category) {
       sql += ` AND wine.country = ${category}`;
     } else if (name) {
       sql += ` AND wine.name LIKE '%${name}%'`;
     }
-    sql = +` LIMIT ${(+page - 1) * +limit} ${+limit}`;
+    sql += ` LIMIT ${(+page - 1) * +limit}, ${+limit}`;
 
     const result = await wineService.getAllReviews(sql, userId);
     res.status(StatusCodes.CREATED).json(result);
