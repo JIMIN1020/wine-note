@@ -62,9 +62,8 @@ authInstance.interceptors.response.use(
       const refreshToken = localStorage.getItem('refreshToken');
 
       // access token 재발급
-      const result = await axios.post(
+      const result = await baseInstance.get(
         `http://localhost:4000/user/refresh`,
-        {},
         {
           headers: {
             authorization: `Bearer ${accessToken}`,
