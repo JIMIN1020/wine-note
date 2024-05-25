@@ -33,7 +33,7 @@ const RangeInput = ({ data: { id, left, right } }: RangeInputProps) => {
         <Button type='button' onClick={() => handleSetValue(5)}>
           5
         </Button>
-        <SelectBtn $num={watch(`step4.characteristics[${id}]`)}>
+        <SelectBtn type='button' $num={watch(`step4.characteristics[${id}]`)}>
           {watch(`step4.characteristics[${id}]`)}
         </SelectBtn>
       </RangeBar>

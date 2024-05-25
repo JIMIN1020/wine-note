@@ -12,6 +12,8 @@ import { TastingFormType } from '../../types/formType';
 import { motion } from 'framer-motion';
 import { WineDataType } from '../../types/wineType';
 import wineBottleImg from '../../assets/image/wine-bottle.svg';
+import { wineAPI } from '../../apis/api/wine';
+import { useNavigate } from 'react-router-dom';
 
 interface ReviewBoxProps {
   step: number;
@@ -20,6 +22,7 @@ interface ReviewBoxProps {
 }
 
 const ReviewBox = ({ step, setStep, wineData }: ReviewBoxProps) => {
+  const navigate = useNavigate();
   const methods = useForm<TastingFormType>({
     defaultValues: {
       step1: {
@@ -62,9 +65,44 @@ const ReviewBox = ({ step, setStep, wineData }: ReviewBoxProps) => {
     },
   });
 
-  const handleClickRight = () => {
+  const { getValues } = methods;
+
+  const handleClickRight = async () => {
     if (step === 5) {
-      // 폼 제출 - handleSubmit
+      const data = getValues();
+
+      const processedData = {
+        wine: {
+          name: data.step1.wineName,
+          country: data.step1.country,
+          region: data.step1.region,
+          price: data.step1.price,
+          url: data.step1.wineLink,
+          img: data.step1.wineImg,
+          vintage: data.step1.vintage,
+          type: data.step1.wineType,
+          grapes: data.step1.grapes,
+        },
+        review: {
+          color: data.step2.color,
+          color_intensity: data.step2.colorIntensity,
+          aroma: data.step3.aroma,
+          aroma_intensity: data.step3.aromaIntensity,
+          flavor: data.step4.flavor,
+          sweetness: data.step4.characteristics.sweetness,
+          acidity: data.step4.characteristics.acidity,
+          tannin: data.step4.characteristics.tannin,
+          body: data.step4.characteristics.body,
+          rating: data.step5.rating,
+          conclusion: data.step5.conclusion,
+        },
+      };
+
+      const result = await wineAPI.addWineNote(processedData);
+
+      if (result) {
+        navigate('/winelist');
+      }
     } else {
       setStep((prev) => prev + 1);
     }

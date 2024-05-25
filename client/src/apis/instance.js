@@ -30,7 +30,7 @@ authInstance.interceptors.request.use(
 
     // token이 없는 경우
     if (!accessToken || !refreshToken) {
-      window.location.replace = '/login'; // 로그인 화면으로 redirect
+      window.location.replace('/login'); // 로그인 화면으로 redirect
       return config;
     }
 

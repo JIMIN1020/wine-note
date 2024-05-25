@@ -1,4 +1,4 @@
-import { baseInstance } from '../instance';
+import { authInstance, baseInstance } from '../instance';
 
 export const wineAPI = {
   getWineSearch: async (wineName: string) => {
@@ -9,6 +9,14 @@ export const wineAPI = {
       return data.result;
     } catch (err) {
       return err;
+    }
+  },
+  addWineNote: async (wineData: any) => {
+    try {
+      const { data } = await authInstance.post('/wine', wineData);
+      return data.isSuccess;
+    } catch (err) {
+      return false;
     }
   },
 };
