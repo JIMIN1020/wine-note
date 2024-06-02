@@ -67,11 +67,16 @@ const SignupForm = () => {
 
   const checkEmail = async () => {
     if (email.trim()) {
-      const result = await userAPI.checkEmail(email);
-      setCanUse(result);
-      setEmailMsg(
-        result ? '사용 가능한 이메일입니다' : '이미 사용 중인 이메일입니다'
-      );
+      await userAPI.checkEmail(email).then((res) => {
+        if (res?.isSuccess) {
+          setCanUse(res!.result);
+          setEmailMsg(
+            res!.result
+              ? '사용 가능한 이메일입니다'
+              : '이미 사용 중인 이메일입니다'
+          );
+        }
+      });
     } else {
       return;
     }
@@ -110,6 +115,7 @@ const SignupForm = () => {
                 type='button'
                 onClick={checkEmail}
                 whileTap={{ scale: 0.93 }}
+                disabled={Boolean(errors.email)}
               >
                 중복 확인
               </CheckBtn>
@@ -201,6 +207,13 @@ const CheckBtn = styled(motion.button)`
   font-weight: 500;
   border-radius: 10px;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:disabled {
+    cursor: default;
+    color: ${({ theme }) => theme.colors.text_gray};
+    background-color: ${({ theme }) => theme.colors.bg_lightgray};
+  }
 
   &:hover {
     opacity: 0.95;

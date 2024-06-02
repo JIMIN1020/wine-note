@@ -2,7 +2,7 @@ import { baseInstance } from '../instance';
 import { processUserData } from '../services/user';
 import { JoinReq, LoginReq } from '../../types/api/request';
 import { AxiosResponse } from 'axios';
-import { CommonRes } from '../../types/api/response';
+import { CommonRes, EmailCheckRes } from '../../types/api/response';
 
 export const userAPI = {
   login: async (formData: LoginReq) => {
@@ -37,12 +37,15 @@ export const userAPI = {
   },
   checkEmail: async (email: string) => {
     try {
-      const { data } = await baseInstance.post(`/user/join/emailCheck`, {
-        email,
-      });
-      return data.result;
+      const { data }: AxiosResponse<EmailCheckRes> = await baseInstance.post(
+        `/user/join/emailCheck`,
+        {
+          email,
+        }
+      );
+      return data;
     } catch (err) {
-      return false;
+      window.alert('오류가 발생했습니다. 다시 시도해주세요.');
     }
   },
 };
