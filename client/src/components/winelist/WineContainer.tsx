@@ -10,14 +10,13 @@ import useStore from '../../store/store';
 
 const WineContainer: React.FC = () => {
   const [open, setOpen] = useState<boolean>(false);
-  const { setSelectedWine } = useStore();
+  const { setSelectedWine, wineList, setWineList } = useStore();
   const [loading, setLoading] = useState<boolean>(true);
-  const [wineData, setWineData] = useState<WineListItem[]>([]);
 
   const getAllWineData = async () => {
     await wineAPI.getAllWine().then((res) => {
       if (res?.isSuccess) {
-        setWineData(res!.result);
+        setWineList(res!.result);
       }
     });
   };
@@ -36,20 +35,20 @@ const WineContainer: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (wineData) {
+    if (wineList) {
       setLoading(false);
     }
-  }, [wineData]);
+  }, [wineList]);
 
   return (
     <Container>
       <TopBar>
-        <Total>총 {wineData.length}개의 와인 기록이 있습니다.</Total>
+        <Total>총 {wineList?.length || 0}개의 와인 기록이 있습니다.</Total>
         <FilterSelect />
       </TopBar>
       <WineWrapper>
         {!loading &&
-          wineData!.map((data: WineListItem) => {
+          wineList!.map((data: WineListItem) => {
             return (
               <Wine
                 key={data.id}

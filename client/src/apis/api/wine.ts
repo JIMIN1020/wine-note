@@ -51,4 +51,14 @@ export const wineAPI = {
       window.alert(ERROR_ALERT);
     }
   },
+  getWineSearchByName: async (name: string) => {
+    try {
+      const { data }: AxiosResponse<GetAllWineRes> = await authInstance.get(
+        `/wine?limit=5&page=1&name=${name}`
+      );
+      return data;
+    } catch (err) {
+      window.alert(ERROR_ALERT);
+    }
+  },
 };

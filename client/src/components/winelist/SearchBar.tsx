@@ -1,11 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { IoIosSearch } from 'react-icons/io';
 import { IoSearchSharp } from 'react-icons/io5';
+import { wineAPI } from '../../apis/api/wine';
+import useStore from '../../store/store';
 
 const SearchBar: React.FC = () => {
+  const { setWineList } = useStore();
   const [inputFocused, setInputFocused] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
+
+  const getAllWineData = async () => {
+    await wineAPI.getAllWine().then((res) => {
+      if (res?.isSuccess) {
+        setWineList(res!.result);
+      }
+    });
+  };
+
+  const handleSearch = async () => {
+    await wineAPI.getWineSearchByName(value).then((res) => {
+      if (res?.isSuccess) {
+        setWineList(res!.result);
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (value.trim() === '') {
+      getAllWineData();
+    }
+  }, [value]);
+
   return (
     <Container>
       <Title>
@@ -22,7 +48,7 @@ const SearchBar: React.FC = () => {
           onFocus={() => setInputFocused(true)}
           onBlur={() => (value ? {} : setInputFocused(false))}
         />
-        <SearchButton $inputFocused={inputFocused}>
+        <SearchButton $inputFocused={inputFocused} onClick={handleSearch}>
           <IoIosSearch strokeWidth={5} />
         </SearchButton>
       </InputWrapper>
