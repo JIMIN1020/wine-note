@@ -14,6 +14,7 @@ import { WineDataType } from '../../types/wineType';
 import wineBottleImg from '../../assets/image/wine-bottle.svg';
 import { wineAPI } from '../../apis/api/wine';
 import { useNavigate } from 'react-router-dom';
+import { AddWineNoteReq } from '../../types/api/request';
 
 interface ReviewBoxProps {
   step: number;
@@ -71,7 +72,7 @@ const ReviewBox = ({ step, setStep, wineData }: ReviewBoxProps) => {
     if (step === 5) {
       const data = getValues();
 
-      const processedData = {
+      const processedData: AddWineNoteReq = {
         wine: {
           name: data.step1.wineName,
           country: data.step1.country,
@@ -98,11 +99,11 @@ const ReviewBox = ({ step, setStep, wineData }: ReviewBoxProps) => {
         },
       };
 
-      const result = await wineAPI.addWineNote(processedData);
-
-      if (result) {
-        navigate('/winelist');
-      }
+      await wineAPI.addWineNote(processedData).then((res) => {
+        if (res?.isSuccess) {
+          navigate('/winelist');
+        }
+      });
     } else {
       setStep((prev) => prev + 1);
     }

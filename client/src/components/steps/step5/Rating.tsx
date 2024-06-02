@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ImStarFull, ImStarHalf, ImStarEmpty } from 'react-icons/im';
 import { useFormContext } from 'react-hook-form';
 import SubFormLayout from '../../layout/SubFormLayout';
+import uuid from 'react-uuid';
 
 const Rating = () => {
   const { setValue } = useFormContext();
@@ -33,30 +34,30 @@ const Rating = () => {
             <StarWrapper key={i} onClick={handleStarClick}>
               {score - Math.floor(score) === 0.5 && Math.floor(score) === i ? (
                 <ImStarHalf
-                  key={i}
+                  key={uuid()}
                   style={{ position: 'absolute' }}
                   size={55}
                 />
               ) : i + 1 > score ? (
                 <ImStarEmpty
-                  key={i}
+                  key={uuid()}
                   style={{ position: 'absolute' }}
                   size={55}
                 />
               ) : (
                 <ImStarFull
-                  key={i}
+                  key={uuid()}
                   style={{ position: 'absolute' }}
                   size={55}
                 />
               )}
               <LeftDiv
-                key={i}
+                key={uuid()}
                 onMouseEnter={() => handleLeftEnter(i)}
                 onMouseLeave={handleStarLeave}
               />
               <RightDiv
-                key={i}
+                key={uuid()}
                 onMouseEnter={() => handleRightEnter(i)}
                 onMouseLeave={handleStarLeave}
               />
