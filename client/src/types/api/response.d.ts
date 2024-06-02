@@ -35,3 +35,35 @@ export interface WineListItem {
 export interface GetAllWineRes extends CommonRes {
   result: WineListItem[];
 }
+
+export interface WineReviewRes {
+  wine: {
+    name: string;
+    country: string;
+    region: string;
+    price: number;
+    url: string;
+    img: string | null;
+    vintage: number;
+    type: number;
+    grapes: Grape[];
+  };
+  review: {
+    color: string;
+    color_intensity: string;
+    aroma: string;
+    aroma_intensity: string;
+    flavor: string;
+    sweetness: number;
+    acidity: number;
+    tannin: number;
+    body: number;
+    rating: number;
+    conclusion: string;
+    created_at: string;
+  };
+}
+
+export interface GetWineDetailRes extends CommonRes {
+  result: WineReviewRes;
+}

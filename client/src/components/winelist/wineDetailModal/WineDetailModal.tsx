@@ -4,21 +4,22 @@ import styled from 'styled-components';
 import useClickOutside from '../../../hooks/useClickOutside';
 import { modalBackgroundVariants } from '../../../styles/motionVariants';
 import { CgNotes } from 'react-icons/cg';
-
 import WineInfo from './WineInfo';
 import AromaReview from './AromaReview';
 import ColorReview from './ColorReview';
 import FlavorReview from './FlavorReview';
+import useStore from '../../../store/store';
 
 interface WineDetailModalProps {
-  setSelectedWine: React.Dispatch<React.SetStateAction<number | null>>;
+  closeModal: () => void;
 }
 
-const WineDetailModal = ({ setSelectedWine }: WineDetailModalProps) => {
+const WineDetailModal = ({ closeModal }: WineDetailModalProps) => {
+  const { selectedWine } = useStore();
   const ref = useRef<HTMLDivElement | null>(null); // 모달에 대한 ref
 
   /* ----- 모달 바깥 클릭 시 닫힘 처리 ----- */
-  useClickOutside(ref, () => setSelectedWine(null));
+  useClickOutside(ref, () => closeModal());
 
   return (
     <Background
@@ -41,11 +42,7 @@ const WineDetailModal = ({ setSelectedWine }: WineDetailModalProps) => {
         <WineInfo />
         <Conclusion>
           <h5>MY REVIEW</h5>
-          <p>
-            미국 와인을 좋아하는 사람들이라면 반드시 구매해서 마셔봐야 할 와인.
-            <br />
-            부드러운 타닌과 풍부한 과일향이 최고!
-          </p>
+          <p>{selectedWine!.review.conclusion}</p>
         </Conclusion>
         <NoteWrapper>
           <NoteTitle>

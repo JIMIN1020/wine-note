@@ -3,6 +3,7 @@ import { authInstance, baseInstance } from '../instance';
 import {
   CommonRes,
   GetAllWineRes,
+  GetWineDetailRes,
   WineSearchRes,
 } from '../../types/api/response';
 import { ERROR_ALERT } from '../../constants/message';
@@ -34,6 +35,16 @@ export const wineAPI = {
     try {
       const { data }: AxiosResponse<GetAllWineRes> = await authInstance.get(
         '/wine?limit=5&page=1'
+      );
+      return data;
+    } catch (err) {
+      window.alert(ERROR_ALERT);
+    }
+  },
+  getWineDetail: async (reviewId: number) => {
+    try {
+      const { data }: AxiosResponse<GetWineDetailRes> = await authInstance.get(
+        `/wine/${reviewId}`
       );
       return data;
     } catch (err) {

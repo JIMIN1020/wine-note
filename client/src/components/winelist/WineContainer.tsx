@@ -6,16 +6,27 @@ import Wine from '../common/Wine';
 import WineDetailModal from './wineDetailModal/WineDetailModal';
 import { wineAPI } from '../../apis/api/wine';
 import { WineListItem } from '../../types/api/response';
+import useStore from '../../store/store';
 
 const WineContainer: React.FC = () => {
+  const [open, setOpen] = useState<boolean>(false);
+  const { setSelectedWine } = useStore();
   const [loading, setLoading] = useState<boolean>(true);
   const [wineData, setWineData] = useState<WineListItem[]>([]);
-  const [selectedWine, setSelectedWine] = useState<number | null>(null);
 
   const getAllWineData = async () => {
     await wineAPI.getAllWine().then((res) => {
       if (res?.isSuccess) {
         setWineData(res!.result);
+      }
+    });
+  };
+
+  const handleClickWine = async (id: number) => {
+    await wineAPI.getWineDetail(id).then((res) => {
+      if (res?.isSuccess) {
+        setSelectedWine(res!.result);
+        setOpen(true);
       }
     });
   };
@@ -43,14 +54,14 @@ const WineContainer: React.FC = () => {
               <Wine
                 key={data.id}
                 wineData={data}
-                onClick={() => setSelectedWine(data.id)}
+                onClick={() => handleClickWine(data.id)}
               />
             );
           })}
       </WineWrapper>
       {/* 와인 상세 모달 */}
       <AnimatePresence>
-        {selectedWine && <WineDetailModal setSelectedWine={setSelectedWine} />}
+        {open && <WineDetailModal closeModal={() => setOpen(false)} />}
       </AnimatePresence>
     </Container>
   );

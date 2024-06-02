@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 interface TextLineProps {
   title: string;
-  text: string;
+  text?: string;
 }
 
 const TextLine = ({ title, text }: TextLineProps) => {
   return (
-    <LineWrapper>
+    <LineWrapper $noText={!text}>
       <LineTitle>{title}</LineTitle>
       <Text>{text}</Text>
     </LineWrapper>
@@ -17,8 +17,8 @@ const TextLine = ({ title, text }: TextLineProps) => {
 
 export default TextLine;
 
-const LineWrapper = styled.div`
-  width: 100%;
+const LineWrapper = styled.div<{ $noText: boolean }>`
+  width: ${({ $noText }) => ($noText ? 'fit-content' : '100%')};
   display: flex;
   align-items: start;
   gap: 10px;

@@ -1,52 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
-import exImg from '../../../assets/image/exImg.png';
 import Flag from '../../common/Flag';
 import { BiWon } from 'react-icons/bi';
 import RatingStar from './RatingStar';
 import { LuLink, LuGrape } from 'react-icons/lu';
 import { MdOutlineCalendarMonth } from 'react-icons/md';
+import useStore from '../../../store/store';
+import { WINE_TYPE } from '../../../constants/wineType';
+import WineBottle from '../../../assets/image/wine-bottle.svg';
 
 const WineInfo = () => {
+  const { selectedWine } = useStore();
+
+  const formatGrapes = (grapes: { name: string; percent: number }[]) => {
+    return grapes.map((grape) => `${grape.name} ${grape.percent}%`).join(', ');
+  };
   return (
     <WineContainer>
       <WineImgBox>
-        <img src={exImg} alt='wine' />
+        <img src={selectedWine!.wine.img || WineBottle} alt='wine' />
       </WineImgBox>
       <Content>
         <SmallHead>
-          <span>화이트 와인</span> • 2024.03.12
+          <span>{WINE_TYPE[selectedWine!.wine.type].label}</span> •{' '}
+          {selectedWine?.review.created_at.split(' ')[0]}
         </SmallHead>
-        <WineName>
-          Rombauer Vineyards Chardonnay Proprietor Selection 2022
-        </WineName>
+        <WineName>{selectedWine!.wine.name}</WineName>
         <Rating>
-          <h3>4.5</h3>
-          <RatingStar rating={4.5} />
+          <h3>{selectedWine!.review.rating}</h3>
+          <RatingStar rating={selectedWine!.review.rating || 3} />
         </Rating>
         <DetailWrapper>
           <Country>
-            <Flag countryName='usa' size='18px' />
-            <span>California, United States</span>
+            <Flag countryName={selectedWine!.wine.country || ''} size='18px' />
+            <span>
+              {selectedWine!.wine.region}, {selectedWine!.wine.country}
+            </span>
           </Country>
           <Grapes>
             <LuGrape size={18} />
-            <span>Cabernnet Sauvignon 50%, Shiraz 50%</span>
+            <span>{formatGrapes(selectedWine!.wine.grapes)}</span>
           </Grapes>
 
           <Vintage>
             <MdOutlineCalendarMonth size={20} />
-            <span>2022 Vintage</span>
+            <span>{selectedWine!.wine.vintage} Vintage</span>
           </Vintage>
           <Price>
             <BiWon size={20} />
-            <span>127,000</span>
+            <span>{selectedWine!.wine.price.toLocaleString()}</span>
           </Price>
 
-          <VivinoLink
-            href='https://www.vivino.com/US-CA/en/beau-vigne-owner-s-reserve-guest-cottage-cabernet-sauvignon/w/2131484?year=2021&price_id=35204260'
-            target='_blank'
-          >
+          <VivinoLink href={selectedWine?.wine.url} target='_blank'>
             <LuLink size={18} />
             Vivino
           </VivinoLink>
