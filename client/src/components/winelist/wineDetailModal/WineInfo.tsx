@@ -13,8 +13,11 @@ const WineInfo = () => {
   const { selectedWine } = useStore();
 
   const formatGrapes = (grapes: { name: string; percent: number }[]) => {
-    return grapes.map((grape) => `${grape.name} ${grape.percent}%`).join(', ');
+    return grapes.length === 1 && grapes[0].name === ''
+      ? '-'
+      : grapes.map((grape) => `${grape.name} ${grape.percent}%`).join(', ');
   };
+
   return (
     <WineContainer>
       <WineImgBox>
@@ -27,8 +30,8 @@ const WineInfo = () => {
         </SmallHead>
         <WineName>{selectedWine!.wine.name}</WineName>
         <Rating>
-          <h3>{selectedWine!.review.rating}</h3>
-          <RatingStar rating={selectedWine!.review.rating || 3} />
+          <h3>{selectedWine!.review.rating.toFixed(1)}</h3>
+          <RatingStar rating={selectedWine!.review.rating} />
         </Rating>
         <DetailWrapper>
           <Country>

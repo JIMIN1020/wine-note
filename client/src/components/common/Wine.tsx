@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import exImg from '../../assets/image/exImg.png';
 import Flag from './Flag';
-import { BiWon } from 'react-icons/bi';
 import { IoStar } from 'react-icons/io5';
 import { motion } from 'framer-motion';
 import { WineListItem } from '../../types/api/response';
+import { MdOutlineCalendarMonth } from 'react-icons/md';
+import WineBottle from '../../assets/image/wine-bottle.svg';
 
 interface WineProps {
   wineData: WineListItem;
@@ -17,7 +17,7 @@ const Wine = ({ wineData, onClick, layoutId }: WineProps) => {
   return (
     <Container onClick={onClick} layoutId={layoutId} whileHover={{ y: -10 }}>
       <ImgBox>
-        <img src={exImg} alt='wine' />
+        <img src={wineData.img || WineBottle} alt='wine' />
       </ImgBox>
       <TextContent>
         <WineName>{wineData.name}</WineName>
@@ -28,13 +28,15 @@ const Wine = ({ wineData, onClick, layoutId }: WineProps) => {
           </span>
         </Country>
         <Price>
-          <BiWon />
-          <span>{wineData.vintage}</span>
+          <MdOutlineCalendarMonth />
+          <span>
+            <strong>{wineData.vintage}</strong> Vintage
+          </span>
         </Price>
       </TextContent>
       <Rating>
         <IoStar />
-        {wineData.rating}
+        {wineData.rating.toFixed(1)}
       </Rating>
     </Container>
   );
@@ -46,11 +48,11 @@ const Container = styled(motion.div)`
   display: flex;
   flex-direction: column;
   width: 220px;
-  height: 350px;
+  height: fit-content;
+  padding: 14px 0;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.colors.bg_white};
   box-shadow: ${({ theme }) => theme.shadow.basic};
-  /* border: 1px solid ${({ theme }) => theme.colors.border_lightgray}; */
   color: ${({ theme }) => theme.colors.text_black};
   position: relative;
   cursor: pointer;
@@ -114,6 +116,10 @@ const Price = styled.div`
     width: 15px;
     height: 15px;
     color: ${({ theme }) => theme.colors.text_black};
+  }
+
+  & strong {
+    font-weight: 500;
   }
 `;
 
