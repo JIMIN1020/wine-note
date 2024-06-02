@@ -57,9 +57,8 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
     // vivino api
     await wineAPI
       .getWineSearch(wineName)
-      .then(getWineData)
-      .then((res) => setWineData(res))
-      .catch((err) => console.log(err));
+      .then((res) => res && getWineData(res))
+      .then((res) => setWineData(res));
   };
 
   return (

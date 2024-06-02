@@ -3,6 +3,7 @@ import { processUserData } from '../services/user';
 import { JoinReq, LoginReq } from '../../types/api/request';
 import { AxiosResponse } from 'axios';
 import { CommonRes, EmailCheckRes } from '../../types/api/response';
+import { ERROR_ALERT } from '../../constants/message';
 
 export const userAPI = {
   login: async (formData: LoginReq) => {
@@ -20,7 +21,7 @@ export const userAPI = {
       if (err.response.status === 401) {
         return err.response.data;
       } else {
-        window.alert('오류가 발생했습니다. 다시 시도해주세요.');
+        window.alert(ERROR_ALERT);
       }
     }
   },
@@ -32,7 +33,7 @@ export const userAPI = {
       );
       return data;
     } catch (err) {
-      window.alert('오류가 발생했습니다. 다시 시도해주세요.');
+      window.alert(ERROR_ALERT);
     }
   },
   checkEmail: async (email: string) => {
@@ -45,7 +46,7 @@ export const userAPI = {
       );
       return data;
     } catch (err) {
-      window.alert('오류가 발생했습니다. 다시 시도해주세요.');
+      window.alert(ERROR_ALERT);
     }
   },
 };

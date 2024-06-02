@@ -1,14 +1,17 @@
+import { AxiosResponse } from 'axios';
 import { authInstance, baseInstance } from '../instance';
+import { WineSearchRes } from '../../types/api/response';
+import { ERROR_ALERT } from '../../constants/message';
 
 export const wineAPI = {
   getWineSearch: async (wineName: string) => {
     try {
-      const { data } = await baseInstance.get(
+      const { data }: AxiosResponse<WineSearchRes> = await baseInstance.get(
         `/api/wine-search?name=${wineName}`
       );
-      return data.result;
+      return data;
     } catch (err) {
-      return err;
+      window.alert(ERROR_ALERT);
     }
   },
   addWineNote: async (wineData: any) => {
