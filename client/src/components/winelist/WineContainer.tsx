@@ -2,19 +2,22 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
 import FilterSelect from '../common/FilterSelect';
-import { WineDataType, wineDummy } from '../../data/wineDummy';
 import Wine from '../common/Wine';
 import WineDetailModal from './wineDetailModal/WineDetailModal';
 import { wineAPI } from '../../apis/api/wine';
+import { WineListItem } from '../../types/api/response';
 
 const WineContainer: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
-  const [wineData, setWineData] = useState<WineDataType[]>([]);
-  const [selectedWine, setSelectedWine] = useState<string | null>(null);
+  const [wineData, setWineData] = useState<WineListItem[]>([]);
+  const [selectedWine, setSelectedWine] = useState<number | null>(null);
 
   const getAllWineData = async () => {
-    const data = await wineAPI.getAllWine();
-    setWineData(data);
+    await wineAPI.getAllWine().then((res) => {
+      if (res?.isSuccess) {
+        setWineData(res!.result);
+      }
+    });
   };
 
   useEffect(() => {
@@ -30,12 +33,12 @@ const WineContainer: React.FC = () => {
   return (
     <Container>
       <TopBar>
-        <Total>총 {wineDummy.length}개의 와인 기록이 있습니다.</Total>
+        <Total>총 {wineData.length}개의 와인 기록이 있습니다.</Total>
         <FilterSelect />
       </TopBar>
       <WineWrapper>
         {!loading &&
-          wineData!.map((data: WineDataType) => {
+          wineData!.map((data: WineListItem) => {
             return (
               <Wine
                 key={data.id}

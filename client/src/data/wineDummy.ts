@@ -1,45 +1,40 @@
-export interface WineDataType {
-  id: string;
-  name: string;
-  img?: string;
-  country: string;
-  region: string;
-  price: string;
-  vintage?: string;
-  rating: number;
-}
+import { WineListItem } from '../types/api/response';
 
-export const wineDummy: WineDataType[] = [
+export const wineDummy: WineListItem[] = [
   {
-    id: '1',
+    id: 1,
     name: 'Rombauer Vineyards Chardonnay Proprietor Selection 2022',
     country: 'United States',
     region: 'California',
-    price: '127,000',
+    img: '',
+    vintage: 2024,
     rating: 4.5,
   },
   {
-    id: '2',
+    id: 2,
     name: 'Rombauer Vineyards Chardonnay Proprietor Selection 2022',
     country: 'United States',
     region: 'California',
-    price: '127,000',
+    img: '',
+    vintage: 2024,
     rating: 4.5,
   },
   {
-    id: '3',
+    id: 3,
     name: 'Rombauer Vineyards Chardonnay Proprietor Selection 2022',
     country: 'United States',
     region: 'California',
-    price: '127,000',
+    img: '',
+    vintage: 2024,
     rating: 4.5,
   },
   {
-    id: '4',
+    id: 4,
     name: 'Rombauer Vineyards Chardonnay Proprietor Selection 2022',
     country: 'United States',
+    img: '',
     region: 'California',
-    price: '127,000',
+    vintage: 2024,
     rating: 4.5,
   },
 ];

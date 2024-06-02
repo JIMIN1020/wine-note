@@ -11,7 +11,7 @@ import ColorReview from './ColorReview';
 import FlavorReview from './FlavorReview';
 
 interface WineDetailModalProps {
-  setSelectedWine: React.Dispatch<React.SetStateAction<string | null>>;
+  setSelectedWine: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 const WineDetailModal = ({ setSelectedWine }: WineDetailModalProps) => {

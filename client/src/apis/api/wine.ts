@@ -1,6 +1,10 @@
 import { AxiosResponse } from 'axios';
 import { authInstance, baseInstance } from '../instance';
-import { CommonRes, WineSearchRes } from '../../types/api/response';
+import {
+  CommonRes,
+  GetAllWineRes,
+  WineSearchRes,
+} from '../../types/api/response';
 import { ERROR_ALERT } from '../../constants/message';
 import { AddWineNoteReq } from '../../types/api/request';
 
@@ -28,10 +32,12 @@ export const wineAPI = {
   },
   getAllWine: async () => {
     try {
-      const { data } = await authInstance.get('/wine?limit=5&page=1');
-      return data.result;
+      const { data }: AxiosResponse<GetAllWineRes> = await authInstance.get(
+        '/wine?limit=5&page=1'
+      );
+      return data;
     } catch (err) {
-      return false;
+      window.alert(ERROR_ALERT);
     }
   },
 };

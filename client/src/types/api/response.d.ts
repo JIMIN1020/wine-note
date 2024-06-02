@@ -21,3 +21,17 @@ export interface WineSearchResult {
 export interface WineSearchRes extends CommonRes {
   result: WineSearchResult[];
 }
+
+export interface WineListItem {
+  id: number;
+  name: string;
+  country: string;
+  region: string;
+  img: string;
+  vintage: number;
+  rating: number;
+}
+
+export interface GetAllWineRes extends CommonRes {
+  result: WineListItem[];
+}

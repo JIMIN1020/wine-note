@@ -4,11 +4,11 @@ import exImg from '../../assets/image/exImg.png';
 import Flag from './Flag';
 import { BiWon } from 'react-icons/bi';
 import { IoStar } from 'react-icons/io5';
-import { WineDataType } from '../../data/wineDummy';
 import { motion } from 'framer-motion';
+import { WineListItem } from '../../types/api/response';
 
 interface WineProps {
-  wineData: WineDataType;
+  wineData: WineListItem;
   onClick: () => void;
   layoutId?: string;
 }
@@ -29,7 +29,7 @@ const Wine = ({ wineData, onClick, layoutId }: WineProps) => {
         </Country>
         <Price>
           <BiWon />
-          <span>{wineData.price}</span>
+          <span>{wineData.vintage}</span>
         </Price>
       </TextContent>
       <Rating>
