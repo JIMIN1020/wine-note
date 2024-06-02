@@ -99,8 +99,8 @@ const login = async (email, password) => {
     }
   } catch (err) {
     throw new CustomError(
-      "이메일 또는 비밀번호를 다시 확인해주세요.",
-      StatusCodes.UNAUTHORIZED
+      StatusCodes.UNAUTHORIZED,
+      "이메일 또는 비밀번호를 다시 확인해주세요."
     );
   }
 };

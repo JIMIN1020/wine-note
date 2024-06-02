@@ -42,16 +42,18 @@ const SignupForm = () => {
 
   const handleJoin = async (data: SignUpFormType) => {
     if (canUse) {
-      const result = await userAPI.join(
-        data.nickname,
-        data.email,
-        data.password
-      );
-
-      if (result) {
-        // TODO: 회원가입 팝업
-        window.location.reload();
-      }
+      await userAPI
+        .join({
+          nickname: data.nickname,
+          email: data.email,
+          password: data.password,
+        })
+        .then((res) => {
+          if (res?.isSuccess) {
+            window.alert('성공적으로 회원가입 되었습니다.');
+            window.location.reload();
+          }
+        });
     } else {
       return;
     }
