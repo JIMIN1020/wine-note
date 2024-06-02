@@ -41,10 +41,10 @@ export const wineAPI = {
       window.alert(ERROR_ALERT);
     }
   },
-  getWineDetail: async (reviewId: number) => {
+  getWineDetail: async (wineId: number) => {
     try {
       const { data }: AxiosResponse<GetWineDetailRes> = await authInstance.get(
-        `/wine/${reviewId}`
+        `/wine/${wineId}`
       );
       return data;
     } catch (err) {
@@ -55,6 +55,16 @@ export const wineAPI = {
     try {
       const { data }: AxiosResponse<GetAllWineRes> = await authInstance.get(
         `/wine?limit=5&page=1&name=${name}`
+      );
+      return data;
+    } catch (err) {
+      window.alert(ERROR_ALERT);
+    }
+  },
+  deleteWine: async (wineId: number) => {
+    try {
+      const { data }: AxiosResponse<CommonRes> = await authInstance.delete(
+        `/wine/${wineId}`
       );
       return data;
     } catch (err) {

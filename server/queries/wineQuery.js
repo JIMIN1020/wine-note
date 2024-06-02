@@ -10,9 +10,9 @@ exports.deleteGrape = `DELETE FROM grape WHERE wine_id = ?`;
 exports.deleteWine = `DELETE FROM wine WHERE id = ?`;
 
 // 리뷰 전체 조회 쿼리
-exports.getAllReviews = `SELECT review.id, wine.name, wine.country, wine.region, wine.img, wine.vintage, review.rating FROM review LEFT JOIN wine ON wine.id = review.wine_id WHERE review.user_id = ?`;
+exports.getAllReviews = `SELECT review.wine_id, wine.name, wine.country, wine.region, wine.img, wine.vintage, review.rating FROM review LEFT JOIN wine ON wine.id = review.wine_id WHERE review.user_id = ?`;
 
 // 리뷰 상세 조회 쿼리
-exports.getReview = `SELECT id, wine_id, color, color_intensity, aroma, aroma_intensity, flavor, sweetness, acidity, tannin, body, rating, conclusion, created_at FROM review WHERE id = ?`;
+exports.getReview = `SELECT id, wine_id, color, color_intensity, aroma, aroma_intensity, flavor, sweetness, acidity, tannin, body, rating, conclusion, created_at FROM review WHERE wine_id = ?`;
 exports.getWine = `SELECT name, type, country, region, price, url, img, vintage FROM wine WHERE id = ?`;
 exports.getGrape = `SELECT name, percent FROM grape WHERE wine_id = ?`;

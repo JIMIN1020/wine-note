@@ -69,9 +69,9 @@ const deleteReview = async (req, res) => {
   try {
     const { wineId } = req.params;
     const accessToken = req.headers["authorization"].split(" ")[1];
-    verifyAccessToken(accessToken);
+    const userId = verifyAccessToken(accessToken);
 
-    const result = await wineService.deleteReview(wineId);
+    const result = await wineService.deleteReview(wineId, userId);
     res.status(StatusCodes.OK).json(result);
   } catch (err) {
     res.status(err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({

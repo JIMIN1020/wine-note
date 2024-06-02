@@ -17,11 +17,10 @@ const getAllReviews = async (sql, userId) => {
 };
 
 /* ----- 리뷰 상세 조회 API ----- */
-const getReview = async (reviewId) => {
+const getReview = async (wineId) => {
   try {
     // 리뷰 GET
-    const reviewResult = await conn.query(wineQuery.getReview, reviewId);
-    const wineId = reviewResult[0][0].wine_id;
+    const reviewResult = await conn.query(wineQuery.getReview, wineId);
 
     // 와인 정보 GET
     const wineResult = await conn.query(wineQuery.getWine, wineId);
@@ -100,12 +99,12 @@ const review = async (wine, review, userId) => {
 };
 
 /* ----- 리뷰 삭제 API ----- */
-const deleteReview = async (wineId) => {
+const deleteReview = async (wineId, userId) => {
   try {
     // 리뷰 DELETE
     await conn.query(wineQuery.deleteReview, [
       wineId,
-      "w+trJbtUGHf9ag==", // userId
+      userId, // userId
     ]);
 
     // 품종 DELETE

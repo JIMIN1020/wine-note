@@ -23,7 +23,7 @@ export interface WineSearchRes extends CommonRes {
 }
 
 export interface WineListItem {
-  id: number;
+  wine_id: number;
   name: string;
   country: string;
   region: string;
@@ -49,6 +49,8 @@ export interface WineReviewRes {
     grapes: Grape[];
   };
   review: {
+    id: number;
+    wine_id: number;
     color: string;
     color_intensity: string;
     aroma: string;

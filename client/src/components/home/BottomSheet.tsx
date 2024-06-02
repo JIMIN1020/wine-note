@@ -16,7 +16,7 @@ const BottomSheet: React.FC = () => {
           {wineDummy.map((data) => {
             return (
               <Wine
-                key={data.id}
+                key={data.wine_id}
                 wineData={data}
                 onClick={() => console.log('test')}
               />

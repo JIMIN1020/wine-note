@@ -9,6 +9,7 @@ import AromaReview from './AromaReview';
 import ColorReview from './ColorReview';
 import FlavorReview from './FlavorReview';
 import useStore from '../../../store/store';
+import DeleteButton from './DeleteButton';
 
 interface WineDetailModalProps {
   closeModal: () => void;
@@ -52,6 +53,7 @@ const WineDetailModal = ({ closeModal }: WineDetailModalProps) => {
           <AromaReview />
           <FlavorReview />
         </NoteWrapper>
+        <DeleteButton />
       </Modal>
     </Background>
   );
@@ -74,7 +76,7 @@ const Background = styled(motion.div)`
 
 const Modal = styled(motion.div)`
   width: 800px;
-  height: 800px;
+  height: 850px;
   background-color: ${({ theme }) => theme.colors.bg_white};
   border-radius: 12px;
   padding: 30px;

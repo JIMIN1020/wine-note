@@ -57,9 +57,9 @@ const WineContainer: React.FC = () => {
           wineList!.map((data: WineListItem) => {
             return (
               <Wine
-                key={data.id}
+                key={data.wine_id}
                 wineData={data}
-                onClick={() => handleClickWine(data.id)}
+                onClick={() => handleClickWine(data.wine_id)}
               />
             );
           })}
