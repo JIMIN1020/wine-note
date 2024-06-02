@@ -32,6 +32,12 @@ const SignupForm = () => {
     formState: { errors },
   } = methods;
 
+  const isEmpty =
+    !watch('nickname') ||
+    !watch('email') ||
+    !watch('password') ||
+    !watch('check');
+
   const email = watch('email');
   const password = watch('password');
 
@@ -80,7 +86,6 @@ const SignupForm = () => {
               inputName='nickname'
               placeholder='닉네임을 입력해주세요. (최대 10자)'
               options={{
-                required: true,
                 maxLength: {
                   value: 10,
                   message: '닉네임은 최대 10자입니다',
@@ -95,7 +100,6 @@ const SignupForm = () => {
                 inputName='email'
                 placeholder='이메일을 입력해주세요'
                 options={{
-                  required: true,
                   pattern: {
                     value: /\S+@\S+\.\S+/,
                     message: '이메일 형식에 맞지 않습니다',
@@ -120,10 +124,9 @@ const SignupForm = () => {
               inputName='password'
               placeholder='8~15자리 영문, 숫자로 비밀번호를 입력해주세요'
               options={{
-                required: true,
                 pattern: {
                   value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,15}$/,
-                  message: '영문, 숫자만 사용해주세요',
+                  message: '영문, 숫자를 조합해주세요',
                 },
                 minLength: {
                   value: 8,
@@ -143,7 +146,6 @@ const SignupForm = () => {
               inputName='check'
               placeholder='비밀번호를 한번 더 입력해주세요'
               options={{
-                required: true,
                 validate: (value) =>
                   value === password || '비밀번호가 일치하지 않습니다',
               }}
@@ -152,7 +154,12 @@ const SignupForm = () => {
           </Wrapper>
         </FormContainer>
 
-        <FormButton>회원가입</FormButton>
+        <FormButton
+          type='submit'
+          disabled={isEmpty || watch('password') !== watch('check') || !canUse}
+        >
+          회원가입
+        </FormButton>
       </Container>
     </FormProvider>
   );
