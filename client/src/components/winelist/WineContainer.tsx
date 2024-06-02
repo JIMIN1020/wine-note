@@ -13,6 +13,12 @@ const WineContainer: React.FC = () => {
   const { setSelectedWine, wineList, setWineList } = useStore();
   const [loading, setLoading] = useState<boolean>(true);
 
+  if (open) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+
   const getAllWineData = async () => {
     await wineAPI.getAllWine().then((res) => {
       if (res?.isSuccess) {

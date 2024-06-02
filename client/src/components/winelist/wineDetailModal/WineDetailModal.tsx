@@ -20,7 +20,6 @@ const WineDetailModal = ({ closeModal }: WineDetailModalProps) => {
 
   /* ----- 모달 바깥 클릭 시 닫힘 처리 ----- */
   useClickOutside(ref, () => closeModal());
-
   return (
     <Background
       variants={modalBackgroundVariants}
