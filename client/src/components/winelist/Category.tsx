@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { MdOutlineFormatListBulleted } from 'react-icons/md';
 import CategoryItem from './CategoryItem';
 import { CATEGORY } from '@/constants/category';
+import { useSearchParams } from 'react-router-dom';
+import { QUERY_STRING } from '@/constants/queryString';
 
 const Category = () => {
-  const [selected, setSelected] = useState<string>('All');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleClickCategory = (id: number) => {
+    const newQuery = new URLSearchParams(searchParams);
+    newQuery.set(QUERY_STRING.CATEGORY, id.toString());
+    setSearchParams(newQuery);
+  };
+
   return (
     <Container>
       <Title>
@@ -16,8 +25,8 @@ const Category = () => {
         {CATEGORY.map((data) => (
           <CategoryItem
             key={data.id}
-            isSelected={selected === data.label}
-            onClick={() => setSelected(data.label)}
+            isSelected={+searchParams.get(QUERY_STRING.CATEGORY)! === data.id}
+            onClick={() => handleClickCategory(data.id)}
             label={data.label}
             count={12}
           />

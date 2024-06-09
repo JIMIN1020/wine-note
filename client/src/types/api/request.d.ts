@@ -14,6 +14,13 @@ export interface Grape {
   percent: number;
 }
 
+export interface GetWinesParams {
+  category?: number;
+  name?: string;
+  page?: number;
+  limit?: number;
+}
+
 export interface AddWineNoteReq {
   wine: {
     name: string;

@@ -1,36 +1,29 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { IoIosSearch } from 'react-icons/io';
 import { IoSearchSharp } from 'react-icons/io5';
-import { wineAPI } from '../../apis/api/wine';
-import useStore from '../../store/store';
+import { useSearchParams } from 'react-router-dom';
+import { QUERY_STRING } from '@/constants/queryString';
 
 const SearchBar: React.FC = () => {
-  const { setWineList } = useStore();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [inputFocused, setInputFocused] = useState<boolean>(false);
   const [value, setValue] = useState<string>('');
 
-  const getAllWineData = async () => {
-    await wineAPI.getAllWine().then((res) => {
-      if (res?.isSuccess) {
-        setWineList(res!.result);
-      }
-    });
-  };
-
   const handleSearch = async () => {
-    await wineAPI.getWineSearchByName(value).then((res) => {
-      if (res?.isSuccess) {
-        setWineList(res!.result);
-      }
-    });
+    const newQuery = new URLSearchParams(searchParams);
+    newQuery.set(QUERY_STRING.NAME, value);
+    setSearchParams(newQuery);
   };
 
-  useEffect(() => {
-    if (value.trim() === '') {
-      getAllWineData();
+  const handleChange = (searchValue: string) => {
+    if (searchValue.trim() === '') {
+      const newQuery = new URLSearchParams(searchParams);
+      newQuery.delete(QUERY_STRING.NAME);
+      setSearchParams(newQuery);
     }
-  }, [value]);
+    setValue(searchValue);
+  };
 
   return (
     <Container>
@@ -44,7 +37,7 @@ const SearchBar: React.FC = () => {
           value={value}
           placeholder='와인명 검색'
           $inputFocused={inputFocused}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={(e) => handleChange(e.target.value)}
           onFocus={() => setInputFocused(true)}
           onBlur={() => (value ? {} : setInputFocused(false))}
         />

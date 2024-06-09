@@ -7,7 +7,7 @@ import {
   WineSearchRes,
 } from '../../types/api/response';
 import { ERROR_ALERT } from '../../constants/message';
-import { AddWineNoteReq } from '../../types/api/request';
+import { AddWineNoteReq, GetWinesParams } from '../../types/api/request';
 
 export const wineAPI = {
   getWineSearch: async (wineName: string) => {
@@ -31,10 +31,11 @@ export const wineAPI = {
       window.alert(ERROR_ALERT);
     }
   },
-  getAllWine: async () => {
+  getWines: async (params: GetWinesParams) => {
     try {
       const { data }: AxiosResponse<GetAllWineRes> = await authInstance.get(
-        '/wine?limit=5&page=1'
+        '/wine?limit=5&page=1',
+        { params: params }
       );
       return data;
     } catch (err) {
@@ -45,16 +46,6 @@ export const wineAPI = {
     try {
       const { data }: AxiosResponse<GetWineDetailRes> = await authInstance.get(
         `/wine/${wineId}`
-      );
-      return data;
-    } catch (err) {
-      window.alert(ERROR_ALERT);
-    }
-  },
-  getWineSearchByName: async (name: string) => {
-    try {
-      const { data }: AxiosResponse<GetAllWineRes> = await authInstance.get(
-        `/wine?limit=5&page=1&name=${name}`
       );
       return data;
     } catch (err) {

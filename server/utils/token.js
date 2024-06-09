@@ -18,7 +18,7 @@ async function createRefreshToken(userId) {
   try {
     // token 발행
     const refreshToken = jwt.sign({}, process.env.JWT_SECRET_KEY, {
-      expiresIn: "14d",
+      expiresIn: "14 days",
     });
 
     // db에 저장
@@ -54,6 +54,7 @@ async function verifyRefreshToken(refreshToken, userId) {
       try {
         // 1-1. refresh token이 만료되지 않은 경우 -> 재발급
         jwt.verify(refreshToken, process.env.JWT_SECRET_KEY); // refresh 토큰 만료 검증
+        console.log("good");
         const newAccess = createAccessToken(userId); // 새로운 토큰 발행
 
         return {

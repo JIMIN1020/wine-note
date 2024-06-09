@@ -13,8 +13,8 @@ const getAllReviews = async (req, res) => {
 
     let sql = wineQuery.getAllReviews;
 
-    if (category) {
-      sql += ` AND wine.country = ${category}`;
+    if (category && category != 0) {
+      sql += ` AND wine.type = ${category}`;
     } else if (name) {
       sql += ` AND wine.name LIKE '%${name}%'`;
     }

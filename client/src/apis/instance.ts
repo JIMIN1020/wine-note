@@ -62,15 +62,12 @@ authInstance.interceptors.response.use(
       const refreshToken = localStorage.getItem('refreshToken');
 
       // access token 재발급
-      const result = await baseInstance.get(
-        `http://localhost:4000/user/refresh`,
-        {
-          headers: {
-            authorization: `Bearer ${accessToken}`,
-            refresh: refreshToken,
-          },
-        }
-      );
+      const result = await baseInstance.get(`/user/refresh`, {
+        headers: {
+          authorization: `Bearer ${accessToken}`,
+          refresh: refreshToken,
+        },
+      });
 
       // 새로운 access token 발급된 경우
       if (result.status === 200) {

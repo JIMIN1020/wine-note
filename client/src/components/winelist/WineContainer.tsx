@@ -1,50 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
 import FilterSelect from '../common/FilterSelect';
 import Wine from '../common/Wine';
 import WineDetailModal from './wineDetailModal/WineDetailModal';
-import { wineAPI } from '../../apis/api/wine';
 import { WineListItem } from '../../types/api/response';
 import useStore from '../../store/store';
+import { useWines } from '@/hooks/useWines';
 
 const WineContainer: React.FC = () => {
-  const [open, setOpen] = useState<boolean>(false);
-  const { setSelectedWine, wineList, setWineList } = useStore();
-  const [loading, setLoading] = useState<boolean>(true);
+  const { handleClickWine, openWineModal, closeModal } = useWines();
+  const { wineList } = useStore();
 
-  if (open) {
+  if (openWineModal) {
     document.body.style.overflow = 'hidden';
   } else {
     document.body.style.overflow = 'auto';
   }
-
-  const getAllWineData = async () => {
-    await wineAPI.getAllWine().then((res) => {
-      if (res?.isSuccess) {
-        setWineList(res!.result);
-      }
-    });
-  };
-
-  const handleClickWine = async (id: number) => {
-    await wineAPI.getWineDetail(id).then((res) => {
-      if (res?.isSuccess) {
-        setSelectedWine(res!.result);
-        setOpen(true);
-      }
-    });
-  };
-
-  useEffect(() => {
-    getAllWineData();
-  }, []);
-
-  useEffect(() => {
-    if (wineList) {
-      setLoading(false);
-    }
-  }, [wineList]);
 
   return (
     <Container>
@@ -53,20 +25,19 @@ const WineContainer: React.FC = () => {
         <FilterSelect />
       </TopBar>
       <WineWrapper>
-        {!loading &&
-          wineList!.map((data: WineListItem) => {
-            return (
-              <Wine
-                key={data.wine_id}
-                wineData={data}
-                onClick={() => handleClickWine(data.wine_id)}
-              />
-            );
-          })}
+        {wineList!.map((data: WineListItem) => {
+          return (
+            <Wine
+              key={data.wine_id}
+              wineData={data}
+              onClick={() => handleClickWine(data.wine_id)}
+            />
+          );
+        })}
       </WineWrapper>
       {/* 와인 상세 모달 */}
       <AnimatePresence>
-        {open && <WineDetailModal closeModal={() => setOpen(false)} />}
+        {openWineModal && <WineDetailModal closeModal={closeModal} />}
       </AnimatePresence>
     </Container>
   );
