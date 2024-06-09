@@ -3,15 +3,15 @@ import NoteLayout from '../../layout/NoteLayout';
 import styled from 'styled-components';
 import TextLine from '../../common/TextLine';
 import CharacteristicChart from './CharacteristicChart';
-import useStore from '../../../store/store';
+import { useWine } from '@/hooks/useWine';
 
 const FlavorReview = () => {
-  const { selectedWine } = useStore();
+  const { wineDetailData } = useWine();
   return (
     <NoteLayout title='Flavor' sub='맛'>
       <Content>
         <CharacteristicChart />
-        <TextLine title='Flavor' text={selectedWine!.review.flavor} />
+        <TextLine title='Flavor' text={wineDetailData!.review.flavor} />
       </Content>
     </NoteLayout>
   );

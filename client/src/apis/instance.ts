@@ -55,6 +55,8 @@ authInstance.interceptors.response.use(
       response: { status },
     } = error;
 
+    console.log(config.url);
+
     // access token이 만료된 경우
     if (status === 401) {
       const originReq = config;
@@ -62,25 +64,26 @@ authInstance.interceptors.response.use(
       const refreshToken = localStorage.getItem('refreshToken');
 
       // access token 재발급
-      const result = await baseInstance.get(`/user/refresh`, {
-        headers: {
-          authorization: `Bearer ${accessToken}`,
-          refresh: refreshToken,
-        },
-      });
+      try {
+        const result = await baseInstance.get(`/user/refresh`, {
+          headers: {
+            authorization: `Bearer ${accessToken}`,
+            refresh: refreshToken,
+          },
+        });
 
-      // 새로운 access token 발급된 경우
-      if (result.status === 200) {
+        // 새로운 access token 발급된 경우
         const newAccessToken = result.data.accessToken; // 새로운 토큰 꺼내기
         localStorage.setItem('accessToken', newAccessToken); // localstorage에 저장
         originReq.headers['authorization'] = `Bearer ${newAccessToken}`; // 기존 요청 헤더에 담기
         return authInstance(originReq);
-      }
-      // access token 발급 실패한 경우 -> 재로그인
-      else {
+      } catch (err) {
+        // access token 발급 실패한 경우 -> 재로그인
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
+        window.alert('로그인 세션이 만료되었습니다. 다시 로그인해주세요.');
         window.location.replace('/login');
+        return Promise.reject(err);
       }
     }
 

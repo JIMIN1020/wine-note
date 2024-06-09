@@ -5,14 +5,15 @@ import FilterSelect from '../common/FilterSelect';
 import Wine from '../common/Wine';
 import WineDetailModal from './wineDetailModal/WineDetailModal';
 import { WineListItem } from '../../types/api/response';
-import useStore from '../../store/store';
 import { useWines } from '@/hooks/useWines';
+import useStore from '@/store/store';
 
 const WineContainer: React.FC = () => {
-  const { handleClickWine, openWineModal, closeModal } = useWines();
-  const { wineList } = useStore();
+  const { isLoading, wineData } = useWines();
+  const { selectedWine, setSelectedWine, openWineModal, setOpenWineModal } =
+    useStore();
 
-  if (openWineModal) {
+  if (selectedWine) {
     document.body.style.overflow = 'hidden';
   } else {
     document.body.style.overflow = 'auto';
@@ -21,24 +22,26 @@ const WineContainer: React.FC = () => {
   return (
     <Container>
       <TopBar>
-        <Total>총 {wineList?.length || 0}개의 와인 기록이 있습니다.</Total>
+        <Total>총 {wineData?.length || 0}개의 와인 기록이 있습니다.</Total>
         <FilterSelect />
       </TopBar>
       <WineWrapper>
-        {wineList!.map((data: WineListItem) => {
-          return (
-            <Wine
-              key={data.wine_id}
-              wineData={data}
-              onClick={() => handleClickWine(data.wine_id)}
-            />
-          );
-        })}
+        {!isLoading &&
+          wineData!.map((data: WineListItem) => {
+            return (
+              <Wine
+                key={data.wine_id}
+                wineData={data}
+                onClick={() => {
+                  setOpenWineModal(true);
+                  setSelectedWine(data.wine_id);
+                }}
+              />
+            );
+          })}
       </WineWrapper>
       {/* 와인 상세 모달 */}
-      <AnimatePresence>
-        {openWineModal && <WineDetailModal closeModal={closeModal} />}
-      </AnimatePresence>
+      <AnimatePresence>{openWineModal && <WineDetailModal />}</AnimatePresence>
     </Container>
   );
 };

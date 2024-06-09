@@ -1,20 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
 import ChartBar from './ChartBar';
-import useStore from '../../../store/store';
+import { useWine } from '@/hooks/useWine';
 
 const CharacteristicChart = () => {
-  const { selectedWine } = useStore();
+  const { wineDetailData } = useWine();
   return (
     <Container>
-      <ChartBar left='Light' right='Full' num={selectedWine!.review.body} />
-      <ChartBar left='Dry' right='Sweet' num={selectedWine!.review.sweetness} />
+      <ChartBar left='Light' right='Full' num={wineDetailData!.review.body} />
+      <ChartBar
+        left='Dry'
+        right='Sweet'
+        num={wineDetailData!.review.sweetness}
+      />
       <ChartBar
         left='Smooth'
         right='Tannic'
-        num={selectedWine!.review.tannin}
+        num={wineDetailData!.review.tannin}
       />
-      <ChartBar left='Soft' right='Acidic' num={selectedWine!.review.acidity} />
+      <ChartBar
+        left='Soft'
+        right='Acidic'
+        num={wineDetailData!.review.acidity}
+      />
     </Container>
   );
 };

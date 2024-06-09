@@ -2,19 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import TextLine from '../../common/TextLine';
 import NoteLayout from '../../layout/NoteLayout';
-import useStore from '../../../store/store';
 import { AROMA_INTENSITY, AromaKeys } from '../../../constants/aroma';
+import { useWine } from '@/hooks/useWine';
 
 const AromaReview = () => {
-  const { selectedWine } = useStore();
+  const { wineDetailData } = useWine();
   return (
     <NoteLayout title='Aroma' sub='향'>
       <Content>
         <TextLine
           title='Intensity'
-          text={`${selectedWine!.review.aroma_intensity} - ${AROMA_INTENSITY[selectedWine!.review.aroma_intensity as AromaKeys]}`}
+          text={`${wineDetailData!.review.aroma_intensity} - ${AROMA_INTENSITY[wineDetailData!.review.aroma_intensity as AromaKeys]}`}
         />
-        <TextLine title='Aroma' text={selectedWine!.review.aroma} />
+        <TextLine title='Aroma' text={wineDetailData!.review.aroma} />
       </Content>
     </NoteLayout>
   );

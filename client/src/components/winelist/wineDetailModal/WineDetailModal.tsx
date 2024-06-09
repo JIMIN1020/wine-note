@@ -10,17 +10,16 @@ import ColorReview from './ColorReview';
 import FlavorReview from './FlavorReview';
 import useStore from '../../../store/store';
 import DeleteButton from './DeleteButton';
+import { useWine } from '@/hooks/useWine';
 
-interface WineDetailModalProps {
-  closeModal: () => void;
-}
-
-const WineDetailModal = ({ closeModal }: WineDetailModalProps) => {
-  const { selectedWine } = useStore();
+const WineDetailModal = () => {
   const ref = useRef<HTMLDivElement | null>(null); // 모달에 대한 ref
+  const { setOpenWineModal } = useStore();
+  const { wineDetailData, isLoading } = useWine();
 
   /* ----- 모달 바깥 클릭 시 닫힘 처리 ----- */
-  useClickOutside(ref, () => closeModal());
+  useClickOutside(ref, () => setOpenWineModal(false));
+
   return (
     <Background
       variants={modalBackgroundVariants}
@@ -39,21 +38,25 @@ const WineDetailModal = ({ closeModal }: WineDetailModalProps) => {
           damping: 20,
         }}
       >
-        <WineInfo />
-        <Conclusion>
-          <h5>MY REVIEW</h5>
-          <p>{selectedWine!.review.conclusion}</p>
-        </Conclusion>
-        <NoteWrapper>
-          <NoteTitle>
-            <CgNotes size={20} style={{ strokeWidth: '0.5px' }} />
-            Tasting Note
-          </NoteTitle>
-          <ColorReview />
-          <AromaReview />
-          <FlavorReview />
-        </NoteWrapper>
-        <DeleteButton />
+        {!isLoading && (
+          <>
+            <WineInfo />
+            <Conclusion>
+              <h5>MY REVIEW</h5>
+              <p>{wineDetailData!.review.conclusion}</p>
+            </Conclusion>
+            <NoteWrapper>
+              <NoteTitle>
+                <CgNotes size={20} style={{ strokeWidth: '0.5px' }} />
+                Tasting Note
+              </NoteTitle>
+              <ColorReview />
+              <AromaReview />
+              <FlavorReview />
+            </NoteWrapper>
+            <DeleteButton />
+          </>
+        )}
       </Modal>
     </Background>
   );

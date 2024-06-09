@@ -2,20 +2,20 @@ import React from 'react';
 import NoteLayout from '../../layout/NoteLayout';
 import TextLine from '../../common/TextLine';
 import styled from 'styled-components';
-import useStore from '../../../store/store';
+import { useWine } from '@/hooks/useWine';
 
 const ColorReview = () => {
-  const { selectedWine } = useStore();
+  const { wineDetailData } = useWine();
   return (
     <NoteLayout title='Color' sub='색'>
       <Content>
         <Wrapper>
           <TextLine title='Color' />
-          <Color $color={selectedWine!.review.color} />
+          <Color $color={wineDetailData!.review.color} />
         </Wrapper>
         <TextLine
           title='Intensity'
-          text={selectedWine!.review.color_intensity}
+          text={wineDetailData!.review.color_intensity}
         />
       </Content>
     </NoteLayout>

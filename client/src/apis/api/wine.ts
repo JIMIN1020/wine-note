@@ -38,8 +38,10 @@ export const wineAPI = {
         { params: params }
       );
       return data;
-    } catch (err) {
-      window.alert(ERROR_ALERT);
+    } catch (err: any) {
+      if (err.response.status !== 403) {
+        window.alert(ERROR_ALERT);
+      }
     }
   },
   getWineDetail: async (wineId: number) => {

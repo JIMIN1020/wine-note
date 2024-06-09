@@ -5,13 +5,12 @@ import { BiWon } from 'react-icons/bi';
 import RatingStar from './RatingStar';
 import { LuLink, LuGrape } from 'react-icons/lu';
 import { MdOutlineCalendarMonth } from 'react-icons/md';
-import useStore from '../../../store/store';
 import { WINE_TYPE } from '../../../constants/wineType';
 import WineBottle from '../../../assets/image/wine-bottle.svg';
+import { useWine } from '@/hooks/useWine';
 
 const WineInfo = () => {
-  const { selectedWine } = useStore();
-
+  const { wineDetailData } = useWine();
   const formatGrapes = (grapes: { name: string; percent: number }[]) => {
     return grapes.length === 1 && grapes[0].name === ''
       ? '-'
@@ -21,40 +20,43 @@ const WineInfo = () => {
   return (
     <WineContainer>
       <WineImgBox>
-        <img src={selectedWine!.wine.img || WineBottle} alt='wine' />
+        <img src={wineDetailData!.wine.img || WineBottle} alt='wine' />
       </WineImgBox>
       <Content>
         <SmallHead>
-          <span>{WINE_TYPE[selectedWine!.wine.type].label}</span> •{' '}
-          {selectedWine?.review.created_at.split(' ')[0]}
+          <span>{WINE_TYPE[wineDetailData!.wine.type].label}</span> •{' '}
+          {wineDetailData!.review.created_at.split(' ')[0]}
         </SmallHead>
-        <WineName>{selectedWine!.wine.name}</WineName>
+        <WineName>{wineDetailData!.wine.name}</WineName>
         <Rating>
-          <h3>{selectedWine!.review.rating.toFixed(1)}</h3>
-          <RatingStar rating={selectedWine!.review.rating} />
+          <h3>{wineDetailData!.review.rating.toFixed(1)}</h3>
+          <RatingStar rating={wineDetailData!.review.rating} />
         </Rating>
         <DetailWrapper>
           <Country>
-            <Flag countryName={selectedWine!.wine.country || ''} size='18px' />
+            <Flag
+              countryName={wineDetailData!.wine.country || ''}
+              size='18px'
+            />
             <span>
-              {selectedWine!.wine.region}, {selectedWine!.wine.country}
+              {wineDetailData!.wine.region}, {wineDetailData!.wine.country}
             </span>
           </Country>
           <Grapes>
             <LuGrape size={18} />
-            <span>{formatGrapes(selectedWine!.wine.grapes)}</span>
+            <span>{formatGrapes(wineDetailData!.wine.grapes)}</span>
           </Grapes>
 
           <Vintage>
             <MdOutlineCalendarMonth size={20} />
-            <span>{selectedWine!.wine.vintage} Vintage</span>
+            <span>{wineDetailData!.wine.vintage} Vintage</span>
           </Vintage>
           <Price>
             <BiWon size={20} />
-            <span>{selectedWine!.wine.price.toLocaleString()}</span>
+            <span>{wineDetailData!.wine.price.toLocaleString()}</span>
           </Price>
 
-          <VivinoLink href={selectedWine?.wine.url} target='_blank'>
+          <VivinoLink href={wineDetailData!.wine.url} target='_blank'>
             <LuLink size={18} />
             Vivino
           </VivinoLink>
