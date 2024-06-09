@@ -238,12 +238,6 @@ const run = async (
           }
         } else if (response.status() === 429) {
           pause++;
-          await page.waitForTimeout(pause * PAUSE_MULTIPLIER * 1000);
-          console.log(
-            `Waited for ${
-              pause * PAUSE_MULTIPLIER
-            } seconds on the page ${index}`
-          );
         } else {
           // return some error info
           result.http_status = response.status(); // http status

@@ -8,7 +8,6 @@ export const useWine = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['wineDetail', selectedWine],
     queryFn: async () => {
-      console.log('called!');
       return wineAPI.getWineDetail(selectedWine!).then((res) => res?.result);
     },
     enabled: selectedWine !== null,

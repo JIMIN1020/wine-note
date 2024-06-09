@@ -1,14 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import ResultBox from './ResultBox';
 import { AnimatePresence, motion } from 'framer-motion';
 import useClickOutside from '../../../hooks/useClickOutside';
 import { IoSearchSharp } from 'react-icons/io5';
 import { modalBackgroundVariants } from '../../../styles/motionVariants';
-import { WineDataType } from '../../../types/wineType';
 import { BeatLoader } from 'react-spinners';
-import { wineAPI } from '../../../apis/api/wine';
-import { getWineData } from '../../../apis/services/wine';
+import { useWineSearch } from '@/hooks/useWineSearch';
 
 interface SearchModalProps {
   setOpenSearchModal: (isOpen: boolean) => void;
@@ -16,26 +14,12 @@ interface SearchModalProps {
 
 const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [resultOpen, setResultOpen] = useState<boolean>(false);
+  const { isLoading, data, triggerSearch, isError, openResult } =
+    useWineSearch();
   const [wineName, setWineName] = useState<string>('');
-  const [wineData, setWineData] = useState<WineDataType[] | undefined>(
-    undefined
-  );
-  const [error, setError] = useState<boolean>(false);
 
   /* ----- 모달 바깥 클릭 시 닫힘 처리 ----- */
   useClickOutside(ref, () => setOpenSearchModal(false));
-
-  useEffect(() => {
-    if (wineData) {
-      setResultOpen(true);
-    }
-  }, [wineData]);
-
-  useEffect(() => {
-    setError(false);
-  }, [wineName]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
@@ -44,21 +28,10 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
   };
 
   /* ----- vivino 검색 함수 ----- */
-  const handleSearch = async () => {
-    // 입력값 검증
-    if (wineName.trim() === '') {
-      return;
+  const handleSearch = () => {
+    if (wineName.trim() !== '') {
+      triggerSearch(wineName);
     }
-
-    // 결과 리셋 + 로딩 시작
-    setResultOpen(false);
-    setLoading(true);
-
-    // vivino api
-    await wineAPI
-      .getWineSearch(wineName)
-      .then((res) => res && getWineData(res))
-      .then((res) => setWineData(res));
   };
 
   return (
@@ -97,11 +70,11 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
                 placeholder='빈티지를 제외한 와인 이름을 영문으로 작성해주세요.'
               />
               <StyledButton
-                disabled={loading}
+                disabled={isLoading}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSearch}
               >
-                {loading ? (
+                {isLoading ? (
                   <BeatLoader
                     color='#ffffff'
                     margin={2}
@@ -113,11 +86,11 @@ const SearchModal = ({ setOpenSearchModal }: SearchModalProps) => {
                 )}
               </StyledButton>
             </InputWrapper>
-            <Message>{error ? '다시 시도해주세요' : ''}</Message>
+            <Message>{isError ? '다시 시도해주세요' : ''}</Message>
           </Wrapper>
         </SearchBox>
         <AnimatePresence>
-          {resultOpen && <ResultBox wineData={wineData} />}
+          {openResult && !isLoading && <ResultBox wineData={data} />}
         </AnimatePresence>
       </Modal>
     </Background>
