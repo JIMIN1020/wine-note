@@ -47,14 +47,13 @@ async function verifyRefreshToken(refreshToken, userId) {
   try {
     // token 가져오기
     const result = await conn.query(userQuery.getRefresh, userId);
-    const originRefresh = result[0][0];
+    const originRefresh = result[0][0].refresh;
 
     // 1. 일치하는 경우
     if (originRefresh === refreshToken) {
       try {
         // 1-1. refresh token이 만료되지 않은 경우 -> 재발급
         jwt.verify(refreshToken, process.env.JWT_SECRET_KEY); // refresh 토큰 만료 검증
-        console.log("good");
         const newAccess = createAccessToken(userId); // 새로운 토큰 발행
 
         return {
@@ -65,7 +64,7 @@ async function verifyRefreshToken(refreshToken, userId) {
       } catch (err) {
         // 1-2. refresh token이 만료된 경우 -> 재로그인 요청
         throw new CustomError(
-          StatusCodes.UNAUTHORIZED,
+          StatusCodes.FORBIDDEN,
           "로그인 세션이 만료되었습니다."
         );
       }
@@ -78,7 +77,7 @@ async function verifyRefreshToken(refreshToken, userId) {
       );
     }
   } catch (err) {
-    return err;
+    throw err;
   }
 }
 

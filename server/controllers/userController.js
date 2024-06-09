@@ -76,15 +76,7 @@ const refresh = [
       const refreshToken = req.headers["refresh"];
 
       // access token decoding
-      const userId = verifyAccessToken(accessToken);
-
-      // decoding 결과 없는 경우
-      if (!userId) {
-        throw new CustomError(
-          StatusCodes.BAD_REQUEST,
-          "잘못된 access token입니다."
-        );
-      }
+      const { userId } = jwt.decode(accessToken);
 
       // refresh token 검증
       const result = await verifyRefreshToken(refreshToken, userId);
