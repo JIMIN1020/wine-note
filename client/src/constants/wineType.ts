@@ -43,3 +43,15 @@ export const WINE_TYPE: {
     label: '주정강화 와인 (White)',
   },
 };
+
+export const WINE_TYPE_ARRAY = [
+  { id: 1, type: 'red', label: '레드 와인' },
+  { id: 2, type: 'white', label: '화이트 와인' },
+  { id: 3, type: 'rose', label: '로제 와인' },
+  { id: 4, type: 'white', label: '스파클링 와인' },
+  { id: 5, type: 'rose', label: '로제 스파클링 와인' },
+  { id: 6, type: 'red', label: '디저트 와인 (Red)' },
+  { id: 7, type: 'white', label: '디저트 와인 (White)' },
+  { id: 8, type: 'red', label: '주정강화 와인 (Red)' },
+  { id: 9, type: 'white', label: '주정강화 와인 (White)' },
+];

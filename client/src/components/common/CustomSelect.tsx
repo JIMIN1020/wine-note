@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import {
   getTypeFromId,
   getLabelFromId,
-  wineTypeOptions,
   vintageOptions,
 } from '../../data/selectOptionData';
 import { MdArrowForwardIos } from 'react-icons/md';
@@ -12,6 +11,7 @@ import { wineColor } from '../../data/steps/step2-data';
 import { WineColorDataType } from '../../types/formType';
 import useClickOutside from '../../hooks/useClickOutside';
 import { AnimatePresence, motion } from 'framer-motion';
+import { WINE_TYPE_ARRAY } from '../../constants/wineType';
 
 interface CustomSelectProps {
   type: 'wine type' | 'vintage';
@@ -62,7 +62,7 @@ const CustomSelect = ({ type }: CustomSelectProps) => {
             transition={{ type: 'spring', stiffness: 300, damping: 24 }}
           >
             {type === 'wine type'
-              ? wineTypeOptions.map((data) => {
+              ? WINE_TYPE_ARRAY.map((data) => {
                   return (
                     <Option key={data.id} onClick={() => onClickType(data.id)}>
                       {data.label}

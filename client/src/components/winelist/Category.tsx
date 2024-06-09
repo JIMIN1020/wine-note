@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { MdOutlineFormatListBulleted } from 'react-icons/md';
-import { category } from '../../data/categoryData';
 import CategoryItem from './CategoryItem';
+import { CATEGORY } from '@/constants/category';
 
 const Category = () => {
   const [selected, setSelected] = useState<string>('All');
@@ -13,7 +13,7 @@ const Category = () => {
         Category
       </Title>
       <Wrapper>
-        {category.map((data) => (
+        {CATEGORY.map((data) => (
           <CategoryItem
             key={data.id}
             isSelected={selected === data.label}

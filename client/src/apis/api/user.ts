@@ -17,7 +17,6 @@ export const userAPI = {
         return data;
       }
     } catch (err: any) {
-      console.log(err);
       if (err.response.status === 401) {
         return err.response.data;
       } else {

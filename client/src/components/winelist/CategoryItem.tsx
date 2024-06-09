@@ -1,9 +1,8 @@
 import React from 'react';
-import Flag from '../common/Flag';
 import styled from 'styled-components';
 import { BiCategory } from 'react-icons/bi';
-import { IoEarth } from 'react-icons/io5';
 import { motion } from 'framer-motion';
+import { FaWineGlassAlt } from 'react-icons/fa';
 
 interface CategoryItemProps {
   label: string;
@@ -25,12 +24,11 @@ const CategoryItem = ({
       whileTap={{ scale: 0.97 }}
     >
       <FlagAndName>
-        {label === 'All' && <BiCategory size={16} />}
-        {label === '기타' && <IoEarth size={16} />}
-        {label !== 'All' && label !== '기타' && (
-          <Flag countryName={label} size='16px' />
+        {label === 'All' ? (
+          <BiCategory size={16} />
+        ) : (
+          <FaWineGlassAlt size={16} />
         )}
-
         <h5>{label}</h5>
       </FlagAndName>
       <span>{count}</span>

@@ -7,14 +7,14 @@ import Step4 from '../steps/Step4';
 import Step5 from '../steps/Step5';
 import { IoMdArrowForward, IoMdArrowBack, IoMdCheckmark } from 'react-icons/io';
 import { FormProvider, useForm } from 'react-hook-form';
-import { wineTypeOptions } from '../../data/selectOptionData';
-import { TastingFormType } from '../../types/formType';
+import { TastingFormType } from '@/types/formType';
 import { motion } from 'framer-motion';
-import { WineDataType } from '../../types/wineType';
-import wineBottleImg from '../../assets/image/wine-bottle.svg';
-import { wineAPI } from '../../apis/api/wine';
+import { WineDataType } from '@/types/wineType';
+import wineBottleImg from '@/assets/image/wine-bottle.svg';
+import { wineAPI } from '@/apis/api/wine';
 import { useNavigate } from 'react-router-dom';
-import { AddWineNoteReq } from '../../types/api/request';
+import { AddWineNoteReq } from '@/types/api/request';
+import { WINE_TYPE_ARRAY } from '@/constants/wineType';
 
 interface ReviewBoxProps {
   step: number;
@@ -34,7 +34,7 @@ const ReviewBox = ({ step, setStep, wineData }: ReviewBoxProps) => {
         region: wineData.region,
         price: 0,
         vintage: 2024,
-        wineType: wineTypeOptions[0].id,
+        wineType: WINE_TYPE_ARRAY[0].id,
         grapes: [
           {
             name: '',
