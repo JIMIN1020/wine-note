@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const baseInstance = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -17,7 +17,7 @@ baseInstance.interceptors.response.use(
 );
 
 export const authInstance = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

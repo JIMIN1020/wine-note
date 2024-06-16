@@ -1,13 +1,13 @@
-import { AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { authInstance, baseInstance } from '../instance';
 import {
-  CommonRes,
   GetAllWineRes,
   GetWineDetailRes,
   WineSearchRes,
-} from '../../types/api/response';
+} from '@/models/wine.model';
 import { ERROR_ALERT } from '../../constants/message';
-import { AddWineNoteReq, GetWinesParams } from '../../types/api/request';
+import { AddWineNoteReq, GetWinesParams } from '@/models/wine.model';
+import { CommonRes } from '@/models/common.model';
 
 export const wineAPI = {
   getWineSearch: async (wineName: string) => {
@@ -38,9 +38,11 @@ export const wineAPI = {
         { params: params }
       );
       return data;
-    } catch (err: any) {
-      if (err.response.status !== 403) {
-        window.alert(ERROR_ALERT);
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        if (err.response?.status !== 403) {
+          window.alert(ERROR_ALERT);
+        }
       }
     }
   },

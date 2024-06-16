@@ -1,4 +1,4 @@
-import { WineSearchRes } from '../../types/api/response';
+import { WineSearchRes } from '@/models/wine.model';
 
 export const getWineData = (response: WineSearchRes) => {
   if (response.isSuccess) {

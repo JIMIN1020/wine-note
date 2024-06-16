@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Flag from './Flag';
 import { IoStar } from 'react-icons/io5';
 import { motion } from 'framer-motion';
-import { WineListItem } from '../../types/api/response';
+import { WineListItem } from '@/models/wine.model';
 import { MdOutlineCalendarMonth } from 'react-icons/md';
 import WineBottle from '../../assets/image/wine-bottle.svg';
 

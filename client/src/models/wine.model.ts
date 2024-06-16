@@ -1,10 +1,42 @@
-export interface CommonRes {
-  isSuccess: boolean;
-  message?: string;
+import { CommonRes } from './common.model';
+
+export interface Grape {
+  name: string;
+  percent: number;
 }
 
-export interface EmailCheckRes extends CommonRes {
-  result: boolean;
+export interface GetWinesParams {
+  category?: number;
+  name?: string;
+  page?: number;
+  limit?: number;
+}
+
+export interface AddWineNoteReq {
+  wine: {
+    name: string;
+    country: string;
+    region: string;
+    price: number;
+    url: string;
+    img: string | null;
+    vintage: number;
+    type: number;
+    grapes: Grape[];
+  };
+  review: {
+    color: string;
+    color_intensity: string;
+    aroma: string;
+    aroma_intensity: string;
+    flavor: string;
+    sweetness: number;
+    acidity: number;
+    tannin: number;
+    body: number;
+    rating: number;
+    conclusion: string;
+  };
 }
 
 export interface WineSearchResult {

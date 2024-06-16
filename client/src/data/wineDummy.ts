@@ -1,4 +1,4 @@
-import { WineListItem } from '../types/api/response';
+import { WineListItem } from '@/models/wine.model';
 
 export const wineDummy: WineListItem[] = [
   {

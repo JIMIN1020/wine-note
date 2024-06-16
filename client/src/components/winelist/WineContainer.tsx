@@ -4,7 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import FilterSelect from '../common/FilterSelect';
 import Wine from '../common/Wine';
 import WineDetailModal from './wineDetailModal/WineDetailModal';
-import { WineListItem } from '../../types/api/response';
+import { WineListItem } from '@/models/wine.model';
 import { useWines } from '@/hooks/useWines';
 import useWineStore from '@/store/wineStore';
 import useModalStore from '@/store/modalStore';

@@ -13,7 +13,7 @@ import { WineDataType } from '@/types/wineType';
 import wineBottleImg from '@/assets/image/wine-bottle.svg';
 import { wineAPI } from '@/apis/api/wine';
 import { useNavigate } from 'react-router-dom';
-import { AddWineNoteReq } from '@/types/api/request';
+import { AddWineNoteReq } from '@/models/wine.model';
 import { WINE_TYPE_ARRAY } from '@/constants/wineType';
 
 interface ReviewBoxProps {

@@ -1,9 +1,10 @@
 import { baseInstance } from '../instance';
 import { processUserData } from '../services/user';
-import { JoinReq, LoginReq } from '../../types/api/request';
+import { JoinReq, LoginReq } from '@/models/user.model';
 import { AxiosResponse } from 'axios';
-import { CommonRes, EmailCheckRes } from '../../types/api/response';
+import { EmailCheckRes } from '@/models/user.model';
 import { ERROR_ALERT } from '../../constants/message';
+import { CommonRes } from '@/models/common.model';
 
 export const userAPI = {
   login: async (formData: LoginReq) => {
