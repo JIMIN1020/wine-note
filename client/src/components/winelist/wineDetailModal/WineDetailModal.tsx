@@ -8,14 +8,14 @@ import WineInfo from './WineInfo';
 import AromaReview from './AromaReview';
 import ColorReview from './ColorReview';
 import FlavorReview from './FlavorReview';
-import useStore from '../../../store/store';
 import DeleteButton from './DeleteButton';
 import { useWine } from '@/hooks/useWine';
+import useModalStore from '../../../store/modalStore';
 
 const WineDetailModal = () => {
   const ref = useRef<HTMLDivElement | null>(null); // 모달에 대한 ref
-  const { setOpenWineModal } = useStore();
-  const { wineDetailData, isLoading } = useWine();
+  const setOpenWineModal = useModalStore((state) => state.setOpenWineModal);
+  const { wineDetailData, isLoading, handleDelete } = useWine();
 
   /* ----- 모달 바깥 클릭 시 닫힘 처리 ----- */
   useClickOutside(ref, () => setOpenWineModal(false));
@@ -54,7 +54,7 @@ const WineDetailModal = () => {
               <AromaReview />
               <FlavorReview />
             </NoteWrapper>
-            <DeleteButton />
+            <DeleteButton onClick={handleDelete} />
           </>
         )}
       </Modal>

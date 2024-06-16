@@ -1,9 +1,9 @@
 import { wineAPI } from '@/apis/api/wine';
-import useStore from '@/store/store';
 import { useQuery } from '@tanstack/react-query';
+import useWineStore from '@/store/wineStore';
 
 export const useWine = () => {
-  const { selectedWine } = useStore();
+  const selectedWine = useWineStore((state) => state.selectedWine);
 
   const { data, isLoading } = useQuery({
     queryKey: ['wineDetail', selectedWine],
@@ -13,8 +13,17 @@ export const useWine = () => {
     enabled: selectedWine !== null,
   });
 
+  const handleDelete = async () => {
+    await wineAPI.deleteWine(selectedWine!).then((res) => {
+      if (res?.isSuccess) {
+        window.location.reload();
+      }
+    });
+  };
+
   return {
     wineDetailData: data,
     isLoading,
+    handleDelete,
   };
 };

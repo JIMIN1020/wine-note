@@ -1,22 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-// import useStore from '../../../store/store';
-// import { wineAPI } from '../../../apis/api/wine';
 
-function DeleteButton() {
-  // const { selectedWine } = useStore();
-
-  // const handleDelete = async () => {
-  //   await wineAPI.deleteWine(selectedWine!.review.wine_id).then((res) => {
-  //     if (res?.isSuccess) {
-  //       window.location.reload();
-  //     }
-  //   });
-  // };
-
+function DeleteButton({
+  ...props
+}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <Button>
+    <Button {...props}>
       <RiDeleteBin6Line size={18} />
       리뷰 삭제
     </Button>

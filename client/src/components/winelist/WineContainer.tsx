@@ -6,12 +6,13 @@ import Wine from '../common/Wine';
 import WineDetailModal from './wineDetailModal/WineDetailModal';
 import { WineListItem } from '../../types/api/response';
 import { useWines } from '@/hooks/useWines';
-import useStore from '@/store/store';
+import useWineStore from '@/store/wineStore';
+import useModalStore from '@/store/modalStore';
 
-const WineContainer: React.FC = () => {
+const WineContainer = () => {
   const { isLoading, wineData } = useWines();
-  const { selectedWine, setSelectedWine, openWineModal, setOpenWineModal } =
-    useStore();
+  const { selectedWine, setSelectedWine } = useWineStore();
+  const { openWineModal, setOpenWineModal } = useModalStore();
 
   if (selectedWine) {
     document.body.style.overflow = 'hidden';
