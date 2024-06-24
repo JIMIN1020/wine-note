@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/userController");
 
+router.get("/", userController.getUser); // 프로필 조회 API
 router.post("/join", userController.join); // 회원가입 API
 router.post("/join/emailCheck", userController.emailCheck); // 이메일 중복 확인 API
 router.post("/login", userController.login); // 로그인 API

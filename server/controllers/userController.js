@@ -5,6 +5,21 @@ const jwt = require("jsonwebtoken");
 const { verifyRefreshToken, verifyAccessToken } = require("../utils/token");
 const CustomError = require("../utils/CustomError");
 
+/* ----- 프로필 조회 API ----- */
+const getUser = async (req, res) => {
+  try {
+    const accessToken = req.headers["authorization"].split(" ")[1];
+    const userId = verifyAccessToken(accessToken);
+    const result = await userService.getUser(userId);
+    res.status(StatusCodes.OK).json(result);
+  } catch (err) {
+    res.status(err.statusCode || StatusCodes.INTERNAL_SERVER_ERROR).json({
+      isSuccess: false,
+      message: err.message,
+    });
+  }
+};
+
 /* ----- 화원가입 API ----- */
 const join = [
   validation.emailValidation(),
@@ -91,6 +106,7 @@ const refresh = [
 ];
 
 module.exports = {
+  getUser,
   join,
   emailCheck,
   login,

@@ -6,6 +6,28 @@ const userQuery = require("../queries/userQuery");
 const crypto = require("crypto");
 const { createAccessToken, createRefreshToken } = require("../utils/token");
 
+/* ----- 프로필 조회 API ----- */
+const getUser = async (userId) => {
+  try {
+    const result = await conn.query(userQuery.getUserById, userId);
+    const userData = result[0][0];
+
+    if (!userData) {
+      throw new CustomError(StatusCodes.NOT_FOUND, "존재하지 않는 유저입니다.");
+    } else {
+      return {
+        isSuccess: true,
+        result: {
+          email: userData.email,
+          name: userData.nickname,
+        },
+      };
+    }
+  } catch (err) {
+    throw err;
+  }
+};
+
 /* ----- 화원가입 API ----- */
 const join = async (email, password, nickname) => {
   try {
@@ -106,6 +128,7 @@ const login = async (email, password) => {
 };
 
 module.exports = {
+  getUser,
   join,
   emailCheck,
   login,
