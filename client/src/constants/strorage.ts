@@ -1,0 +1,4 @@
+export const STORAGE = {
+  ACCESS_KEY: '@WINE_NOTE_ACCESS_TOKEN',
+  REFRESH_KEY: '@WINE_NOTE_REFRESH_TOKEN',
+} as const;

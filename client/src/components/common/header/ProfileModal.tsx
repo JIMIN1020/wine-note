@@ -1,17 +1,21 @@
 import { motion } from 'framer-motion';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import useClickOutside from '../../hooks/useClickOutside';
+import useClickOutside from '@/hooks/useClickOutside';
 import { MdLogout, MdOutlinePersonOff } from 'react-icons/md';
+import { useUserInfo } from '@/hooks/useUserInfo';
 
 interface Props {
   closeModal: () => void;
 }
 
 const ProfileModal = ({ closeModal }: Props) => {
+  const { userInfo } = useUserInfo();
   const ref = useRef<HTMLDivElement | null>(null); // 모달에 대한 ref
 
   useClickOutside(ref, () => closeModal());
+
+  if (!userInfo) return null;
 
   return (
     <Modal
@@ -21,8 +25,8 @@ const ProfileModal = ({ closeModal }: Props) => {
       exit={{ opacity: 0, y: 10 }}
     >
       <UserInfo>
-        <h4>류지민</h4>
-        <span>jimins4920@gmail.com</span>
+        <h4>{userInfo.name}</h4>
+        <span>{userInfo.email}</span>
       </UserInfo>
       <ButtonWrapper>
         <Button>
@@ -56,6 +60,7 @@ const Modal = styled(motion.div)`
   position: absolute;
   top: 45px;
   right: 0;
+  z-index: 100;
 `;
 
 const UserInfo = styled.div`
@@ -97,6 +102,7 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   gap: 6px;
+  cursor: pointer;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.bg_lightgray};

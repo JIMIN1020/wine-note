@@ -1,6 +1,6 @@
-import { baseInstance } from '../instance';
+import { authInstance, baseInstance } from '../instance';
 import { processUserData } from '../services/user';
-import { JoinReq, LoginReq } from '@/models/user.model';
+import { JoinReq, LoginReq, UserInfoRes } from '@/models/user.model';
 import { AxiosResponse } from 'axios';
 import { EmailCheckRes } from '@/models/user.model';
 import { ERROR_ALERT } from '../../constants/message';
@@ -44,6 +44,15 @@ export const userAPI = {
           email,
         }
       );
+      return data;
+    } catch (err) {
+      window.alert(ERROR_ALERT);
+    }
+  },
+  getUserInfo: async () => {
+    try {
+      const { data }: AxiosResponse<UserInfoRes | CommonRes> =
+        await authInstance.get('/user');
       return data;
     } catch (err) {
       window.alert(ERROR_ALERT);

@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { FaWineGlass } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
-import { defaultWidth, flexCenter } from '../../styles/GlobalStyle';
+import { defaultWidth, flexCenter } from '../../../styles/GlobalStyle';
 import { BiArchive, BiChart } from 'react-icons/bi';
-import ProfileModal from './ProfileModal';
-import { AnimatePresence } from 'framer-motion';
+import Profile from './Profile';
 
 const Header = () => {
-  const [openProfile, setOpenProfile] = useState<boolean>(false);
   const { pathname } = useLocation();
   return (
     <HeaderBar>
@@ -35,13 +33,7 @@ const Header = () => {
             )}
           </MenuWrapper>
         </NavWrapper>
-        <Profile onClick={() => setOpenProfile((prev) => !prev)}>
-          <AnimatePresence>
-            {openProfile && (
-              <ProfileModal closeModal={() => setOpenProfile(false)} />
-            )}
-          </AnimatePresence>
-        </Profile>
+        <Profile />
       </Wrapper>
     </HeaderBar>
   );
@@ -115,13 +107,4 @@ const Menu = styled(Link)`
 const Desc = styled.span`
   font-size: ${({ theme }) => theme.fontSize.base};
   padding: 10px 0px;
-`;
-
-const Profile = styled.div`
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.bg_white};
-  position: relative;
-  cursor: pointer;
 `;

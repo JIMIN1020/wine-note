@@ -14,3 +14,11 @@ export interface JoinReq {
 export interface EmailCheckRes extends CommonRes {
   result: boolean;
 }
+
+export interface UserInfoRes {
+  isSuccess: boolean;
+  result: {
+    email: string;
+    name: string;
+  };
+}

@@ -1,3 +1,4 @@
+import { STORAGE } from '@/constants/strorage';
 import axios from 'axios';
 
 export const baseInstance = axios.create({
@@ -25,8 +26,8 @@ export const authInstance = axios.create({
 
 authInstance.interceptors.request.use(
   (config) => {
-    const accessToken = localStorage.getItem('accessToken');
-    const refreshToken = localStorage.getItem('refreshToken');
+    const accessToken = localStorage.getItem(STORAGE.ACCESS_KEY);
+    const refreshToken = localStorage.getItem(STORAGE.REFRESH_KEY);
 
     // token이 없는 경우
     if (!accessToken || !refreshToken) {
@@ -60,8 +61,8 @@ authInstance.interceptors.response.use(
     // access token이 만료된 경우
     if (status === 401) {
       const originReq = config;
-      const accessToken = localStorage.getItem('accessToken');
-      const refreshToken = localStorage.getItem('refreshToken');
+      const accessToken = localStorage.getItem(STORAGE.ACCESS_KEY);
+      const refreshToken = localStorage.getItem(STORAGE.REFRESH_KEY);
 
       // access token 재발급
       try {
@@ -74,13 +75,13 @@ authInstance.interceptors.response.use(
 
         // 새로운 access token 발급된 경우
         const newAccessToken = result.data.accessToken; // 새로운 토큰 꺼내기
-        localStorage.setItem('accessToken', newAccessToken); // localstorage에 저장
+        localStorage.setItem(STORAGE.ACCESS_KEY, newAccessToken); // localstorage에 저장
         originReq.headers['authorization'] = `Bearer ${newAccessToken}`; // 기존 요청 헤더에 담기
         return authInstance(originReq);
       } catch (err) {
         // access token 발급 실패한 경우 -> 재로그인
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        localStorage.removeItem(STORAGE.ACCESS_KEY);
+        localStorage.removeItem(STORAGE.REFRESH_KEY);
         window.alert('로그인 세션이 만료되었습니다. 다시 로그인해주세요.');
         window.location.replace('/login');
         return Promise.reject(err);
