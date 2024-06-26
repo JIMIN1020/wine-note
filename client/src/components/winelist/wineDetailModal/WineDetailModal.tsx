@@ -11,6 +11,7 @@ import FlavorReview from './FlavorReview';
 import DeleteButton from './DeleteButton';
 import { useWine } from '@/hooks/useWine';
 import useModalStore from '@/store/modalStore';
+import CharacteristicChart from './chart/CharacteristicChart';
 
 const WineDetailModal = () => {
   const ref = useRef<HTMLDivElement | null>(null); // 모달에 대한 ref
@@ -52,6 +53,7 @@ const WineDetailModal = () => {
               </NoteTitle>
               <ColorReview />
               <AromaReview />
+              <CharacteristicChart />
               <FlavorReview />
             </NoteWrapper>
             <DeleteButton onClick={handleDelete} />
@@ -133,6 +135,6 @@ const NoteWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 50px;
-  padding: 30px 0;
+  gap: 12px;
+  padding: 30px 10px;
 `;

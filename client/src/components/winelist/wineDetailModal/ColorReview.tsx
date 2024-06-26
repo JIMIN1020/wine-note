@@ -23,7 +23,6 @@ export default ColorReview;
 const Content = styled.div`
   width: 100%;
   display: flex;
-  padding: 10px;
   gap: 12px;
 `;
 

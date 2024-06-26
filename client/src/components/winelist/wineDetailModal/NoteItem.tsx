@@ -5,11 +5,12 @@ interface Props {
   icon: React.ReactNode;
   title: string;
   children: React.ReactNode;
+  type?: 'row' | 'column';
 }
 
-const NoteItem = ({ icon, title, children }: Props) => {
+const NoteItem = ({ icon, title, children, type = 'row' }: Props) => {
   return (
-    <Container>
+    <Container $isRow={type === 'row'}>
       <Title>
         {icon}
         <h4>{title}</h4>
@@ -21,14 +22,27 @@ const NoteItem = ({ icon, title, children }: Props) => {
 
 export default NoteItem;
 
-const Container = styled.div`
+const Container = styled.div<{ $isRow: boolean }>`
   width: 100%;
   padding: 28px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   border: 1px solid ${({ theme }) => theme.colors.wine_mid_purple};
   border-radius: 12px;
+
+  ${({ $isRow }) => {
+    if ($isRow) {
+      return {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+      };
+    } else {
+      return {
+        flexDirection: 'column',
+        gap: '12px',
+      };
+    }
+  }}
 
   & span {
     font-size: ${({ theme }) => theme.fontSize.base};

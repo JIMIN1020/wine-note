@@ -29,13 +29,14 @@ const Container = styled.div`
   gap: 10px;
 `;
 
-const Label = styled.span`
+const Label = styled.p`
+  width: 10%;
   font-size: ${({ theme }) => theme.fontSize.base};
   color: ${({ theme }) => theme.colors.text_black};
 `;
 
 const RangeBar = styled.div`
-  flex: 1;
+  width: 80%;
   height: 10px;
   border-radius: 12px;
   background-color: #e7e7e7;

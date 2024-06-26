@@ -2,7 +2,6 @@ import React from 'react';
 import NoteLayout from '@/components/layout/NoteLayout';
 import styled from 'styled-components';
 import TextLine from '@/components/common/text/TextLine';
-import CharacteristicChart from './CharacteristicChart';
 import { useWine } from '@/hooks/useWine';
 
 const FlavorReview = () => {
@@ -10,7 +9,6 @@ const FlavorReview = () => {
   return (
     <NoteLayout title='Flavor' sub='맛'>
       <Content>
-        <CharacteristicChart />
         <TextLine title='Flavor' text={wineDetailData!.review.flavor} />
       </Content>
     </NoteLayout>
