@@ -1,22 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
-import TextLine from '@/components/common/text/TextLine';
-import NoteLayout from '@/components/layout/NoteLayout';
+import { RiColorFilterLine } from 'react-icons/ri';
 import { AROMA_INTENSITY, AromaKeys } from '@/constants/aroma';
 import { useWine } from '@/hooks/useWine';
+import NoteItem from './NoteItem';
 
 const AromaReview = () => {
   const { wineDetailData } = useWine();
   return (
-    <NoteLayout title='Aroma' sub='향'>
-      <Content>
-        <TextLine
-          title='Intensity'
-          text={`${wineDetailData!.review.aroma_intensity} - ${AROMA_INTENSITY[wineDetailData!.review.aroma_intensity as AromaKeys]}`}
-        />
-        <TextLine title='Aroma' text={wineDetailData!.review.aroma} />
-      </Content>
-    </NoteLayout>
+    <Content>
+      <NoteItem icon={<RiColorFilterLine size={22} />} title='Aroma Intensity'>
+        <span>{`${wineDetailData!.review.aroma_intensity} - ${AROMA_INTENSITY[wineDetailData!.review.aroma_intensity as AromaKeys]}`}</span>
+      </NoteItem>
+      <NoteItem icon={<RiColorFilterLine size={22} />} title='Aroma'>
+        <span>{wineDetailData!.review.aroma}</span>
+      </NoteItem>
+    </Content>
   );
 };
 

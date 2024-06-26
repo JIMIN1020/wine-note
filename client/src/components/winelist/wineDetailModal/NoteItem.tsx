@@ -23,7 +23,7 @@ export default NoteItem;
 
 const Container = styled.div`
   width: 100%;
-  padding: 16px 20px;
+  padding: 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
