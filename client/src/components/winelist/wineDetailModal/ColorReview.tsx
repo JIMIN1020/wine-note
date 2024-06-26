@@ -1,40 +1,30 @@
 import React from 'react';
-import NoteLayout from '@/components/layout/NoteLayout';
-import TextLine from '@/components/common/text/TextLine';
 import styled from 'styled-components';
 import { useWine } from '@/hooks/useWine';
+import NoteItem from './NoteItem';
+import { MdInvertColors } from 'react-icons/md';
 
 const ColorReview = () => {
   const { wineDetailData } = useWine();
   return (
-    <NoteLayout title='Color' sub='색'>
-      <Content>
-        <Wrapper>
-          <TextLine title='Color' />
-          <Color $color={wineDetailData!.review.color} />
-        </Wrapper>
-        <TextLine
-          title='Intensity'
-          text={wineDetailData!.review.color_intensity}
-        />
-      </Content>
-    </NoteLayout>
+    <Content>
+      <NoteItem icon={<MdInvertColors size={22} />} title='Color'>
+        <Color $color={wineDetailData!.review.color} />
+      </NoteItem>
+      <NoteItem icon={<MdInvertColors size={22} />} title='Color Intensity'>
+        <span>{wineDetailData!.review.color_intensity}</span>
+      </NoteItem>
+    </Content>
   );
 };
 
 export default ColorReview;
 
 const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  gap: 10px;
-`;
-
-const Wrapper = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  padding: 10px;
+  gap: 12px;
 `;
 
 const Color = styled.div<{ $color: string }>`
