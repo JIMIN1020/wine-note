@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FaWineGlass } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import { defaultWidth, flexCenter } from '../../../styles/GlobalStyle';
 import { BiArchive, BiChart } from 'react-icons/bi';
 import Profile from './Profile';
+import { MdWineBar } from 'react-icons/md';
 
 const Header = () => {
   const { pathname } = useLocation();
@@ -13,7 +13,7 @@ const Header = () => {
       <Wrapper>
         <NavWrapper>
           <Logo to='/'>
-            <FaWineGlass />
+            <MdWineBar size={24} />
             <h1>Wine Note</h1>
           </Logo>
           <MenuWrapper>

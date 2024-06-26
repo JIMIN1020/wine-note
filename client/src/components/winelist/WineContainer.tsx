@@ -8,6 +8,7 @@ import { WineListItem } from '@/models/wine.model';
 import { useWines } from '@/hooks/useWines';
 import useWineStore from '@/store/wineStore';
 import useModalStore from '@/store/modalStore';
+import WineEmpty from './WineEmpty';
 
 const WineContainer = () => {
   const { isLoading, wineData } = useWines();
@@ -28,7 +29,7 @@ const WineContainer = () => {
       </TopBar>
       <WineWrapper>
         {!isLoading &&
-          wineData!.map((data: WineListItem) => {
+          wineData?.map((data: WineListItem) => {
             return (
               <Wine
                 key={data.wine_id}
@@ -40,6 +41,7 @@ const WineContainer = () => {
               />
             );
           })}
+        {wineData?.length === 0 && <WineEmpty />}
       </WineWrapper>
       {/* 와인 상세 모달 */}
       <AnimatePresence>{openWineModal && <WineDetailModal />}</AnimatePresence>
@@ -76,6 +78,7 @@ const Total = styled.h3`
 
 const WineWrapper = styled.div`
   width: 100%;
+  flex: 1;
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
