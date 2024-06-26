@@ -25,15 +25,18 @@ const WineResultBox = ({ wine }: WineResultBoxProps) => {
           <img src={wine.thumb} alt='wineImg' />
         </ImageBox>
         <TextBox>
-          <h5>{wine.name}</h5>
-          <Country>
-            <Flag countryName='usa' size='15px' />
-            <span>
-              {wine.region}, {wine.country}
-            </span>
-          </Country>
+          <div className='wrapper'>
+            <h5>{wine.name}</h5>
+            <Country>
+              <Flag countryName='usa' size='15px' />
+              <span>
+                {wine.region}, {wine.country}
+              </span>
+            </Country>
+          </div>
+
           <Rating>
-            <IoStar />
+            <IoStar size={16} />
             <span>{wine.average_rating}</span>
           </Rating>
         </TextBox>
@@ -84,20 +87,28 @@ const TextBox = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 24px;
   padding: 20px 10px;
 
   border-radius: 0 12px 12px 0;
   font-size: ${({ theme }) => theme.fontSize.base};
 
   & h5 {
+    font-size: ${({ theme }) => theme.fontSize.md};
     font-weight: 600;
     line-height: 130%;
 
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     overflow: hidden;
+  }
+
+  .wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 `;
 
@@ -122,7 +133,7 @@ const Rating = styled.div`
   color: #b82b21;
 
   & span {
-    font-size: ${({ theme }) => theme.fontSize.md};
+    font-size: ${({ theme }) => theme.fontSize.lg};
     font-weight: 600;
   }
 `;

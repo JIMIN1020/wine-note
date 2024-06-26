@@ -14,7 +14,7 @@ const ResultBox = ({ wineData }: ResultBoxProps) => {
   return (
     <Container
       initial={{ height: 0 }}
-      animate={{ height: 'auto' }}
+      animate={{ height: '700px' }}
       exit={{ height: 0 }}
       transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
@@ -60,7 +60,7 @@ const WineList = styled.div`
   gap: 10px;
 `;
 
-const Bar = styled.div`
+const Bar = styled.hr`
   height: 2px;
   width: 100%;
   margin: 20px 0px;
