@@ -7,7 +7,7 @@ import {
 } from '@/data/selectOptionData';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { useFormContext } from 'react-hook-form';
-import { wineColor } from '@/data/steps/step2-data';
+import { wineColor } from '@/data/color';
 import { WineColorDataType } from '@/types/formType';
 import useClickOutside from '@/hooks/useClickOutside';
 import { AnimatePresence, motion } from 'framer-motion';

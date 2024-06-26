@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import SubFormLayout from '@/components/layout/SubFormLayout';
-import { aromaIntensity } from '@/data/steps/step3-data';
+import { aromaIntensity } from '@/data/aroma';
 import { useFormContext } from 'react-hook-form';
 
 const AromaIntensity = () => {

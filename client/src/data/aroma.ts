@@ -1,4 +1,4 @@
-import { AromaIntensityType } from '../../types/formType';
+import { AromaIntensityType } from '../types/formType';
 
 export const aromaIntensity: AromaIntensityType[] = [
   { id: 1, type: 'Light', desc: '주의 깊게 맡아야 향이 나는 정도' },

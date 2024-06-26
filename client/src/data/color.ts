@@ -1,7 +1,4 @@
-import {
-  WineColorDataType,
-  WineColorIntensityType,
-} from '../../types/formType';
+import { WineColorDataType, WineColorIntensityType } from '../types/formType';
 
 export const wineColor: WineColorDataType = {
   white: [
