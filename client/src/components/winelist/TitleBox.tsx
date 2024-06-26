@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AiOutlinePlus } from 'react-icons/ai';
-import { defaultWidth } from '../../styles/GlobalStyle';
+import { defaultWidth } from '@/styles/GlobalStyle';
 import { motion } from 'framer-motion';
 
 type TitleBoxProps = {

@@ -1,6 +1,6 @@
 import React from 'react';
-import SubFormLayout from '../../layout/SubFormLayout';
-import TextArea from '../../common/TextArea';
+import SubFormLayout from '@/components/layout/SubFormLayout';
+import TextArea from '@/components/common/text/TextArea';
 
 const AromaTextarea = () => {
   return (

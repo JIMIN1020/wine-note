@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { quotes } from '../../assets/wineQuotes';
+import { quotes } from '@/assets/wineQuotes';
 import Lottie from 'lottie-react';
-import grapeLottie from '../../assets/image/grape_lottie.json';
-import { defaultWidth } from '../../styles/GlobalStyle';
+import grapeLottie from '@/assets/image/grape_lottie.json';
+import { defaultWidth } from '@/styles/GlobalStyle';
 import { Link } from 'react-router-dom';
 import { BiArchive, BiChart } from 'react-icons/bi';
 

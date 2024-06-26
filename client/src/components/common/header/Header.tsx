@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from 'react-router-dom';
-import { defaultWidth, flexCenter } from '../../../styles/GlobalStyle';
+import { defaultWidth, flexCenter } from '@/styles/GlobalStyle';
 import { BiArchive, BiChart } from 'react-icons/bi';
 import Profile from './Profile';
 import { MdWineBar } from 'react-icons/md';

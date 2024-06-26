@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FaWineGlassAlt } from 'react-icons/fa';
-import StatLayout from '../../layout/StatLayout';
+import StatLayout from '@/components/layout/StatLayout';
 import StatBox from './StatBox';
 
 const WineLife = () => {

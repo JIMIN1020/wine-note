@@ -1,5 +1,5 @@
 import React from 'react';
-import StatLayout from '../../layout/StatLayout';
+import StatLayout from '@/components/layout/StatLayout';
 import { IoEarth } from 'react-icons/io5';
 import styled from 'styled-components';
 import TopCountry from './TopCountry';

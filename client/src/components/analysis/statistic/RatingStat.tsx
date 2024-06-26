@@ -1,9 +1,9 @@
 import React from 'react';
-import StatLayout from '../../layout/StatLayout';
+import StatLayout from '@/components/layout/StatLayout';
 import { IoStar } from 'react-icons/io5';
 import styled from 'styled-components';
 import StatBox from './StatBox';
-import RatingChart from '../../chart/RatingChart';
+import RatingChart from '@/components/chart/RatingChart';
 
 const RatingStat = () => {
   return (

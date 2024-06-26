@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import useClickOutside from '../../../hooks/useClickOutside';
-import { modalBackgroundVariants } from '../../../styles/motionVariants';
+import useClickOutside from '@/hooks/useClickOutside';
+import { modalBackgroundVariants } from '@/styles/motionVariants';
 import { CgNotes } from 'react-icons/cg';
 import WineInfo from './WineInfo';
 import AromaReview from './AromaReview';
@@ -10,7 +10,7 @@ import ColorReview from './ColorReview';
 import FlavorReview from './FlavorReview';
 import DeleteButton from './DeleteButton';
 import { useWine } from '@/hooks/useWine';
-import useModalStore from '../../../store/modalStore';
+import useModalStore from '@/store/modalStore';
 
 const WineDetailModal = () => {
   const ref = useRef<HTMLDivElement | null>(null); // 모달에 대한 ref

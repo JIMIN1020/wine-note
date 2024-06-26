@@ -5,7 +5,7 @@ import { IoStar } from 'react-icons/io5';
 import { motion } from 'framer-motion';
 import { WineListItem } from '@/models/wine.model';
 import { MdOutlineCalendarMonth } from 'react-icons/md';
-import WineBottle from '../../assets/image/wine-bottle.svg';
+import WineBottle from '@/assets/image/wine-bottle.svg';
 
 interface WineProps {
   wineData: WineListItem;

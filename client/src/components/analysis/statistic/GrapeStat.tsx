@@ -1,6 +1,6 @@
 import React from 'react';
 import { LuGrape } from 'react-icons/lu';
-import StatLayout from '../../layout/StatLayout';
+import StatLayout from '@/components/layout/StatLayout';
 import styled from 'styled-components';
 import { PiDotsThreeVerticalLight } from 'react-icons/pi';
 

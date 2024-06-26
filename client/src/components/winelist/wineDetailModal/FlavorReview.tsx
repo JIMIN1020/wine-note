@@ -1,7 +1,7 @@
 import React from 'react';
-import NoteLayout from '../../layout/NoteLayout';
+import NoteLayout from '@/components/layout/NoteLayout';
 import styled from 'styled-components';
-import TextLine from '../../common/TextLine';
+import TextLine from '@/components/common/text/TextLine';
 import CharacteristicChart from './CharacteristicChart';
 import { useWine } from '@/hooks/useWine';
 

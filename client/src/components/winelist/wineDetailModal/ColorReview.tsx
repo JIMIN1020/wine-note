@@ -1,6 +1,6 @@
 import React from 'react';
-import NoteLayout from '../../layout/NoteLayout';
-import TextLine from '../../common/TextLine';
+import NoteLayout from '@/components/layout/NoteLayout';
+import TextLine from '@/components/common/text/TextLine';
 import styled from 'styled-components';
 import { useWine } from '@/hooks/useWine';
 

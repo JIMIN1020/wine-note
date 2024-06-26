@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Flag from '../../common/Flag';
+import Flag from '@/components/common/Flag';
 import { SiVivino } from 'react-icons/si';
 import { IoStar } from 'react-icons/io5';
-import { WineDataType } from '../../../types/wineType';
+import { WineDataType } from '@/types/wineType';
 import { useNavigate } from 'react-router-dom';
 
 interface WineResultBoxProps {

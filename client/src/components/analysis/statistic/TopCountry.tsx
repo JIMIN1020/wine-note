@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Flag from '../../common/Flag';
+import Flag from '@/components/common/Flag';
 
 interface TopCountryProps {
   isTop: boolean;

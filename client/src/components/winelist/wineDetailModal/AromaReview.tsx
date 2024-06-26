@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import TextLine from '../../common/TextLine';
-import NoteLayout from '../../layout/NoteLayout';
-import { AROMA_INTENSITY, AromaKeys } from '../../../constants/aroma';
+import TextLine from '@/components/common/text/TextLine';
+import NoteLayout from '@/components/layout/NoteLayout';
+import { AROMA_INTENSITY, AromaKeys } from '@/constants/aroma';
 import { useWine } from '@/hooks/useWine';
 
 const AromaReview = () => {

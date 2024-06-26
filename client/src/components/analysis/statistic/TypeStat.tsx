@@ -1,8 +1,8 @@
 import React from 'react';
-import StatLayout from '../../layout/StatLayout';
+import StatLayout from '@/components/layout/StatLayout';
 import { FaChartPie } from 'react-icons/fa';
 import styled from 'styled-components';
-import DoughnutChart from '../../chart/DoughnutChart';
+import DoughnutChart from '@/components/chart/DoughnutChart';
 
 const TypeStat = () => {
   return (

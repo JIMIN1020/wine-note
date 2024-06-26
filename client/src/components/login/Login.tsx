@@ -2,7 +2,7 @@ import React from 'react';
 import LoginForm from './LoginForm';
 import { AiOutlineUser } from 'react-icons/ai';
 import styled from 'styled-components';
-import FormTitle from '../common/FormTitle';
+import FormTitle from '../common/form/FormTitle';
 
 interface LoginProps {
   setSignUp: React.Dispatch<React.SetStateAction<boolean>>;

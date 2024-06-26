@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import Flag from '../../common/Flag';
+import Flag from '@/components/common/Flag';
 import { BiWon } from 'react-icons/bi';
 import RatingStar from './RatingStar';
 import { LuLink, LuGrape } from 'react-icons/lu';
 import { MdOutlineCalendarMonth } from 'react-icons/md';
-import { WINE_TYPE } from '../../../constants/wineType';
-import WineBottle from '../../../assets/image/wine-bottle.svg';
+import { WINE_TYPE } from '@/constants/wineType';
+import WineBottle from '@/assets/image/wine-bottle.svg';
 import { useWine } from '@/hooks/useWine';
 
 const WineInfo = () => {

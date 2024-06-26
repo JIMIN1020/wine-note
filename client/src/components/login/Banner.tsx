@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Lottie from 'lottie-react';
 import { FaWineGlass } from 'react-icons/fa';
-import grapeLottie from '../../assets/image/grape_lottie.json';
+import grapeLottie from '@/assets/image/grape_lottie.json';
 import { IoMdArrowForward } from 'react-icons/io';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';

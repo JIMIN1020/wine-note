@@ -4,14 +4,14 @@ import {
   getTypeFromId,
   getLabelFromId,
   vintageOptions,
-} from '../../data/selectOptionData';
+} from '@/data/selectOptionData';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { useFormContext } from 'react-hook-form';
-import { wineColor } from '../../data/steps/step2-data';
-import { WineColorDataType } from '../../types/formType';
-import useClickOutside from '../../hooks/useClickOutside';
+import { wineColor } from '@/data/steps/step2-data';
+import { WineColorDataType } from '@/types/formType';
+import useClickOutside from '@/hooks/useClickOutside';
 import { AnimatePresence, motion } from 'framer-motion';
-import { WINE_TYPE_ARRAY } from '../../constants/wineType';
+import { WINE_TYPE_ARRAY } from '@/constants/wineType';
 
 interface CustomSelectProps {
   type: 'wine type' | 'vintage';

@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import ColorBox from './ColorBox';
-import { wineColor } from '../../../data/steps/step2-data';
+import { wineColor } from '@/data/steps/step2-data';
 import { useFormContext } from 'react-hook-form';
-import { WineColorDataType } from '../../../types/formType';
-import { getTypeFromId } from '../../../data/selectOptionData';
-import SubFormLayout from '../../layout/SubFormLayout';
+import { WineColorDataType } from '@/types/formType';
+import { getTypeFromId } from '@/data/selectOptionData';
+import SubFormLayout from '@/components/layout/SubFormLayout';
 
 const ColorInfo = () => {
   const { watch } = useFormContext();

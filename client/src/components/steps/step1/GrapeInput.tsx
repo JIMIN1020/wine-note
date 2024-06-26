@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { LuGrape } from 'react-icons/lu';
-import { StyledInput } from '../../../styles/CustomInputs';
+import { StyledInput } from '@/styles/CustomInputs';
 import { GrClose } from 'react-icons/gr';
 import { LiaPercentSolid } from 'react-icons/lia';
 import { useFormContext } from 'react-hook-form';

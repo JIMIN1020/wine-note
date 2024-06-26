@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import IntensityBox from './IntensityBox';
-import { colorIntensity } from '../../../data/steps/step2-data';
-import SubFormLayout from '../../layout/SubFormLayout';
+import { colorIntensity } from '@/data/steps/step2-data';
+import SubFormLayout from '@/components/layout/SubFormLayout';
 
 const IntensityInfo = () => {
   return (

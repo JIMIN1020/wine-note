@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import NoteSubTitle from '../common/NoteSubTitle';
+import NoteSubTitle from '../common/text/NoteSubTitle';
 
 interface NoteLayoutProps {
   title: string;

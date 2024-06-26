@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import RangeInput from './RangeInput';
-import { rangeInputData } from '../../../data/steps/step4-data';
-import SubFormLayout from '../../layout/SubFormLayout';
+import { rangeInputData } from '@/data/steps/step4-data';
+import SubFormLayout from '@/components/layout/SubFormLayout';
 
 const Characteristics = () => {
   return (

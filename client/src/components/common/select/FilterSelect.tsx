@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { MdFilterListAlt } from 'react-icons/md';
-import { filterOptions } from '../../data/selectOptionData';
+import { filterOptions } from '@/data/selectOptionData';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const FilterSelect = () => {

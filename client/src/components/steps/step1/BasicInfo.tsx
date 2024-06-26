@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import CustomSelect from '../../common/CustomSelect';
+import CustomSelect from '../../common/select/CustomSelect';
 import {
   LabelInput,
   LabelInputWrapper,

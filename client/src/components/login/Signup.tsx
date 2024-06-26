@@ -1,5 +1,5 @@
 import React from 'react';
-import FormTitle from '../common/FormTitle';
+import FormTitle from '../common/form/FormTitle';
 import SignupForm from './SignupForm';
 import styled from 'styled-components';
 import { IoMdArrowBack } from 'react-icons/io';

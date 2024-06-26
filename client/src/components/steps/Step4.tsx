@@ -1,5 +1,5 @@
 import React from 'react';
-import { StepContainer } from '../../styles/GlobalStyle';
+import { StepContainer } from '@/styles/GlobalStyle';
 import StepTitle from './StepTitle';
 import Characteristics from './step4/Characteristics';
 import FlavorTextarea from './step4/FlavorTextarea';

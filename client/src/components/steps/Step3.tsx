@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import StepTitle from './StepTitle';
 import AromaIntensity from './step3/AromaIntensity';
-import { StepContainer } from '../../styles/GlobalStyle';
+import { StepContainer } from '@/styles/GlobalStyle';
 import AromaTextarea from './step3/AromaTextarea';
 
 const Step3 = () => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ImStarFull, ImStarHalf, ImStarEmpty } from 'react-icons/im';
 import { useFormContext } from 'react-hook-form';
-import SubFormLayout from '../../layout/SubFormLayout';
+import SubFormLayout from '@/components/layout/SubFormLayout';
 import uuid from 'react-uuid';
 
 const Rating = () => {

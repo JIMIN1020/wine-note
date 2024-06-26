@@ -1,7 +1,7 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
-import { WineColorIntensityType } from '../../../types/formType';
+import { WineColorIntensityType } from '@/types/formType';
 
 interface IntensityBoxProps {
   intensityData: WineColorIntensityType;

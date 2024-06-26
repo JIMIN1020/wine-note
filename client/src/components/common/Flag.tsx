@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { flexCenter } from '../../styles/GlobalStyle';
+import { flexCenter } from '@/styles/GlobalStyle';
 
 type FlagProps = {
   countryName: string;

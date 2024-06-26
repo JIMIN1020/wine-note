@@ -1,6 +1,5 @@
 import React from 'react';
-// import styled from 'styled-components';
-import { StepContainer } from '../../styles/GlobalStyle';
+import { StepContainer } from '@/styles/GlobalStyle';
 import StepTitle from './StepTitle';
 import Rating from './step5/Rating';
 import Conclusion from './step5/Conclusion';

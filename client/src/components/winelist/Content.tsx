@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { defaultWidth } from '../../styles/GlobalStyle';
-import Category from './Category';
+import { defaultWidth } from '@/styles/GlobalStyle';
+import Category from './category/Category';
 import WineContainer from './WineContainer';
 import SearchBar from './SearchBar';
 

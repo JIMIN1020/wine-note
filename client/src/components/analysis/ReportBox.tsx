@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { defaultWidth } from '../../styles/GlobalStyle';
+import { defaultWidth } from '@/styles/GlobalStyle';
 import WineLife from './statistic/WineLife';
 import RatingStat from './statistic/RatingStat';
 import CountryStat from './statistic/CountryStat';

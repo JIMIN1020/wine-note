@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
-import FilterSelect from '../common/FilterSelect';
+import FilterSelect from '../common/select/FilterSelect';
 import Wine from '../common/Wine';
 import WineDetailModal from './wineDetailModal/WineDetailModal';
 import { WineListItem } from '@/models/wine.model';
@@ -43,7 +43,6 @@ const WineContainer = () => {
           })}
         {wineData?.length === 0 && <WineEmpty />}
       </WineWrapper>
-      {/* 와인 상세 모달 */}
       <AnimatePresence>{openWineModal && <WineDetailModal />}</AnimatePresence>
     </Container>
   );

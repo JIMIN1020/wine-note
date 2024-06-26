@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FormButton } from '../../styles/FormButton';
-import FormInput from '../common/FormInput';
+import { FormButton } from '@/styles/FormButton';
+import FormInput from '@/components/common/form/FormInput';
 import { FormProvider, useForm } from 'react-hook-form';
-import { userAPI } from '../../apis/api/user';
+import { userAPI } from '@/apis/api/user';
 import { useNavigate } from 'react-router-dom';
 
 type LoginFormType = {

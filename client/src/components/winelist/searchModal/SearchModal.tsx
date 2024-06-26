@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import ResultBox from './ResultBox';
 import { AnimatePresence, motion } from 'framer-motion';
-import useClickOutside from '../../../hooks/useClickOutside';
+import useClickOutside from '@/hooks/useClickOutside';
 import { IoSearchSharp } from 'react-icons/io5';
-import { modalBackgroundVariants } from '../../../styles/motionVariants';
+import { modalBackgroundVariants } from '@/styles/motionVariants';
 import { BeatLoader } from 'react-spinners';
 import { useWineSearch } from '@/hooks/useWineSearch';
 

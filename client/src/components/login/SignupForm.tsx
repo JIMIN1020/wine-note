@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import FormInput from '../common/FormInput';
-import { FormButton } from '../../styles/FormButton';
+import FormInput from '../common/form/FormInput';
+import { FormButton } from '@/styles/FormButton';
 import { motion } from 'framer-motion';
 import { FormProvider, useForm } from 'react-hook-form';
-import { userAPI } from '../../apis/api/user';
+import { userAPI } from '@/apis/api/user';
 
 type SignUpFormType = {
   nickname: string;

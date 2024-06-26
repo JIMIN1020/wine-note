@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
-import { WineDataType } from '../../../types/wineType';
+import { WineDataType } from '@/types/wineType';
 
 import WineResultBox from './WineResultBox';
 

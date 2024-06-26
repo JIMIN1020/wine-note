@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Wine from '../common/Wine';
-import { defaultWidth } from '../../styles/GlobalStyle';
-import { wineDummy } from '../../data/wineDummy';
+import { defaultWidth } from '@/styles/GlobalStyle';
+import { wineDummy } from '@/data/wineDummy';
 
 const BottomSheet: React.FC = () => {
   return (
