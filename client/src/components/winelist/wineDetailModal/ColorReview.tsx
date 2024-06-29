@@ -23,12 +23,12 @@ export default ColorReview;
 const Content = styled.div`
   width: 100%;
   display: flex;
-  gap: 12px;
+  gap: 24px;
 `;
 
 const Color = styled.div<{ $color: string }>`
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background-color: ${({ $color }) => $color};
 `;

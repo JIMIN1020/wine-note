@@ -24,5 +24,5 @@ export default AromaReview;
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 24px;
 `;

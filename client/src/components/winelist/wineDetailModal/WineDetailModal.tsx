@@ -42,19 +42,22 @@ const WineDetailModal = () => {
         {!isLoading && (
           <>
             <WineInfo />
-            <Conclusion>
-              <h5>MY REVIEW</h5>
-              <p>{wineDetailData!.review.conclusion}</p>
-            </Conclusion>
+            <Bar />
             <NoteWrapper>
               <NoteTitle>
                 <CgNotes size={20} style={{ strokeWidth: '0.5px' }} />
                 Tasting Note
               </NoteTitle>
-              <ColorReview />
-              <AromaReview />
-              <CharacteristicChart />
-              <FlavorReview />
+              <div className='wrapper'>
+                <ColorReview />
+                <AromaReview />
+                <CharacteristicChart />
+                <FlavorReview />
+                <Conclusion>
+                  <h5>MY REVIEW</h5>
+                  <p>{wineDetailData!.review.conclusion}</p>
+                </Conclusion>
+              </div>
             </NoteWrapper>
             <DeleteButton onClick={handleDelete} />
           </>
@@ -135,6 +138,19 @@ const NoteWrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 30px 10px;
+  gap: 48px;
+  padding: 20px 10px;
+
+  .wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+`;
+
+const Bar = styled.hr`
+  height: 1px;
+  border: 0.5px solid ${({ theme }) => theme.colors.border_gray};
+  width: 100%;
 `;
