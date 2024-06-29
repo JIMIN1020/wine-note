@@ -28,7 +28,7 @@ const Container = styled.div<{ $isRow: boolean }>`
   display: flex;
   /* background-color: #f6f6f684; */
   /* box-shadow: ${({ theme }) => theme.shadow.basic}; */
-  border: 1px solid #46007b53;
+  border: 1px solid ${({ theme }) => theme.colors.border_light_purple};
   border-radius: 12px;
 
   ${({ $isRow }) => {

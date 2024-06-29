@@ -8,6 +8,7 @@ export const theme = {
     bg_lightgray: '#eeeeee96',
     border_gray: '#b1b1b1d2',
     border_lightgray: '#dadada',
+    border_light_purple: '#46007b37',
     text_white: '#ffffff',
     text_black: '#1E1E1E',
     text_darkgray: '#2f2f2f',

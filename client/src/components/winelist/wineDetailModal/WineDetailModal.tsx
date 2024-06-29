@@ -115,6 +115,7 @@ const Conclusion = styled.div`
   height: auto;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.wine_light_purple};
+  border: 1px solid ${({ theme }) => theme.colors.wine_mid_purple};
   display: flex;
   flex-direction: column;
   align-items: center;

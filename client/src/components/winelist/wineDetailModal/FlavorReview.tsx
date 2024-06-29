@@ -1,17 +1,17 @@
 import React from 'react';
-import NoteLayout from '@/components/layout/NoteLayout';
 import styled from 'styled-components';
-import TextLine from '@/components/common/text/TextLine';
 import { useWine } from '@/hooks/useWine';
+import NoteItem from './NoteItem';
+import { FaRegFaceGrinTongue } from 'react-icons/fa6';
 
 const FlavorReview = () => {
   const { wineDetailData } = useWine();
   return (
-    <NoteLayout title='Flavor' sub='맛'>
-      <Content>
-        <TextLine title='Flavor' text={wineDetailData!.review.flavor} />
-      </Content>
-    </NoteLayout>
+    <Content>
+      <NoteItem icon={<FaRegFaceGrinTongue size={20} />} title='Flavor'>
+        <span>{wineDetailData!.review.flavor}</span>
+      </NoteItem>
+    </Content>
   );
 };
 
@@ -20,6 +20,5 @@ export default FlavorReview;
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px;
   gap: 10px;
 `;
