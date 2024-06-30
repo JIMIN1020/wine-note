@@ -14,3 +14,7 @@ export interface RatingStatRes {
   avgRating: number;
   ratings: Ratings;
 }
+
+export interface TypeStatRes {
+  [key: string]: number;
+}
