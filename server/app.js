@@ -24,6 +24,7 @@ app.listen(PORT, () => {
 });
 
 // routes
+const analysisRouter = require("./routes/analysis");
 const apiRouter = require("./routes/api");
 const userRouter = require("./routes/user");
 const wineRouter = require("./routes/wine");
@@ -31,3 +32,4 @@ const wineRouter = require("./routes/wine");
 app.use("/api", apiRouter);
 app.use("/user", userRouter);
 app.use("/wine", wineRouter);
+app.use("/analysis", analysisRouter);
