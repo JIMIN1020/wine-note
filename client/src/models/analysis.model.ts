@@ -18,3 +18,7 @@ export interface RatingStatRes {
 export interface TypeStatRes {
   [key: string]: number;
 }
+
+export interface CountryStatRes {
+  [key: string]: number;
+}

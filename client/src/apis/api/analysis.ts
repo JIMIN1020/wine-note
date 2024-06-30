@@ -2,6 +2,7 @@ import { AxiosResponse } from 'axios';
 import { authInstance } from '../instance';
 import { ERROR_ALERT } from '@/constants/message';
 import {
+  CountryStatRes,
   RatingStatRes,
   TypeStatRes,
   WineStatRes,
@@ -30,6 +31,15 @@ export const analysisAPI = {
     try {
       const { data }: AxiosResponse<TypeStatRes> =
         await authInstance.get('/analysis/type');
+      return data;
+    } catch {
+      window.alert(ERROR_ALERT);
+    }
+  },
+  getCountryStatistics: async () => {
+    try {
+      const { data }: AxiosResponse<CountryStatRes> =
+        await authInstance.get('/analysis/country');
       return data;
     } catch {
       window.alert(ERROR_ALERT);

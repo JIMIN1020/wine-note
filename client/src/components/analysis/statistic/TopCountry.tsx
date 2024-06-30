@@ -4,7 +4,7 @@ import Flag from '@/components/common/Flag';
 
 interface TopCountryProps {
   isTop: boolean;
-  rank: 1 | 2 | 3;
+  rank: number;
   country: string;
   count: number;
 }
