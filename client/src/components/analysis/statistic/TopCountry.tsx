@@ -52,9 +52,9 @@ const Wrapper = styled.div`
 
 const Rank = styled.span`
   padding: 6px 14px;
-  border: 2px solid ${({ theme }) => theme.colors.wine_purple};
+  border: 1px solid ${({ theme }) => theme.colors.wine_purple};
   color: ${({ theme }) => theme.colors.wine_purple};
   font-size: ${({ theme }) => theme.fontSize.base};
-  font-weight: 700;
+  font-weight: 600;
   border-radius: 12px;
 `;

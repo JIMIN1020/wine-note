@@ -23,4 +23,5 @@ const Wrapper = styled.div`
   height: fit-content;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  padding-top: 10px;
 `;

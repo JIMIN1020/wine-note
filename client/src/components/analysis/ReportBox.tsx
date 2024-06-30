@@ -5,7 +5,6 @@ import WineLife from './statistic/WineLife';
 import RatingStat from './statistic/RatingStat';
 import CountryStat from './statistic/CountryStat';
 import TypeStat from './statistic/TypeStat';
-import GrapeStat from './statistic/GrapeStat';
 
 const ReportBox = () => {
   return (
@@ -14,11 +13,10 @@ const ReportBox = () => {
         <ColumnWrapper>
           <WineLife />
           <RatingStat />
-          <TypeStat />
         </ColumnWrapper>
         <ColumnWrapper>
           <CountryStat />
-          <GrapeStat />
+          <TypeStat />
         </ColumnWrapper>
       </Wrapper>
     </Container>
