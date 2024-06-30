@@ -25,8 +25,8 @@ const getWineStatistics = async (userId) => {
 
     return {
       totalCount: count,
-      averagePrice: avgPrice,
-      averageTerm: term,
+      averagePrice: Number(avgPrice),
+      averageTerm: Number(term),
     };
   } catch (err) {
     throw err;
