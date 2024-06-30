@@ -21,7 +21,7 @@ const calculatePercentage = (numbers) => {
     const count = countMap[key];
     const percentage = (count / totalCount) * 100;
 
-    percentages[key] = percentage.toFixed(2); // 소수점 둘째 자리까지 반올림
+    percentages[key] = Number(percentage.toFixed(2)); // 소수점 둘째 자리까지 반올림
   });
 
   return percentages;
