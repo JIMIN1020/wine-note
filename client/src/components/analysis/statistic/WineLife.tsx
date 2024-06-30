@@ -14,6 +14,8 @@ const WineLife = () => {
     },
   });
 
+  if (!data) return null;
+
   return (
     <StatLayout icon={<FaWineGlassAlt size={20} />} title='나의 와인 생활'>
       <Wrapper>

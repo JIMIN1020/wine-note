@@ -11,6 +11,7 @@ import {
   Legend,
   PointElement,
 } from 'chart.js';
+import { Ratings } from '@/models/analysis.model';
 
 ChartJS.register(
   CategoryScale,
@@ -22,37 +23,48 @@ ChartJS.register(
   PointElement
 );
 
-const RatingChart = () => {
+const RatingChart = ({ ratings }: { ratings: Ratings }) => {
+  const data: ChartData<'line'> = {
+    labels: [
+      '0점',
+      '0.5점',
+      '1점',
+      '1.5점',
+      '2점',
+      '2.5점',
+      '3점',
+      '3.5점',
+      '4점',
+      '4.5점',
+      '5점',
+    ],
+    datasets: [
+      {
+        data: [
+          ratings['0'],
+          ratings['0.5'],
+          ratings['1'],
+          ratings['1.5'],
+          ratings['2'],
+          ratings['2.5'],
+          ratings['3'],
+          ratings['3.5'],
+          ratings['4'],
+          ratings['4.5'],
+          ratings['5'],
+        ],
+        backgroundColor: '#45007b',
+        pointBorderWidth: 4,
+        borderWidth: 3,
+        borderColor: '#45007b',
+        tension: 0.3,
+      },
+    ],
+  };
   return <Line data={data} options={options} />;
 };
 
 export default RatingChart;
-
-const data: ChartData<'line'> = {
-  labels: [
-    '0점',
-    '0.5점',
-    '1점',
-    '1.5점',
-    '2점',
-    '2.5점',
-    '3점',
-    '3.5점',
-    '4점',
-    '4.5점',
-    '5점',
-  ],
-  datasets: [
-    {
-      data: [0, 2, 5, 3, 15, 10, 32, 21, 28, 13, 10],
-      backgroundColor: '#45007b',
-      pointBorderWidth: 4,
-      borderWidth: 3,
-      borderColor: '#45007b',
-      tension: 0.3,
-    },
-  ],
-};
 
 const options: ChartOptions<'line'> = {
   responsive: true,

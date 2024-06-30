@@ -4,18 +4,29 @@ import { IoStar } from 'react-icons/io5';
 import styled from 'styled-components';
 import StatBox from './StatBox';
 import RatingChart from '@/components/chart/RatingChart';
+import { useQuery } from '@tanstack/react-query';
+import { analysisAPI } from '@/apis/api/analysis';
 
 const RatingStat = () => {
+  const { data } = useQuery({
+    queryKey: ['raitngStat'],
+    queryFn: async () => {
+      return await analysisAPI.getRatingStatistics();
+    },
+  });
+
+  if (!data) return null;
+
   return (
     <StatLayout icon={<IoStar size={20} />} title='내가 준 별점'>
       <Wrapper>
         <ChartContainer>
-          <RatingChart />
+          <RatingChart ratings={data.ratings} />
         </ChartContainer>
         <StatWrapper>
-          <StatBox name='평균 별점' value='3.5점' />
-          <StatBox name='최고 별점' value='5점' />
-          <StatBox name='최저 별점' value='2.5점' />
+          <StatBox name='최저 별점' value={`${data?.minRating}점`} />
+          <StatBox name='최고 별점' value={`${data?.maxRating}점`} />
+          <StatBox name='평균 별점' value={`${data?.avgRating}점`} />
         </StatWrapper>
       </Wrapper>
     </StatLayout>
