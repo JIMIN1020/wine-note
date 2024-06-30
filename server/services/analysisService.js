@@ -3,7 +3,7 @@ const analysisQuery = require("../queries/analysisQuery");
 const {
   calculateAverage,
   calculatePercentage,
-  countContries,
+  countCountries,
 } = require("../utils/calculate");
 
 const getWineStatistics = async (userId) => {
@@ -98,7 +98,7 @@ const getCountryStatistics = async (userId) => {
 
     const countryList = countryResult.map((row) => row.country);
 
-    return countContries(countryList);
+    return countCountries(countryList);
   } catch (err) {
     throw err;
   }

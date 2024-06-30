@@ -27,18 +27,31 @@ const calculatePercentage = (numbers) => {
   return percentages;
 };
 
-const countContries = (arr) => {
+const countCountries = (arr) => {
   const countMap = {};
 
+  // 배열 내 각 문자열의 개수를 세기
   arr.forEach((str) => {
     countMap[str] ? countMap[str]++ : (countMap[str] = 1);
   });
 
-  return countMap;
+  // 객체를 배열로 변환하여 정렬
+  const countArray = Object.entries(countMap);
+
+  // 개수를 기준으로 내림차순 정렬
+  countArray.sort((a, b) => b[1] - a[1]);
+
+  // 상위 3개만 추출하여 객체로 반환
+  const top3 = countArray.slice(0, 3).reduce((obj, [key, value]) => {
+    obj[key] = value;
+    return obj;
+  }, {});
+
+  return top3;
 };
 
 module.exports = {
   calculateAverage,
   calculatePercentage,
-  countContries,
+  countCountries,
 };
