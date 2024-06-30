@@ -1,5 +1,6 @@
 const conn = require("../db/connection");
 const analysisQuery = require("../queries/analysisQuery");
+const { calculateAverage } = require("../utils/calculate");
 
 const getWineStatistics = async (userId) => {
   try {
@@ -28,6 +29,49 @@ const getWineStatistics = async (userId) => {
   }
 };
 
+const getRatingStatistics = async (userId) => {
+  try {
+    const ratingResult = await conn
+      .query(analysisQuery.getRatings, userId)
+      .then((res) => res[0]);
+
+    const ratingArray = ratingResult.map((row) => row.rating);
+
+    // 최대, 최저, 평균 평점
+    const minRating = Math.min(...ratingArray);
+    const maxRating = Math.max(...ratingArray);
+    const avgRating = calculateAverage(ratingArray);
+
+    let ratings = {
+      0: 0,
+      0.5: 0,
+      1: 0,
+      1.5: 0,
+      2: 0,
+      2.5: 0,
+      3: 0,
+      3.5: 0,
+      4: 0,
+      4.5: 0,
+      5: 0,
+    };
+    // 별점별 개수
+    ratingArray.forEach((num) => {
+      ratings[num]++;
+    });
+
+    return {
+      minRating,
+      maxRating,
+      avgRating,
+      ratings,
+    };
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   getWineStatistics,
+  getRatingStatistics,
 };
