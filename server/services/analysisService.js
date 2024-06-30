@@ -1,6 +1,10 @@
 const conn = require("../db/connection");
 const analysisQuery = require("../queries/analysisQuery");
-const { calculateAverage, calculatePercentage } = require("../utils/calculate");
+const {
+  calculateAverage,
+  calculatePercentage,
+  countContries,
+} = require("../utils/calculate");
 
 const getWineStatistics = async (userId) => {
   try {
@@ -86,8 +90,23 @@ const getTypeStatistics = async (userId) => {
   }
 };
 
+const getCountryStatistics = async (userId) => {
+  try {
+    const countryResult = await conn
+      .query(analysisQuery.getCountries, userId)
+      .then((res) => res[0]);
+
+    const countryList = countryResult.map((row) => row.country);
+
+    return countContries(countryList);
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   getWineStatistics,
   getRatingStatistics,
   getTypeStatistics,
+  getCountryStatistics,
 };

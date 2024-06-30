@@ -27,7 +27,18 @@ const calculatePercentage = (numbers) => {
   return percentages;
 };
 
+const countContries = (arr) => {
+  const countMap = {};
+
+  arr.forEach((str) => {
+    countMap[str] ? countMap[str]++ : (countMap[str] = 1);
+  });
+
+  return countMap;
+};
+
 module.exports = {
   calculateAverage,
   calculatePercentage,
+  countContries,
 };
